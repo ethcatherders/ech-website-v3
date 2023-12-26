@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        darkGray: "#323232",
+        darkGray: "#3c3c3c",
         lightGray: "#a9a9a9",
       },
       fontFamily: {
