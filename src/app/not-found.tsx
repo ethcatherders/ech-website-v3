@@ -15,7 +15,7 @@ export default function ErrorPage() {
           <h1 className="md:text-7xl text-3xl font-antonio text-center">
             Uh Oh! I think you are lost
           </h1>
-          <Button text="Go Home ->" link="/" fontSize={"3xl"} />
+          <Button text="Go Home ->" link="/" fontSize={"3xl"} inverted={true} />
         </div>
       </div>
     </>
