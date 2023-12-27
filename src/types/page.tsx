@@ -11,7 +11,9 @@ export type Button = {
   link: string;
   height?: string;
   width?: string;
+  size?: "sm" | "md" | "lg";
   fontSize?: string;
+  inverted?: boolean;
 };
 
 export type Socials = {
