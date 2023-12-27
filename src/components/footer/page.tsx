@@ -8,12 +8,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <>
-      <motion.div
-        className="bg-darkGray text-white py-32 bottom-0 flex lg:flex-row flex-col justify-evenly gap-y-16 px-4 sm:px-8"
-        initial={{ y: 100 }}
-        whileInView={{ y: 0 }}
-        transition={{ duration: 1 }}
-      >
+      <div className="bg-darkGray text-white py-32 bottom-0 flex lg:flex-row flex-col justify-evenly gap-y-16 px-4 sm:px-8">
         <div className="flex flex-col gap-y-4">
           <h1 className="text-4xl font-antonio font-bold">
             ETHEREUM CAT HERDERS
@@ -76,7 +71,7 @@ export default function Footer() {
                 href="mailto:support@ethereumcatherders.com"
                 target="_blank"
               >
-                <h3 className="text-lg py-4 text-lightGray hover:underline underline-offset-2 hover:text-white">
+                <h3 className="sm:text-lg py-4 text-lightGray hover:underline underline-offset-2 hover:text-white">
                   support@ethereumcatherders.com
                 </h3>
               </Link>
@@ -87,7 +82,7 @@ export default function Footer() {
             </section>
           </div>
         </div>
-      </motion.div>
+      </div>
     </>
   );
 }
