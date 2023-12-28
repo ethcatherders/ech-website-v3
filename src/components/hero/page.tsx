@@ -23,16 +23,21 @@ export default function Hero() {
           </p>
 
           <div className="max-w-2xl flex flex-wrap justify-center md:gap-5 spacey-y-2 ">
-            <Button text="Dencun" link="/dencun" size="md" fontSize="lg" />
             <Button
-              text="PEEPanEIP"
-              link="/peepaneip"
+              text="Dencun"
+              link="/network_upgrades/dencun"
               size="md"
               fontSize="lg"
             />
             <Button
-              text="Upgrades"
-              link="/network_upgrades"
+              text="Practra"
+              link="/network_upgrades/practra"
+              size="md"
+              fontSize="lg"
+            />
+            <Button
+              text="PEEPanEIP"
+              link="/peepaneip"
               size="md"
               fontSize="lg"
             />
