@@ -34,3 +34,20 @@ export type InfoForUpgrade = {
   description2: string;
   embedLink: string;
 };
+
+export type UpdatesData = {
+  date: string;
+  title: string;
+  linkTitle: string;
+  link: string;
+};
+
+export type VideosData = {
+  title: string;
+  link: string;
+};
+
+export type ResourcesData = {
+  title: string;
+  link: string;
+};

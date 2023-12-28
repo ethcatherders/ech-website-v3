@@ -2,16 +2,32 @@
 import { useState, useEffect } from "react";
 import { getCollection, getDocById } from "@/firebase/tools";
 import { getDoc, doc, db } from "@/firebase/config";
-import type { consdideredProposal, InfoForUpgrade } from "@/types/page";
+import type {
+  consdideredProposal,
+  InfoForUpgrade,
+  UpdatesData,
+  VideosData,
+  ResourcesData,
+} from "@/types/page";
 import Considered from "@/components/adminComponents/considered/page";
 import Info from "@/components/adminComponents/info/page";
+import Resources from "@/components/adminComponents/resources/page";
+import Videos from "@/components/adminComponents/videos/page";
+import Updates from "@/components/adminComponents/updates/page";
+import { set } from "firebase/database";
 
 export default function Admin() {
   const [selectedPage, setSelectedPage] = useState<string>("");
   const [data, setData] = useState<any[]>([]);
   const [infoData, setInfoData] = useState<InfoForUpgrade>();
+  const [updatesData, setUpdatesData] = useState<UpdatesData[]>();
+  const [videosData, setVideosData] = useState<VideosData[]>();
+  const [resourcesData, setResourcesData] = useState<ResourcesData[]>();
   const [upgradeNames, setUpgradeNames] = useState<string[]>([]);
   const [selectedUpgrade, setSelectedUpgrade] = useState<string>("");
+  const [selectedUpdate, setSelectedUpdate] = useState<UpdatesData>();
+  const [selectedVideo, setSelectedVideo] = useState<VideosData>();
+  const [selectedResource, setSelectedResource] = useState<ResourcesData>();
   const [selectedConsidered, setSelectedConsidered] =
     useState<consdideredProposal>();
   const [selectedSection, setSelectedSection] = useState<string>("");
@@ -21,6 +37,9 @@ export default function Admin() {
       if (selectedUpgrade) {
         const doc = await getCollection(selectedUpgrade, "considered");
         const doc3 = await getDocById(selectedUpgrade, "info", selectedUpgrade);
+        const doc4 = await getCollection(selectedUpgrade, "updates");
+        const doc5 = await getCollection(selectedUpgrade, "videos");
+        const doc6 = await getCollection(selectedUpgrade, "resources");
         if (doc3) {
           setInfoData(doc3 as InfoForUpgrade);
         } else {
@@ -28,6 +47,21 @@ export default function Admin() {
         }
         if (doc) {
           setData(doc);
+        } else {
+          console.log("No data found");
+        }
+        if (doc4) {
+          setUpdatesData(doc4 as UpdatesData[]);
+        } else {
+          console.log("No data found");
+        }
+        if (doc5) {
+          setVideosData(doc5 as VideosData[]);
+        } else {
+          console.log("No data found");
+        }
+        if (doc6) {
+          setResourcesData(doc6 as ResourcesData[]);
         } else {
           console.log("No data found");
         }
@@ -46,7 +80,7 @@ export default function Admin() {
   return (
     <>
       <div className="flex justify-center items-center min-h-screen pt-[10dvh] px-16">
-        <div className="px-16 border-r border-darkGray">
+        <div className="px-6 border-r border-darkGray">
           <span
             onClick={() => {
               setSelectedPage("NetworkUpgrades");
@@ -61,7 +95,7 @@ export default function Admin() {
           </span>
         </div>
 
-        <div className="border-r border-darkGray px-16">
+        <div className="border-r border-darkGray px-6">
           {selectedPage === "NetworkUpgrades" && (
             <>
               <div className="flex flex-col gap-y-8">
@@ -74,6 +108,9 @@ export default function Admin() {
                           setSelectedUpgrade(item);
                           setSelectedSection("");
                           setSelectedConsidered(undefined);
+                          setSelectedUpdate(undefined);
+                          setSelectedVideo(undefined);
+                          setSelectedResource(undefined);
                         }}
                         className={` ${
                           selectedUpgrade === item
@@ -95,6 +132,9 @@ export default function Admin() {
                       setSelectedUpgrade(e.target.value);
                       setSelectedSection("");
                       setSelectedConsidered(undefined);
+                      setSelectedUpdate(undefined);
+                      setSelectedVideo(undefined);
+                      setSelectedResource(undefined);
                     }}
                     className="border border-darkGray p-4"
                   />
@@ -104,13 +144,16 @@ export default function Admin() {
           )}
         </div>
 
-        <div className="px-16 border-r border-darkGray flex flex-col gap-y-4">
+        <div className="px-6 border-r border-darkGray flex flex-col gap-y-4">
           {selectedUpgrade && (
             <>
               <span
                 onClick={() => {
                   setSelectedSection("info");
                   setSelectedConsidered(undefined);
+                  setSelectedUpdate(undefined);
+                  setSelectedVideo(undefined);
+                  setSelectedResource(undefined);
                 }}
                 className={` ${
                   selectedSection === "info"
@@ -125,6 +168,9 @@ export default function Admin() {
                 onClick={() => {
                   setSelectedSection("considered");
                   setSelectedConsidered(undefined);
+                  setSelectedUpdate(undefined);
+                  setSelectedVideo(undefined);
+                  setSelectedResource(undefined);
                 }}
                 className={` ${
                   selectedSection === "considered"
@@ -134,11 +180,184 @@ export default function Admin() {
               >
                 Considered
               </span>
+
+              <span
+                onClick={() => {
+                  setSelectedSection("updates");
+                  setSelectedConsidered(undefined);
+                  setSelectedUpdate(undefined);
+                  setSelectedVideo(undefined);
+                  setSelectedResource(undefined);
+                }}
+                className={` ${
+                  selectedSection === "updates"
+                    ? "text-darkGray"
+                    : "text-lightGray"
+                } text-2xl hover:cursor-pointer`}
+              >
+                Updates
+              </span>
+
+              <span
+                onClick={() => {
+                  setSelectedSection("videos");
+                  setSelectedConsidered(undefined);
+                  setSelectedUpdate(undefined);
+                  setSelectedVideo(undefined);
+                  setSelectedResource(undefined);
+                }}
+                className={` ${
+                  selectedSection === "videos"
+                    ? "text-darkGray"
+                    : "text-lightGray"
+                } text-2xl hover:cursor-pointer`}
+              >
+                Videos
+              </span>
+
+              <span
+                onClick={() => {
+                  setSelectedSection("resources");
+                  setSelectedConsidered(undefined);
+                  setSelectedUpdate(undefined);
+                  setSelectedVideo(undefined);
+                  setSelectedResource(undefined);
+                }}
+                className={` ${
+                  selectedSection === "resources"
+                    ? "text-darkGray"
+                    : "text-lightGray"
+                } text-2xl hover:cursor-pointer`}
+              >
+                Resources
+              </span>
             </>
           )}
         </div>
 
-        <div className="px-16">
+        <div className=" border-r border-darkGray">
+          {selectedSection === "updates" && (
+            <div className="flex flex-col gap-y-8 px-6">
+              <div className="flex flex-col gap-y-4">
+                {updatesData?.map((item, index) => {
+                  return (
+                    <span
+                      key={index}
+                      className={`${
+                        selectedUpdate?.title === item.title
+                          ? "text-darkGray"
+                          : "text-lightGray"
+                      } text-xl  text-wrap hover:cursor-pointer`}
+                      onClick={() => {
+                        setSelectedUpdate(item);
+                      }}
+                    >
+                      {item.title}
+                    </span>
+                  );
+                })}
+              </div>
+              <span>
+                <input
+                  type="text"
+                  placeholder="New Update Title"
+                  onChange={(e) =>
+                    setSelectedUpdate({
+                      ...selectedUpdate,
+                      title: e.target.value,
+                      date: "",
+                      linkTitle: "",
+                      link: "",
+                    })
+                  }
+                  className="border border-darkGray p-4"
+                />
+              </span>
+            </div>
+          )}
+        </div>
+
+        <div className=" border-r border-darkGray">
+          {selectedSection === "videos" && (
+            <div className="flex flex-col gap-y-8 px-6">
+              <div className="flex flex-col gap-y-4">
+                {videosData?.map((item, index) => {
+                  return (
+                    <span
+                      key={index}
+                      className={`${
+                        selectedResource?.title === item.title
+                          ? "text-darkGray"
+                          : "text-lightGray"
+                      } text-xl  text-wrap hover:cursor-pointer`}
+                      onClick={() => {
+                        setSelectedResource(item);
+                      }}
+                    >
+                      {item.title}
+                    </span>
+                  );
+                })}
+              </div>
+              <span>
+                <input
+                  type="text"
+                  placeholder="New Video Title"
+                  onChange={(e) =>
+                    setSelectedVideo({
+                      ...selectedVideo,
+                      title: e.target.value,
+                      link: "",
+                    })
+                  }
+                  className="border border-darkGray p-4"
+                />
+              </span>
+            </div>
+          )}
+        </div>
+
+        <div className="border-r border-darkGray">
+          {selectedSection === "resources" && (
+            <div className="flex flex-col gap-y-8 px-6 ">
+              <div className="flex flex-col gap-y-4">
+                {resourcesData?.map((item, index) => {
+                  return (
+                    <span
+                      key={index}
+                      className={`${
+                        selectedResource?.title === item.title
+                          ? "text-darkGray"
+                          : "text-lightGray"
+                      } text-xl  text-wrap hover:cursor-pointer`}
+                      onClick={() => {
+                        setSelectedResource(item);
+                      }}
+                    >
+                      {item.title}
+                    </span>
+                  );
+                })}
+              </div>
+              <span>
+                <input
+                  type="text"
+                  placeholder="New Resource Title"
+                  onChange={(e) =>
+                    setSelectedResource({
+                      ...selectedResource,
+                      title: e.target.value,
+                      link: "",
+                    })
+                  }
+                  className="border border-darkGray p-4"
+                />
+              </span>
+            </div>
+          )}
+        </div>
+
+        <div className="px-6">
           {selectedSection === "info" && (
             <>
               <Info
@@ -150,9 +369,45 @@ export default function Admin() {
           )}
         </div>
 
-        <div className="px-16 border-r border-darkGray">
+        <div className="px-6">
+          {selectedUpdate && (
+            <>
+              <Updates
+                upgradeName={selectedUpgrade}
+                documentData={selectedUpdate as UpdatesData}
+                allUpgrades={upgradeNames}
+              />
+            </>
+          )}
+        </div>
+
+        <div className="px-6">
+          {selectedVideo && (
+            <>
+              <Videos
+                upgradeName={selectedUpgrade}
+                documentData={selectedVideo as VideosData}
+                allUpgrades={upgradeNames}
+              />
+            </>
+          )}
+        </div>
+
+        <div className="px-6">
+          {selectedResource && (
+            <>
+              <Resources
+                upgradeName={selectedUpgrade}
+                documentData={selectedResource as ResourcesData}
+                allUpgrades={upgradeNames}
+              />
+            </>
+          )}
+        </div>
+
+        <div className="border-r border-darkGray">
           {selectedSection === "considered" && (
-            <div className="flex flex-col gap-y-8">
+            <div className="flex flex-col gap-y-8 pr-6">
               <div className="flex flex-col gap-y-4">
                 {data.map((item: consdideredProposal, index) => {
                   console.log(item);
@@ -163,7 +418,7 @@ export default function Admin() {
                         selectedConsidered?.title === item.title
                           ? "text-darkGray"
                           : "text-lightGray"
-                      } text-xl max-w-[5rem] text-wrap hover:cursor-pointer`}
+                      } text-xl  text-wrap hover:cursor-pointer`}
                       onClick={() => {
                         setSelectedConsidered(item);
                       }}
@@ -194,7 +449,7 @@ export default function Admin() {
           )}
         </div>
 
-        <div className="px-16">
+        <div className="px-6">
           {selectedConsidered && (
             <Considered
               upgradeName={selectedUpgrade}

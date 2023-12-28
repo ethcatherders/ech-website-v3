@@ -37,30 +37,30 @@ export default function Considered({
           onChange={(e) => setData({ ...data, title: e.target.value })}
           className="border border-darkGray p-4"
         />
-        <input
-          type="text"
-          placeholder="description"
+        <textarea
+          rows={5}
+          placeholder="Description"
           value={data.description || ""}
           onChange={(e) => setData({ ...data, description: e.target.value })}
           className="border border-darkGray p-4"
         />
         <input
           type="text"
-          placeholder="proposalLink"
+          placeholder="Proposal Link"
           value={data.proposalLink || ""}
           onChange={(e) => setData({ ...data, proposalLink: e.target.value })}
           className="border border-darkGray p-4"
         />
         <input
           type="text"
-          placeholder="videoLink"
+          placeholder="Video Link"
           value={data.videoLink || ""}
           onChange={(e) => setData({ ...data, videoLink: e.target.value })}
           className="border border-darkGray p-4"
         />
         <input
           type="text"
-          placeholder="discussionLink"
+          placeholder="Discussion Link"
           value={data.discussionLink || ""}
           onChange={(e) => setData({ ...data, discussionLink: e.target.value })}
           className="border border-darkGray p-4"
@@ -72,6 +72,7 @@ export default function Considered({
               ? null
               : updateUpgrades([...allUpgrades, upgradeName]);
           }}
+          className="bg-black text-white border-black hover:bg-white hover:text-black border-2 p-4 rounded-lg duration-300"
         >
           Add / Update
         </button>
