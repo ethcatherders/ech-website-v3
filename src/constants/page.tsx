@@ -17,8 +17,12 @@ export const nav: Nav[] = [
         link: "/network_upgrades",
       },
       {
+        label: "Practra Upgrade",
+        link: "/network_upgrades/practra",
+      },
+      {
         label: "Dencun Upgrade",
-        link: "/dencun",
+        link: "/network_upgrades/dencun",
       },
       {
         label: "EIP Resources",

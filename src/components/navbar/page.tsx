@@ -69,12 +69,8 @@ export default function Navbar() {
   // useEffect(() => {
   //   if (navRef.current) {
   //     if (scrollY === 0) {
-  //       animateNav(
-  //         navRef.current,
-  //         { opacity: 1, y: 0 },
-  //         { duration: 0.2, delay: 1 }
-  //       );
-  //     } else if (scrollY < prevScroll) {
+  //       animateNav(navRef.current, { opacity: 1, y: 0 }, { duration: 0.2 });
+  //     } else if (scrollY <= prevScroll) {
   //       animateNav(navRef.current, { opacity: 1, y: 0 }, { duration: 0.2 });
   //     } else {
   //       animateNav(navRef.current, { opacity: 0, y: -10 }, { duration: 0.2 });
@@ -91,7 +87,7 @@ export default function Navbar() {
         exit={{ opacity: 0, y: -10 }}
         className={
           scrollY === 0
-            ? "flex justify-between fixed w-full md:py-12 py-6 md:px-16 px-8 items-center z-50 bg-white"
+            ? "flex justify-between fixed w-full md:py-12 py-6 md:px-16 px-8 items-center z-20 bg-white"
             : scrollY <= prevScroll
             ? "flex justify-between fixed w-full py-4 shadow-xl shadow-lightGray/30 md:px-16 px-8 items-center bg-white z-50"
             : "hidden"

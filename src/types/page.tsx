@@ -20,3 +20,17 @@ export type Socials = {
   icon: ReactElement;
   link: string;
 };
+
+export type consdideredProposal = {
+  title: string;
+  description: string;
+  proposalLink: string;
+  videoLink: string;
+  discussionLink: string;
+};
+
+export type InfoForUpgrade = {
+  description1: string;
+  description2: string;
+  embedLink: string;
+};

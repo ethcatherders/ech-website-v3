@@ -1,12 +1,14 @@
-import { motion, useScroll } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import Button from "../button/page";
 
 export default function Hero() {
   const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1000], [0, -500]);
   return (
     <>
-      <div className="flex md:flex-row flex-col min-h-screen justify-center items-center px-12 md:bg-white bg-black/80">
+      <div className="flex md:flex-row flex-col min-h-screen justify-center items-center px-12 md:bg-white bg-black/80 gap-x-8">
         <div className="flex flex-col md:gap-y-6 gap-y-4">
           <h3 className="text-4xl font-antonio md:text-black text-white">
             ETHEREUM CAT HERDERS
@@ -20,48 +22,39 @@ export default function Hero() {
             move Ethereum forward.
           </p>
 
-          <div className="max-w-2xl flex flex-wrap justify-center">
+          <div className="max-w-2xl flex flex-wrap justify-center md:gap-5 spacey-y-2 ">
+            <Button text="Dencun" link="/dencun" size="md" fontSize="lg" />
             <Button
-              text="Dencun Upgrade"
-              link="/dencun"
-              fontSize="1.2rem"
+              text="PEEPanEIP"
+              link="/peepaneip"
               size="md"
+              fontSize="lg"
             />
             <Button
-              text="Dencun Upgrade"
-              link="/dencun"
-              fontSize="1.2rem"
+              text="Upgrades"
+              link="/network_upgrades"
               size="md"
+              fontSize="lg"
             />
-            <Button
-              text="Dencun Upgrade"
-              link="/dencun"
-              fontSize="1.2rem"
-              size="md"
-            />
-            <Button
-              text="Dencun Upgrade"
-              link="/dencun"
-              fontSize="1.2rem"
-              size="md"
-            />
-            <Button
-              text="Dencun Upgrade"
-              link="/dencun"
-              fontSize="1.2rem"
-              size="md"
-            />
+            <Button text="Testnets" link="/testnets" size="md" fontSize="lg" />
+            <Button text="Podcast" link="/podcast" size="md" fontSize="lg" />
           </div>
         </div>
         <div>
-          <div className="h-full md:flex hidden">
+          <motion.div
+            initial={{ y: 0 }}
+            style={{ y: y }}
+            className="h-full md:flex hidden"
+          >
             <Image
+              id="parallax-image"
               src="/assets/ech_full_logo.png"
               alt="logo"
               height={500}
               width={500}
+              className="z-30"
             />
-          </div>
+          </motion.div>
         </div>
       </div>
     </>
