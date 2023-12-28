@@ -45,6 +45,7 @@ export default function Videos({
         <button
           onClick={() => {
             addDocbyId(
+              "network_upgrades",
               upgradeName,
               "videos",
               `${Timestamp.now().toDate().getTime() + data.title}`,

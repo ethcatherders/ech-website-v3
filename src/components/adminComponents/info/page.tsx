@@ -52,7 +52,13 @@ export default function Info({
 
         <button
           onClick={() => {
-            addDocbyId(upgradeName, "info", upgradeName, data);
+            addDocbyId(
+              "network_upgrades",
+              upgradeName,
+              "info",
+              upgradeName,
+              data
+            );
             allUpgrades.includes(upgradeName)
               ? null
               : updateUpgrades([...allUpgrades, upgradeName]);

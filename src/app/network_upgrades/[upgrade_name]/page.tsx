@@ -26,11 +26,32 @@ export default function Practra() {
 
   useEffect(() => {
     async function getData() {
-      const doc = await getCollection(upgradeName, "considered");
-      const doc2 = await getDocById(upgradeName, "info", upgradeName);
-      const doc3 = await getCollection(upgradeName, "updates");
-      const doc4 = await getCollection(upgradeName, "resources");
-      const doc5 = await getCollection(upgradeName, "videos");
+      const doc = await getCollection(
+        "network_upgrades",
+        upgradeName,
+        "considered"
+      );
+      const doc2 = await getDocById(
+        "network_upgrades",
+        upgradeName,
+        "info",
+        upgradeName
+      );
+      const doc3 = await getCollection(
+        "network_upgrades",
+        upgradeName,
+        "updates"
+      );
+      const doc4 = await getCollection(
+        "network_upgrades",
+        upgradeName,
+        "resources"
+      );
+      const doc5 = await getCollection(
+        "network_upgrades",
+        upgradeName,
+        "videos"
+      );
       if (doc) {
         setData({
           considered: doc as consdideredProposal[],

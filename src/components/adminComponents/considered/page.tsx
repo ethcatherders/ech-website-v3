@@ -67,7 +67,13 @@ export default function Considered({
         />
         <button
           onClick={() => {
-            addDocbyId(upgradeName, "considered", data.title, data);
+            addDocbyId(
+              "network_upgrades",
+              upgradeName,
+              "considered",
+              data.title,
+              data
+            );
             allUpgrades.includes(upgradeName)
               ? null
               : updateUpgrades([...allUpgrades, upgradeName]);

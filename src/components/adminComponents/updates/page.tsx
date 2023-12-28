@@ -62,6 +62,7 @@ export default function Updates({
         <button
           onClick={() => {
             addDocbyId(
+              "network_upgrades",
               upgradeName,
               "updates",
               `${Timestamp.now().toDate().getTime() + data.title}`,

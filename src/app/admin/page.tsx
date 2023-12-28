@@ -8,18 +8,25 @@ import type {
   UpdatesData,
   VideosData,
   ResourcesData,
+  BlogsData,
+  EventsData,
 } from "@/types/page";
 import Considered from "@/components/adminComponents/considered/page";
 import Info from "@/components/adminComponents/info/page";
 import Resources from "@/components/adminComponents/resources/page";
 import Videos from "@/components/adminComponents/videos/page";
 import Updates from "@/components/adminComponents/updates/page";
-import { set } from "firebase/database";
+import Blogs from "@/components/adminComponents/blogs/page";
+import Events from "@/components/adminComponents/events/page";
 
 export default function Admin() {
   const [selectedPage, setSelectedPage] = useState<string>("");
   const [data, setData] = useState<any[]>([]);
   const [infoData, setInfoData] = useState<InfoForUpgrade>();
+  const [blogData, setBlogsData] = useState<BlogsData[]>();
+  const [eventsData, setEventsData] = useState<EventsData[]>();
+  const [blogDoc, setBlogDoc] = useState<BlogsData>();
+  const [eventsDoc, setEventsDoc] = useState<EventsData>();
   const [updatesData, setUpdatesData] = useState<UpdatesData[]>();
   const [videosData, setVideosData] = useState<VideosData[]>();
   const [resourcesData, setResourcesData] = useState<ResourcesData[]>();
@@ -35,11 +42,32 @@ export default function Admin() {
   useEffect(() => {
     async function getData() {
       if (selectedUpgrade) {
-        const doc = await getCollection(selectedUpgrade, "considered");
-        const doc3 = await getDocById(selectedUpgrade, "info", selectedUpgrade);
-        const doc4 = await getCollection(selectedUpgrade, "updates");
-        const doc5 = await getCollection(selectedUpgrade, "videos");
-        const doc6 = await getCollection(selectedUpgrade, "resources");
+        const doc = await getCollection(
+          "network_upgrades",
+          selectedUpgrade,
+          "considered"
+        );
+        const doc3 = await getDocById(
+          "network_upgrades",
+          selectedUpgrade,
+          "info",
+          selectedUpgrade
+        );
+        const doc4 = await getCollection(
+          "network_upgrades",
+          selectedUpgrade,
+          "updates"
+        );
+        const doc5 = await getCollection(
+          "network_upgrades",
+          selectedUpgrade,
+          "videos"
+        );
+        const doc6 = await getCollection(
+          "network_upgrades",
+          selectedUpgrade,
+          "resources"
+        );
         if (doc3) {
           setInfoData(doc3 as InfoForUpgrade);
         } else {
@@ -67,6 +95,15 @@ export default function Admin() {
         }
       }
 
+      if (selectedSection === "Blogs") {
+        const doc7 = await getCollection("blogs", "blogsPage", "blogs");
+        setBlogsData(doc7 as BlogsData[]);
+      }
+      if (selectedSection === "Events") {
+        const doc8 = await getCollection("blogs", "blogsPage", "events");
+        setEventsData(doc8 as EventsData[]);
+      }
+
       const doc2 = await getDoc(doc(db, "network_upgrades", "upgrades"));
       if (doc2) {
         setUpgradeNames(doc2?.data()?.upgrades);
@@ -75,15 +112,23 @@ export default function Admin() {
       }
     }
     getData();
-  }, [selectedUpgrade]);
+  }, [selectedUpgrade, selectedSection]);
 
   return (
     <>
       <div className="flex justify-center items-center min-h-screen pt-[10dvh] px-16">
-        <div className="px-6 border-r border-darkGray">
+        <div className="px-6 border-r flex flex-col border-darkGray">
           <span
             onClick={() => {
               setSelectedPage("NetworkUpgrades");
+              setSelectedUpgrade("");
+              setSelectedSection("");
+              setSelectedConsidered(undefined);
+              setSelectedUpdate(undefined);
+              setSelectedVideo(undefined);
+              setSelectedResource(undefined);
+              setBlogDoc(undefined);
+              setEventsDoc(undefined);
             }}
             className={` ${
               selectedPage === "NetworkUpgrades"
@@ -91,9 +136,157 @@ export default function Admin() {
                 : "text-lightGray"
             } text-2xl hover:cursor-pointer`}
           >
-            NetWorkUpgrades
+            Network Upgrades
+          </span>
+          <span
+            onClick={() => {
+              setSelectedPage("Blog");
+              setSelectedUpgrade("");
+              setSelectedSection("");
+              setSelectedConsidered(undefined);
+              setSelectedUpdate(undefined);
+              setSelectedVideo(undefined);
+              setSelectedResource(undefined);
+              setBlogDoc(undefined);
+              setEventsDoc(undefined);
+            }}
+            className={` ${
+              selectedPage === "Blog" ? "text-darkGray" : "text-lightGray"
+            } text-2xl hover:cursor-pointer`}
+          >
+            Blog
           </span>
         </div>
+
+        <div className="border-r border-darkGray px-6 ">
+          {selectedPage === "Blog" && (
+            <>
+              <div className="flex flex-col gap-y-2">
+                <span
+                  onClick={() => {
+                    setSelectedSection("Blogs");
+                    setSelectedConsidered(undefined);
+                    setSelectedUpdate(undefined);
+                    setSelectedVideo(undefined);
+                    setSelectedResource(undefined);
+                    setBlogDoc(undefined);
+                    setEventsDoc(undefined);
+                  }}
+                  className={` ${
+                    selectedSection === "Blogs"
+                      ? "text-darkGray"
+                      : "text-lightGray"
+                  } text-3xl hover:cursor-pointer`}
+                >
+                  Blogs
+                </span>
+                <span
+                  onClick={() => {
+                    setSelectedSection("Events");
+                    setSelectedConsidered(undefined);
+                    setSelectedUpdate(undefined);
+                    setSelectedVideo(undefined);
+                    setSelectedResource(undefined);
+                    setBlogDoc(undefined);
+                    setEventsDoc(undefined);
+                  }}
+                  className={` ${
+                    selectedSection === "Events"
+                      ? "text-darkGray"
+                      : "text-lightGray"
+                  } text-3xl hover:cursor-pointer`}
+                >
+                  Events
+                </span>
+              </div>
+            </>
+          )}
+        </div>
+
+        {selectedSection === "Blogs" && (
+          <div className="flex flex-col gap-y-8 px-6">
+            <div className="flex flex-col gap-y-4">
+              {blogData?.map((item, index) => {
+                return (
+                  <span
+                    key={index}
+                    className={`${
+                      selectedUpdate?.title === item.title
+                        ? "text-darkGray"
+                        : "text-lightGray"
+                    } text-xl  text-wrap hover:cursor-pointer`}
+                    onClick={() => {
+                      setBlogDoc(item);
+                    }}
+                  >
+                    {item.title}
+                  </span>
+                );
+              })}
+            </div>
+            <span>
+              <input
+                type="text"
+                placeholder="New Blog Title"
+                onChange={(e) =>
+                  setBlogDoc({
+                    ...blogDoc,
+                    title: e.target.value,
+                    link: "",
+                    date: "",
+                  })
+                }
+                className="border border-darkGray p-4"
+              />
+            </span>
+          </div>
+        )}
+
+        {selectedSection === "Events" && (
+          <div className="flex flex-col gap-y-8 px-6">
+            <div className="flex flex-col gap-y-4">
+              {eventsData?.map((item, index) => {
+                return (
+                  <span
+                    key={index}
+                    className={`${
+                      selectedUpdate?.title === item.title
+                        ? "text-darkGray"
+                        : "text-lightGray"
+                    } text-xl  text-wrap hover:cursor-pointer`}
+                    onClick={() => {
+                      setEventsDoc(item);
+                    }}
+                  >
+                    {item.title}
+                  </span>
+                );
+              })}
+            </div>
+            <span>
+              <input
+                type="text"
+                placeholder="New Event Title"
+                onChange={(e) =>
+                  setEventsDoc({
+                    ...eventsDoc,
+                    title: e.target.value,
+                    linkTitle1: "",
+                    link1: "",
+                    linkTitle2: "",
+                    link2: "",
+                    linkTitle3: "",
+                    link3: "",
+                  })
+                }
+                className="border border-darkGray p-4"
+              />
+            </span>
+          </div>
+        )}
+
+        {blogDoc && <Blogs documentData={blogDoc} />}
+        {eventsDoc && <Events documentData={eventsDoc} />}
 
         <div className="border-r border-darkGray px-6">
           {selectedPage === "NetworkUpgrades" && (

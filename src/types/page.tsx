@@ -51,3 +51,19 @@ export type ResourcesData = {
   title: string;
   link: string;
 };
+
+export type BlogsData = {
+  title: string;
+  link: string;
+  date: string;
+};
+
+export type EventsData = {
+  title: string;
+  linkTitle1: string;
+  link1: string;
+  linkTitle2: string;
+  link2: string;
+  linkTitle3: string;
+  link3: string;
+};

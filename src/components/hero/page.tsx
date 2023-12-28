@@ -1,6 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import Button from "../button/page";
 
 export default function Hero() {
