@@ -67,3 +67,11 @@ export type EventsData = {
   linkTitle3: string;
   link3: string;
 };
+
+export type MembersData = {
+  name: string;
+  twitterLink?: string;
+  githubLink?: string;
+  bio?: string;
+  image: string;
+};
