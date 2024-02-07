@@ -1,0 +1,83 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model NetworkUpgrades {
+  id                  Int                   @id @default(autoincrement())
+  name                String
+  consideredProposals ConsideredProposals[]
+  desc1               String? @default("")
+  desc2               String? @default("")
+  embedLink           String? @default("")
+  resources           UpgradeResources[]
+  updates             UpgradeUpdates[]
+  videos              UpgradeVideos[]
+
+  @@unique([name])
+}
+
+model ConsideredProposals {
+  id                Int              @id @default(autoincrement())
+  name              String? @default("")
+  description       String? @default("")
+  discussionLink    String? @default("")
+  proposalLink      String? @default("")
+  videoLink         String? @default("")
+  NetworkUpgrades   NetworkUpgrades? @relation(fields: [networkUpgradesId], references: [id])
+  networkUpgradesId Int?
+}
+
+model UpgradeResources {
+  id                Int              @id @default(autoincrement())
+  link              String? @default("")
+  title             String? @default("")
+  NetworkUpgrades   NetworkUpgrades? @relation(fields: [networkUpgradesId], references: [id])
+  networkUpgradesId Int?
+}
+
+model UpgradeUpdates {
+  id                Int              @id @default(autoincrement())
+  link              String? @default("")
+  title             String? @default("")
+  linkTitle         String? @default("")
+  date              String @default("") 
+  NetworkUpgrades   NetworkUpgrades? @relation(fields: [networkUpgradesId], references: [id])
+  networkUpgradesId Int?
+}
+
+model UpgradeVideos {
+  id                Int              @id @default(autoincrement())
+  link              String? @default("")
+  title             String? @default("")
+  NetworkUpgrades   NetworkUpgrades? @relation(fields: [networkUpgradesId], references: [id])
+  networkUpgradesId Int?
+}
+
+model Blogs {
+  id    Int       @id @default(autoincrement())
+  title String? @default("")
+  link  String? @default("")
+  date  String? @default("")
+}
+
+model events {
+  id         Int     @id @default(autoincrement())
+  name       String? @default("")
+  link1      String? @default("")
+  link2      String? @default("")
+  link3      String? @default("")
+  linktitle1 String? @default("") 
+  linktitle2 String? @default("")
+  linktitle3 String? @default("")
+}
+
+model YoutubeLink {
+  id    Int     @id @default(autoincrement())
+  link  String? @default("")
+  title String? @default("")
+}

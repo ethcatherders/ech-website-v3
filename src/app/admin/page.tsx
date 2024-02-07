@@ -10,6 +10,7 @@ import type {
   ResourcesData,
   BlogsData,
   EventsData,
+  YoutubeLinks,
 } from "@/types/page";
 import Considered from "@/components/adminComponents/considered/page";
 import Info from "@/components/adminComponents/info/page";
@@ -18,7 +19,7 @@ import Videos from "@/components/adminComponents/videos/page";
 import Updates from "@/components/adminComponents/updates/page";
 import Blogs from "@/components/adminComponents/blogs/page";
 import Events from "@/components/adminComponents/events/page";
-
+import YoutubeAdmin from "@/components/adminComponents/youtubeAdmin/page";
 export default function Admin() {
   const [selectedPage, setSelectedPage] = useState<string>("");
   const [data, setData] = useState<any[]>([]);
@@ -26,6 +27,8 @@ export default function Admin() {
   const [blogData, setBlogsData] = useState<BlogsData[]>();
   const [eventsData, setEventsData] = useState<EventsData[]>();
   const [blogDoc, setBlogDoc] = useState<BlogsData>();
+  const [youtubeLinks, setYoutubeLinks] = useState<YoutubeLinks[]>();
+  const [ytLinkDoc, setYtLinkDoc] = useState<YoutubeLinks>();
   const [eventsDoc, setEventsDoc] = useState<EventsData>();
   const [updatesData, setUpdatesData] = useState<UpdatesData[]>();
   const [videosData, setVideosData] = useState<VideosData[]>();
@@ -41,6 +44,8 @@ export default function Admin() {
 
   useEffect(() => {
     async function getData() {
+      const doc9 = await getCollection("Youtube", "YoutubeLinks", "Links");
+      setYoutubeLinks(doc9 as YoutubeLinks[]);
       if (selectedUpgrade) {
         const doc = await getCollection(
           "network_upgrades",
@@ -68,6 +73,7 @@ export default function Admin() {
           selectedUpgrade,
           "resources"
         );
+
         if (doc3) {
           setInfoData(doc3 as InfoForUpgrade);
         } else {
@@ -103,7 +109,6 @@ export default function Admin() {
         const doc8 = await getCollection("blogs", "blogsPage", "events");
         setEventsData(doc8 as EventsData[]);
       }
-
       const doc2 = await getDoc(doc(db, "network_upgrades", "upgrades"));
       if (doc2) {
         setUpgradeNames(doc2?.data()?.upgrades);
@@ -129,6 +134,7 @@ export default function Admin() {
               setSelectedResource(undefined);
               setBlogDoc(undefined);
               setEventsDoc(undefined);
+              setYtLinkDoc(undefined);
             }}
             className={` ${
               selectedPage === "NetworkUpgrades"
@@ -149,6 +155,7 @@ export default function Admin() {
               setSelectedResource(undefined);
               setBlogDoc(undefined);
               setEventsDoc(undefined);
+              setYtLinkDoc(undefined);
             }}
             className={` ${
               selectedPage === "Blog" ? "text-darkGray" : "text-lightGray"
@@ -156,6 +163,72 @@ export default function Admin() {
           >
             Blog
           </span>
+
+          <span
+            onClick={() => {
+              setSelectedPage("Youtube");
+              setSelectedUpgrade("");
+              setSelectedSection("");
+              setSelectedConsidered(undefined);
+              setSelectedUpdate(undefined);
+              setSelectedVideo(undefined);
+              setSelectedResource(undefined);
+              setBlogDoc(undefined);
+              setEventsDoc(undefined);
+              setYtLinkDoc(undefined);
+            }}
+            className={` ${
+              selectedPage === "Youtube" ? "text-darkGray" : "text-lightGray"
+            } text-2xl hover:cursor-pointer`}
+          >
+            Youtube
+          </span>
+        </div>
+
+        <div className="border-r border-darkGray px-6 ">
+          {selectedPage === "Youtube" && (
+            <>
+              <div className="flex flex-col gap-y-2">
+                <div className="flex flex-col gap-y-4">
+                  {youtubeLinks?.map((item, index) => {
+                    return (
+                      <span
+                        key={index}
+                        className={`${
+                          selectedUpdate?.title === item.title
+                            ? "text-darkGray"
+                            : "text-lightGray"
+                        } text-xl  text-wrap hover:cursor-pointer`}
+                        onClick={() => {
+                          setYtLinkDoc(item);
+                        }}
+                      >
+                        {item.title}
+                      </span>
+                    );
+                  })}
+                </div>
+                <span>
+                  <input
+                    type="text"
+                    placeholder="New Link Title"
+                    onChange={(e) =>
+                      setYtLinkDoc({
+                        ...ytLinkDoc,
+                        title: e.target.value,
+                        link: "",
+                      })
+                    }
+                    className="border border-darkGray p-4"
+                  />
+                </span>
+              </div>
+            </>
+          )}
+        </div>
+
+        <div className="px-6">
+          {ytLinkDoc && <YoutubeAdmin documentData={ytLinkDoc} />}
         </div>
 
         <div className="border-r border-darkGray px-6 ">

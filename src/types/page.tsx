@@ -52,6 +52,11 @@ export type ResourcesData = {
   link: string;
 };
 
+export type YoutubeLinks = {
+  title: string;
+  link: string;
+};
+
 export type BlogsData = {
   title: string;
   link: string;
@@ -74,4 +79,25 @@ export type MembersData = {
   githubLink?: string;
   bio?: string;
   image: string;
+};
+
+export type PodcastCards = {
+  title: string;
+  link: string;
+  icon: string;
+};
+
+export type ActiveTestnet = {
+  name: string;
+  description: string;
+  warning?: string;
+  bullets?: string[];
+  resources: {
+    title: string;
+    link: string;
+  }[];
+  faucets: {
+    title: string;
+    link: string;
+  }[];
 };
