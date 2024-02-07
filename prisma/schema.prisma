@@ -81,3 +81,10 @@ model YoutubeLink {
   link  String? @default("")
   title String? @default("")
 }
+
+model Surveys {
+  id    Int     @id @default(autoincrement())
+  completed Boolean @default(false)
+  link  String? @default("")
+  title String? @default("")
+}

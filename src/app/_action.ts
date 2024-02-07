@@ -369,3 +369,64 @@ export async function deleteYoutubeVideo(videoId: number) {
     },
   });
 }
+
+export async function getAllSurveys() {
+  const surveys = await prisma.surveys.findMany();
+  return surveys;
+}
+
+export async function getSurvey(surveyId: number) {
+  const survey = await prisma.surveys.findUnique({
+    where: {
+      id: surveyId,
+    },
+  });
+  return survey;
+}
+
+export async function addSurvey(surveyData: any) {
+  await prisma.surveys.create({
+    data: {
+      title: surveyData.title,
+      link: surveyData.link,
+    },
+  });
+}
+
+export async function updateSurvey(surveyId: number, surveyData: any) {
+  await prisma.surveys.update({
+    where: {
+      id: surveyId,
+    },
+    data: {
+      title: surveyData.title,
+      link: surveyData.link,
+    },
+  });
+}
+
+export async function deleteSurvey(surveyId: number) {
+  await prisma.surveys.delete({
+    where: {
+      id: surveyId,
+    },
+  });
+}
+
+export async function toggleSurveyState(surveyId: number) {
+  const survey = await prisma.surveys
+    .findUnique({
+      where: {
+        id: surveyId,
+      },
+    })
+    .then((res) => res);
+  await prisma.surveys.update({
+    where: {
+      id: surveyId,
+    },
+    data: {
+      completed: !survey?.completed,
+    },
+  });
+}
