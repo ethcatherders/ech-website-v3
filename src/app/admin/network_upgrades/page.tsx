@@ -271,7 +271,7 @@ export default function NetworkUpgrades() {
                                       setNewProposal(false);
                                     }}
                                   >
-                                    {resource.title}
+                                    {proposal.name}
                                   </p>
                                   <span
                                     onClick={() => {

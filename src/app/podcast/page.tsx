@@ -21,8 +21,8 @@ export default function Podcast() {
           </h1>
 
           <div className="grid grid-cols-2 md:gap-10 gap-5">
-            {podcastCardData.map((item: PodcastCards) => {
-              return <PodcastCard card={item} />;
+            {podcastCardData.map((item: PodcastCards, index) => {
+              return <PodcastCard card={item} key={index} />;
             })}
           </div>
 

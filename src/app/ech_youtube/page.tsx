@@ -1,19 +1,17 @@
 "use client";
 import Image from "next/image";
-import { getCollection } from "@/firebase/tools";
 import { useState } from "react";
 import type { YoutubeLinks } from "@/types/page";
-import { set } from "firebase/database";
+import { getAllYoutubeVideos } from "../_action";
+
 export default function ECHYoutube() {
   const [data, setData] = useState<YoutubeLinks[]>([]);
   const [selectedLink, setSelectedLink] = useState("");
   useState(() => {
     async function getData() {
-      const doc = await getCollection("Youtube", "YoutubeLinks", "Links");
-      if (doc) {
-        setData(doc as YoutubeLinks[]);
-        setSelectedLink(doc[0].link);
-      }
+      const res = await getAllYoutubeVideos();
+      setData(res);
+      setSelectedLink(res[0].link);
     }
     getData();
   });

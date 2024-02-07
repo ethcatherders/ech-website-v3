@@ -10,7 +10,7 @@ export default function consdideredProposal({
     <>
       <div className="max-w-sm flex flex-col space-y-6 h-full justify-between py-12">
         <h1 className="text-2xl font-roboto font-bold text-darkGray text-center">
-          {data.title}
+          {data.name}
         </h1>
 
         <p className="max-w-xl text-justify">{data.description}</p>

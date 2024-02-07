@@ -277,7 +277,7 @@ export async function getBlog(blogId: number) {
 export async function addEvent(eventData: any) {
   await prisma.events.create({
     data: {
-      name: eventData.title,
+      name: eventData.name,
       link1: eventData.link1,
       link2: eventData.link2,
       link3: eventData.link3,
@@ -325,4 +325,47 @@ export async function getEvent(eventId: number) {
     },
   });
   return event;
+}
+
+export async function addYoutubeVideo(videoData: any) {
+  await prisma.youtubeLink.create({
+    data: {
+      title: videoData.title,
+      link: videoData.link,
+    },
+  });
+}
+
+export async function getYoutubeVideo(videoId: number) {
+  const video = await prisma.youtubeLink.findUnique({
+    where: {
+      id: videoId,
+    },
+  });
+  return video;
+}
+
+export async function getAllYoutubeVideos() {
+  const videos = await prisma.youtubeLink.findMany();
+  return videos;
+}
+
+export async function updateYoutubeVideo(videoId: number, videoData: any) {
+  await prisma.youtubeLink.update({
+    where: {
+      id: videoId,
+    },
+    data: {
+      title: videoData.title,
+      link: videoData.link,
+    },
+  });
+}
+
+export async function deleteYoutubeVideo(videoId: number) {
+  await prisma.youtubeLink.delete({
+    where: {
+      id: videoId,
+    },
+  });
 }

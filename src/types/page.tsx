@@ -22,7 +22,8 @@ export type Socials = {
 };
 
 export type consdideredProposal = {
-  title: string;
+  id: number;
+  name: string;
   description: string;
   proposalLink: string;
   videoLink: string;
@@ -64,12 +65,12 @@ export type BlogsData = {
 };
 
 export type EventsData = {
-  title: string;
-  linkTitle1: string;
+  name: string;
+  linktitle1: string;
   link1: string;
-  linkTitle2: string;
+  linktitle2: string;
   link2: string;
-  linkTitle3: string;
+  linktitle3: string;
   link3: string;
 };
 
