@@ -20,7 +20,7 @@ import {
 
 export default function SurveyAdmin() {
   const [surveyData, setSurveyData] = useState<any[]>([]);
-  const [open, setOpen] = useState(false);
+
   const [survey, setSurvey] = useState<any>({
     id: 0,
     title: "",
@@ -28,16 +28,21 @@ export default function SurveyAdmin() {
     completed: false,
   });
 
-  const [newSurvey, setnewSurvey] = useState(false);
-
+  const [newSurvey, setnewSurvey] = useState(true);
   const [selectedSurveyId, setSelectedSurveyId] = useState(0);
+
+  function handleToggleSurve(id: number) {
+    toggleSurveyState(id);
+    getSurvey(id).then((res) => {
+      if (res) {
+        setSurvey(res);
+      }
+    });
+  }
 
   useEffect(() => {
     getAllSurveys().then((res) => {
       setSurveyData(res);
-      if (res.length > 0) {
-        setSelectedSurveyId(res[0].id);
-      }
     });
   }, []);
 
@@ -97,9 +102,6 @@ export default function SurveyAdmin() {
                             deleteSurvey(survey.id);
                             getAllSurveys().then((res) => {
                               setSurveyData(res);
-                              if (res.length > 0) {
-                                setSelectedSurveyId(res[0].id);
-                              }
                             });
                           }}
                           className="cursor-pointer"
@@ -132,14 +134,9 @@ export default function SurveyAdmin() {
                 placeholder="Link"
                 className="border border-lightGray focus:border-darkGray rounded-lg p-2"
               />
-              <Dialog open={open}>
+              <Dialog>
                 <DialogTrigger>
-                  <button
-                    className="bg-darkGray text-white rounded-lg p-2"
-                    onClick={() => {
-                      setOpen(true);
-                    }}
-                  >
+                  <button className="bg-darkGray text-white rounded-lg p-2">
                     Set survey as{" "}
                     {survey.completed ? "incomplete" : "completed"}
                   </button>
@@ -160,7 +157,6 @@ export default function SurveyAdmin() {
                               setSurvey(res);
                             }
                           });
-                          setOpen(false);
                         }}
                       >
                         Yes! I am sure

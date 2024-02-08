@@ -2,7 +2,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "./authOptions";
 import prisma from "../../prisma/client";
-import { redirect } from "next/navigation";
+
 export async function getCurrentUser() {
   const session = await getServerSession(authOptions);
   try {
@@ -28,29 +28,21 @@ export async function getAllUsers() {
 }
 
 export async function changeUserRole(email: string, role: string) {
-  try {
-    const user = await prisma.user.update({
-      where: {
-        email: email,
-      },
-      data: {
-        role: role,
-      },
-    });
-    return user;
-  } catch (e) {
-    console.log("no user found");
-  }
+  const user = await prisma.user.update({
+    where: {
+      email: email,
+    },
+    data: {
+      role: role,
+    },
+  });
+  return user;
 }
 
 export async function deleteUser(email: string) {
-  try {
-    await prisma.user.delete({
-      where: {
-        email: email,
-      },
-    });
-  } catch (e) {
-    console.log("no user found");
-  }
+  await prisma.user.delete({
+    where: {
+      email: email,
+    },
+  });
 }

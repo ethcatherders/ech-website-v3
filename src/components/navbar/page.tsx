@@ -66,18 +66,6 @@ export default function Navbar() {
     };
   }, [scrollY]);
 
-  // useEffect(() => {
-  //   if (navRef.current) {
-  //     if (scrollY === 0) {
-  //       animateNav(navRef.current, { opacity: 1, y: 0 }, { duration: 0.2 });
-  //     } else if (scrollY <= prevScroll) {
-  //       animateNav(navRef.current, { opacity: 1, y: 0 }, { duration: 0.2 });
-  //     } else {
-  //       animateNav(navRef.current, { opacity: 0, y: -10 }, { duration: 0.2 });
-  //     }
-  //   }
-  // });
-
   return (
     <>
       <motion.div

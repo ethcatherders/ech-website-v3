@@ -32,22 +32,43 @@ export default function UserDialog() {
   }, []);
 
   async function updateUsersRole(email: string, role: string) {
-    await changeUserRole(email, role);
-    toast({
-      title: "User role updated",
-    });
-    const users = await getAllUsers();
-    setUsers(users);
+    try {
+      await changeUserRole(email, role);
+      toast({
+        title: "User role updated",
+      });
+      const users = await getAllUsers();
+      setUsers(users);
+    } catch (e) {
+      toast({
+        title: "Oh no! Something went wrong",
+      });
+    }
   }
+
+  async function handleDeleteUser(email: string) {
+    try {
+      await deleteUser(email);
+      toast({
+        title: "User deleted",
+      });
+      getAllUsers().then((users) => {
+        setUsers(users);
+      });
+    } catch (e) {
+      toast({
+        title: "Oh no! Something went wrong",
+      });
+    }
+  }
+
   return (
     <Dialog>
       <DialogTrigger>
-        <div className="absolute bottom-5 left-5">
-          <FaUserAlt
-            size={40}
-            className="text-white bg-darkGray p-2 rounded-lg hover:scale-110 duration-300"
-          />
-        </div>
+        <FaUserAlt
+          size={40}
+          className="text-white bg-darkGray p-2 rounded-lg hover:scale-110 duration-300"
+        />
       </DialogTrigger>
       <DialogContent>
         <Table>
@@ -103,10 +124,7 @@ export default function UserDialog() {
                   <TableCell>
                     <span
                       onClick={() => {
-                        deleteUser(user.email);
-                        getAllUsers().then((users) => {
-                          setUsers(users);
-                        });
+                        handleDeleteUser(user?.email);
                       }}
                       className="flex justify-end cursor-pointer"
                     >

@@ -46,8 +46,8 @@ export default function BlogsEvents() {
     linktitle3: "",
   });
 
-  const [newBlog, setNewBlog] = useState(false);
-  const [newEvent, setNewEvent] = useState(false);
+  const [newBlog, setNewBlog] = useState(true);
+  const [newEvent, setNewEvent] = useState(true);
 
   const [selectedBlogId, setSelectedBlogId] = useState(0);
   const [selectedEventId, setSelectedEventId] = useState(0);
@@ -55,15 +55,9 @@ export default function BlogsEvents() {
   useEffect(() => {
     getAllBlogs().then((res) => {
       setBlogsData(res);
-      if (res.length > 0) {
-        setSelectedBlogId(res[0].id);
-      }
     });
     getAllEvents().then((res) => {
       setEventsData(res);
-      if (res.length > 0) {
-        setSelectedEventId(res[0].id);
-      }
     });
   }, []);
 
@@ -94,7 +88,7 @@ export default function BlogsEvents() {
                 Blogs
               </h3>
               <div className="grid grid-cols-2 space-y-4 border rounded-lg border-darkGray p-4">
-                <div className="border-r border-lightGray pr-2">
+                <div className="border-r border-lightGray pr-2 space-y-2">
                   <span
                     className={`${
                       newBlog ? "text-darkGray font-semibold" : "text-lightGray"
@@ -207,7 +201,7 @@ export default function BlogsEvents() {
                 Events
               </h3>
               <div className="grid grid-cols-2 gap-5 border rounded-lg border-darkGray p-4">
-                <div className="border-r border-lightGray pr-2">
+                <div className="border-r border-lightGray pr-2 space-y-2">
                   <span
                     className={`${
                       newEvent

@@ -17,16 +17,13 @@ export default function YoutubeAdmin() {
     link: "",
   });
 
-  const [newYTLink, setnewYTLink] = useState(false);
+  const [newYTLink, setnewYTLink] = useState(true);
 
   const [selectedYtLinkId, setSelectedYtLinkId] = useState(0);
 
   useEffect(() => {
     getAllYoutubeVideos().then((res) => {
       setYoutubeData(res);
-      if (res.length > 0) {
-        setSelectedYtLinkId(res[0].id);
-      }
     });
   }, []);
 

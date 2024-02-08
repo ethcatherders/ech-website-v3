@@ -32,11 +32,11 @@ export default function NetworkUpgrades() {
   const [selectedUpdate, setSelectedUpdate] = useState("");
   const [selectedYtLink, setSelectedYtLink] = useState("");
 
-  const [newResource, setNewResource] = useState(false);
+  const [newResource, setNewResource] = useState(true);
   const [newUpgradeName, setNewUpgradeName] = useState("");
-  const [newProposal, setNewProposal] = useState(false);
-  const [newYtLink, setNewYtLink] = useState(false);
-  const [newUpdate, setNewUpdate] = useState(false);
+  const [newProposal, setNewProposal] = useState(true);
+  const [newYtLink, setNewYtLink] = useState(true);
+  const [newUpdate, setNewUpdate] = useState(true);
 
   const [proposal, setProposal] = useState<{
     id: number;
@@ -87,11 +87,6 @@ export default function NetworkUpgrades() {
   useEffect(() => {
     getAllUpgrades().then((res: any) => {
       setUpgrades(res);
-      setSelectedUpgrade(res[0]?.name.toLowerCase());
-      setSelectedResource(res[0]?.resources[0].title);
-      setSelectedProposal(res[0]?.consideredProposals[0]?.name);
-      setSelectedUpdate(res[0]?.updates[0]?.title);
-      setSelectedYtLink(res[0]?.videos[0]?.title);
     });
   }, []);
 
@@ -102,31 +97,6 @@ export default function NetworkUpgrades() {
         desc1: res?.desc1,
         desc2: res?.desc2,
         embedLink: res?.embedLink,
-      });
-      setResource({
-        resourceId: res?.resources[0]?.id,
-        link: res?.resources[0]?.link,
-        title: res?.resources[0]?.title,
-      });
-      setProposal({
-        id: res?.consideredProposals[0]?.id,
-        name: res?.consideredProposals[0]?.name,
-        description: res?.consideredProposals[0]?.description,
-        discussionLink: res?.consideredProposals[0]?.discussionLink,
-        proposalLink: res?.consideredProposals[0]?.proposalLink,
-        videoLink: res?.consideredProposals[0]?.videoLink,
-      });
-      setUpdate({
-        id: res?.updates[0]?.id,
-        link: res?.updates[0]?.link,
-        title: res?.updates[0]?.title,
-        linkTitle: res?.updates[0]?.linkTitle,
-        date: res?.updates[0]?.date,
-      });
-      setYtLink({
-        id: res?.videos[0]?.id,
-        link: res?.videos[0]?.link,
-        title: res?.videos[0]?.title,
       });
     });
   }, [selectedUpgrade]);
@@ -210,6 +180,7 @@ export default function NetworkUpgrades() {
                       onChange={(e) => {
                         setInfo({ ...info, desc1: e.target.value });
                       }}
+                      rows={5}
                       placeholder="Description 1"
                       className="border border-lightGray focus:border-darkGray rounded-lg p-2 "
                     />
@@ -218,6 +189,7 @@ export default function NetworkUpgrades() {
                       onChange={(e) => {
                         setInfo({ ...info, desc2: e.target.value });
                       }}
+                      rows={5}
                       placeholder="Description 2"
                       className="border border-lightGray focus:border-darkGray rounded-lg p-2"
                     />
