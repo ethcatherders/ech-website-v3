@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { getCurrentUser } from "@/lib/session";
 import {
   getBlog,
   getEvent,
@@ -11,34 +12,30 @@ import {
   deleteEvent,
   updateBlog,
   updateEvent,
-} from ".././../_action";
+} from "@/app/_action";
 import { IoTrashBinOutline } from "react-icons/io5";
 
 export default function BlogsEvents() {
   const [blogsData, setBlogsData] = useState<any[]>([]);
   const [eventsData, setEventsData] = useState<any[]>([]);
 
-  const [blog, setBlog] = useState<{
-    id: number;
-    title: string;
-    link: string;
-    date: string;
-  }>({
+  const [user, setUser] = useState<any>(null);
+
+  useEffect(() => {
+    async function fetchUser() {
+      const user = await getCurrentUser();
+      setUser(user);
+    }
+    fetchUser();
+  }, []);
+
+  const [blog, setBlog] = useState<any>({
     id: 0,
     title: "",
     link: "",
     date: "",
   });
-  const [event, setEvent] = useState<{
-    id: number;
-    name: string;
-    link1: string;
-    link2: string;
-    link3: string;
-    linktitle1: string;
-    linktitle2: string;
-    linktitle3: string;
-  }>({
+  const [event, setEvent] = useState<any>({
     id: 0,
     name: "",
     link1: "",

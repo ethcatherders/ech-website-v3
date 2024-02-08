@@ -1,21 +1,15 @@
 "use client";
 import { useEffect, useState } from "react";
-import { getAllSurveys } from "../_action";
+import { getAllSurveys } from "@/app/_action";
 
 import Image from "next/image";
 export default function Surveys() {
-  const [data, setData] = useState<
-    {
-      id: number;
-      title: string;
-      link: string;
-      completed: boolean;
-    }[]
-  >([]);
+  const [data, setData] = useState<any[]>([]);
 
   useEffect(() => {
     async function fetchData() {
       const res = await getAllSurveys();
+
       setData(res);
     }
     fetchData();

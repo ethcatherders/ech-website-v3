@@ -2,14 +2,14 @@
 import Image from "next/image";
 import { useState } from "react";
 import type { YoutubeLinks } from "@/types/page";
-import { getAllYoutubeVideos } from "../_action";
+import { getAllYoutubeVideos } from "@/app/_action";
 
 export default function ECHYoutube() {
   const [data, setData] = useState<YoutubeLinks[]>([]);
   const [selectedLink, setSelectedLink] = useState("");
   useState(() => {
     async function getData() {
-      const res = await getAllYoutubeVideos();
+      const res: any = await getAllYoutubeVideos();
       setData(res);
       setSelectedLink(res[0].link);
     }

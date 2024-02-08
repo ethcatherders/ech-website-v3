@@ -85,7 +85,7 @@ export default function NetworkUpgrades() {
   });
 
   useEffect(() => {
-    getAllUpgrades().then((res) => {
+    getAllUpgrades().then((res: any) => {
       setUpgrades(res);
       setSelectedUpgrade(res[0]?.name.toLowerCase());
       setSelectedResource(res[0]?.resources[0].title);
@@ -96,7 +96,7 @@ export default function NetworkUpgrades() {
   }, []);
 
   useEffect(() => {
-    getUpgrade(selectedUpgrade).then((res) => {
+    getUpgrade(selectedUpgrade).then((res: any) => {
       setUpgradeData(res);
       setInfo({
         desc1: res?.desc1,

@@ -1,11 +1,7 @@
 import type { consdideredProposal } from "@/types/page";
 import Button from "@/components/button/page";
 
-export default function consdideredProposal({
-  data,
-}: {
-  data: consdideredProposal;
-}) {
+export default function consdideredProposal({ data }: { data: any }) {
   return (
     <>
       <div className="max-w-sm flex flex-col space-y-6 h-full justify-between py-12">

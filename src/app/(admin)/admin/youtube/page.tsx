@@ -6,16 +6,12 @@ import {
   deleteYoutubeVideo,
   updateYoutubeVideo,
   getYoutubeVideo,
-} from "../../_action";
+} from "@/app/_action";
 import { IoTrashBinOutline } from "react-icons/io5";
 export default function YoutubeAdmin() {
   const [youtubeData, setYoutubeData] = useState<any[]>([]);
 
-  const [yt, setYt] = useState<{
-    id: number;
-    title: string;
-    link: string;
-  }>({
+  const [yt, setYt] = useState<any>({
     id: 0,
     title: "",
     link: "",

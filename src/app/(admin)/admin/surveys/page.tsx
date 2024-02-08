@@ -7,7 +7,7 @@ import {
   updateSurvey,
   deleteSurvey,
   toggleSurveyState,
-} from "../../_action";
+} from "@/app/_action";
 import { IoTrashBinOutline } from "react-icons/io5";
 import {
   Dialog,
@@ -21,12 +21,7 @@ import {
 export default function SurveyAdmin() {
   const [surveyData, setSurveyData] = useState<any[]>([]);
   const [open, setOpen] = useState(false);
-  const [survey, setSurvey] = useState<{
-    id: number;
-    title: string;
-    link: string;
-    completed: boolean;
-  }>({
+  const [survey, setSurvey] = useState<any>({
     id: 0,
     title: "",
     link: "",

@@ -9,7 +9,7 @@ import type {
 } from "@/types/page";
 import { usePathname } from "next/navigation";
 import ConsdideredProposal from "@/components/consideredProposalCard/page";
-import { getUpgrade } from "../../_action";
+import { getUpgrade } from "@/app/_action";
 import { ConsideredProposals } from "@prisma/client";
 
 interface UpgradeData {
