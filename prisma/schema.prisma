@@ -39,7 +39,6 @@ model User {
   name          String?
   email         String?   @unique
   role          String?   @default("user")
-  emailVerified DateTime?
   image         String?
   accounts      Account[]
   sessions      Session[]

@@ -8,6 +8,8 @@ import { useState, useEffect } from "react";
 const inter = Inter({ subsets: ["latin"] });
 import { signIn, signOut } from "next-auth/react";
 import { FaSignOutAlt } from "react-icons/fa";
+import UserDialog from "@/components/userDialog";
+import { Toaster } from "@/components/ui/toaster";
 
 export default function RootLayout({
   children,
@@ -35,6 +37,8 @@ export default function RootLayout({
                 <Navbar />
                 {children}
                 <SignOutButton />
+                <Toaster />
+                {user?.role === "owner" && <UserDialog />}
               </>
             ) : (
               <>

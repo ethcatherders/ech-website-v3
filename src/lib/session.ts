@@ -17,3 +17,40 @@ export async function getCurrentUser() {
     return null;
   }
 }
+
+export async function getAllUsers() {
+  try {
+    const users = await prisma.user.findMany();
+    return users;
+  } catch (e) {
+    console.log("no users found");
+  }
+}
+
+export async function changeUserRole(email: string, role: string) {
+  try {
+    const user = await prisma.user.update({
+      where: {
+        email: email,
+      },
+      data: {
+        role: role,
+      },
+    });
+    return user;
+  } catch (e) {
+    console.log("no user found");
+  }
+}
+
+export async function deleteUser(email: string) {
+  try {
+    await prisma.user.delete({
+      where: {
+        email: email,
+      },
+    });
+  } catch (e) {
+    console.log("no user found");
+  }
+}
