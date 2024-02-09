@@ -428,3 +428,45 @@ export async function toggleSurveyState(surveyId: number) {
     },
   });
 }
+
+export async function addFeedback(feedbackData: any) {
+  await prisma.feedback.create({
+    data: {
+      name: feedbackData.name,
+      social: feedbackData.social,
+      feedback: feedbackData.feedback,
+      image: feedbackData.image,
+    },
+  });
+}
+
+export async function getAllFeedbacks() {
+  const feedbacks = await prisma.feedback.findMany();
+  return feedbacks;
+}
+
+export async function toggleFeedbackPublish(feedbackId: number) {
+  const feedback = await prisma.feedback
+    .findUnique({
+      where: {
+        id: feedbackId,
+      },
+    })
+    .then((res) => res);
+  await prisma.feedback.update({
+    where: {
+      id: feedbackId,
+    },
+    data: {
+      approved: !feedback.approved,
+    },
+  });
+}
+
+export async function deleteFeedback(feedbackId: number) {
+  await prisma.feedback.delete({
+    where: {
+      id: feedbackId,
+    },
+  });
+}

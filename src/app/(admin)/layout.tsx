@@ -1,7 +1,6 @@
 "use client";
 import { Inter } from "next/font/google";
 import "../globals.css";
-import Navbar from "@/components/navbar/page";
 import Loader from "@/components/loader/page";
 import { getCurrentUser } from "@/lib/session";
 import { useState, useEffect } from "react";
@@ -9,6 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 import { signIn, signOut } from "next-auth/react";
 import { FaSignOutAlt } from "react-icons/fa";
 import UserDialog from "@/components/userDialog";
+import FeedbackAdmin from "@/components/feedback/feedbackAdmin";
 import { Toaster } from "@/components/ui/toaster";
 
 import Link from "next/link";
@@ -40,6 +40,7 @@ export default function RootLayout({
                 <Loader />
                 {/* <Navbar /> */}
                 <AdminNav userRole={user?.role as string} />
+                <Tools userRole={user?.role as string} />
                 {children}
                 <Toaster />
               </>
@@ -110,7 +111,6 @@ function AdminNav({ userRole }: { userRole: string }) {
           </Link>
 
           <div className="flex sm:gap-5 gap-2 justify-center items-center">
-            {userRole === "owner" && <UserDialog />}
             <SignOutButton />
             <button className="bg-darkGray text-white sm:text-xl rounded-lg sm:px-4 px-2 py-2">
               Home
@@ -131,5 +131,14 @@ function AdminNav({ userRole }: { userRole: string }) {
         </div>
       </div>
     </>
+  );
+}
+
+function Tools({ userRole }: { userRole: string }) {
+  return (
+    <div className=" p-2 flex flex-col absolute bottom-[10rem] left-0 gap-2 ">
+      {userRole === "owner" && <UserDialog />}
+      <FeedbackAdmin />
+    </div>
   );
 }

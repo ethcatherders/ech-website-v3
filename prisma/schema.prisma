@@ -134,3 +134,12 @@ model Surveys {
   link  String? @default("")
   title String? @default("")
 }
+
+model Feedback{
+  id Int @id @default(autoincrement())
+  approved Boolean @default(false)
+  name String? @default("")
+  social String? @default("")
+  feedback String? @default("")
+  image String? @default("")
+}
