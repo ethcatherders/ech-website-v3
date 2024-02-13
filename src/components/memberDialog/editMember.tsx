@@ -87,7 +87,7 @@ export default function EditMember(data: any) {
             <div className="flex flex-col gap-6">
               <div className="flex flex-col gap-5 justify-center items-center pt-4 w-[80%] mx-auto">
                 <Image
-                  src={"/assets/about_no_pic.png"}
+                  src={member?.image || "/assets/about_no_pic.png"}
                   alt="feedback"
                   width={300}
                   height={300}

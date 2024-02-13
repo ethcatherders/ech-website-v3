@@ -20,7 +20,6 @@ export default function AddMember() {
     image: "",
     role: "active",
   });
-  // const [open, setOpen] = useState(false);
   const addOpen = useMemberStore((state) => state.addOpen);
   const setAddOpen = useMemberStore((state) => state.setAddOpen);
   const { toast } = useToast();
@@ -86,7 +85,7 @@ export default function AddMember() {
             <div className="flex flex-col gap-6">
               <div className="flex flex-col gap-5 justify-center items-center pt-4 w-[80%] mx-auto">
                 <Image
-                  src={"/assets/about_no_pic.png"}
+                  src={member?.image || "/assets/about_no_pic.png"}
                   alt="feedback"
                   width={300}
                   height={300}
