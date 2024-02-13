@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { MembersData } from "@/types/page";
 import { BsTwitterX, BsGithub } from "react-icons/bs";
+import Image from "next/image";
 
-export default function MemberCard({ member }: { member: MembersData }) {
+export default function MemberCard(member: any) {
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
@@ -19,10 +19,12 @@ export default function MemberCard({ member }: { member: MembersData }) {
       >
         {!isFlipped ? (
           <div className="flex flex-col justify-center w-full items-center gap-y-6 p-6">
-            <img
-              src={member.image}
+            <Image
+              src={member.image ? member.image : "/assets/about_no_pic.png"}
               alt={member.name}
-              className="h-60 w-60 rounded-full"
+              width={300}
+              height={300}
+              className="rounded-full w-[10rem] h-[10rem] border-2"
             />
             <h2 className="text-3xl text-center font-antonio">
               {member.name.toUpperCase()}
@@ -30,15 +32,15 @@ export default function MemberCard({ member }: { member: MembersData }) {
           </div>
         ) : (
           <div className="flex flex-col justify-center items-center gap-y-8 p-6">
-            <p className="text-justify">{member.bio}</p>
+            <p className="text-justify">{member.description}</p>
             <div className="flex space-x-4">
-              {member.twitterLink && (
-                <a href={member.twitterLink} target="_blank">
+              {member.twitter && (
+                <a href={member.twitter} target="_blank">
                   <BsTwitterX size={25} />
                 </a>
               )}
-              {member.githubLink && (
-                <a href={member.githubLink} target="_blank">
+              {member.github && (
+                <a href={member.github} target="_blank">
                   <BsGithub size={25} />
                 </a>
               )}

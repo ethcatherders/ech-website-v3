@@ -1,9 +1,20 @@
 "use client";
-import { members, contributors } from "@/constants/page";
+// import { members, contributors } from "@/constants/page";
+import { getAllMembers } from "@/app/_action";
 import MemberCard from "@/components/memberCard/page";
 import HelpUs from "@/components/others/helpUs";
 import Image from "next/image";
+import { useState, useEffect } from "react";
+
 export default function About() {
+  const [members, setMembers] = useState<any[]>([]);
+  useEffect(() => {
+    async function fetchMembers() {
+      const members = await getAllMembers();
+      setMembers(members);
+    }
+    fetchMembers();
+  }, []);
   return (
     <>
       <div className="flex justify-center pt-[15dvh] md:pt-[20dvh] lg:pt-[25dvh] ">
@@ -39,7 +50,9 @@ export default function About() {
 
               <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
                 {members.map((member, index) => {
-                  return <MemberCard member={member} key={index} />;
+                  if (member.role === "active") {
+                    return <MemberCard {...member} key={index} />;
+                  }
                 })}
               </div>
             </div>
@@ -48,12 +61,14 @@ export default function About() {
           <div className="lg:py-20 md:py-16 sm:py-12 py-8">
             <div className="flex flex-col gap-8">
               <h1 className="text-left  lg:text-7xl md:text-5xl sm:text-5xl text-4xl  font-bold text-darkGray ">
-                Contributors
+                Emeritus
               </h1>
 
               <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
-                {contributors.map((contributor, index) => {
-                  return <MemberCard member={contributor} key={index} />;
+                {members.map((member, index) => {
+                  if (member.role === "emeritus") {
+                    return <MemberCard {...member} key={index} />;
+                  }
                 })}
               </div>
             </div>

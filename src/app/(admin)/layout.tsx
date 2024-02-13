@@ -10,7 +10,7 @@ import { FaSignOutAlt } from "react-icons/fa";
 import UserDialog from "@/components/userDialog";
 import FeedbackAdmin from "@/components/feedback/feedbackAdmin";
 import { Toaster } from "@/components/ui/toaster";
-
+import MemberDialog from "@/components/memberDialog";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -139,6 +139,7 @@ function Tools({ userRole }: { userRole: string }) {
     <div className=" p-2 flex flex-col absolute bottom-[10rem] left-0 gap-2 ">
       {userRole === "owner" && <UserDialog />}
       <FeedbackAdmin />
+      {userRole === "owner" && <MemberDialog />}
     </div>
   );
 }

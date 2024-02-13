@@ -111,7 +111,7 @@ model Blogs {
   date  String? @default("")
 }
 
-model events {
+model Events {
   id         Int     @id @default(autoincrement())
   name       String? @default("")
   link1      String? @default("")
@@ -142,4 +142,14 @@ model Feedback{
   social String? @default("")
   feedback String? @default("")
   image String? @default("")
+}
+
+model Members{
+  id Int @id @default(autoincrement())
+  name String? @default("")
+  description String? @default("")
+  twitter String? @default("")
+  github String? @default("")
+  image String? @default("")
+  role String? @default("")
 }

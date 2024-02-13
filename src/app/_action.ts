@@ -470,3 +470,56 @@ export async function deleteFeedback(feedbackId: number) {
     },
   });
 }
+
+export async function addMember(memberData: any) {
+  await prisma.members.create({
+    data: {
+      name: memberData.name,
+      description: memberData.description,
+      role: memberData.role,
+      image: memberData.image,
+      twitter: memberData.twitter,
+      github: memberData.github,
+    },
+  });
+}
+
+export async function getAllMembers() {
+  const members = await prisma.members.findMany();
+  return members;
+}
+
+export async function updateMember(memberId: number, memberData: any) {
+  await prisma.members.update({
+    where: {
+      id: memberId,
+    },
+    data: {
+      name: memberData.name,
+      description: memberData.description,
+      role: memberData.role,
+      image: memberData.image,
+      twitter: memberData.twitter,
+      github: memberData.github,
+    },
+  });
+}
+
+export async function deleteMember(memberId: number) {
+  await prisma.members.delete({
+    where: {
+      id: memberId,
+    },
+  });
+}
+
+export async function updateMemberRole(memberId: number, role: string) {
+  await prisma.members.update({
+    where: {
+      id: memberId,
+    },
+    data: {
+      role: role,
+    },
+  });
+}
