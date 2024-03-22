@@ -87,9 +87,9 @@ export default function UserDialog() {
                   <TableCell>
                     <Popover>
                       <PopoverTrigger>
-                        <Button variant="outline">
+                        <span className="border py-1 px-2 rounded-lg border-lightGray">
                           {user?.role.toUpperCase()}
-                        </Button>
+                        </span>
                       </PopoverTrigger>
                       <PopoverContent>
                         <div className="flex flex-col gap-2">

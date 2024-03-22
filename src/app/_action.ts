@@ -523,3 +523,88 @@ export async function updateMemberRole(memberId: number, role: string) {
     },
   });
 }
+
+export async function addEipResourceTitle(resourceName:string) {
+  await prisma.eIP.create({
+    data: {
+      title: resourceName,
+    },
+  });
+}
+
+export async function getAllEipResourcesTitle() {
+  const resources = await prisma.eIP.findMany({
+    include: {
+      resources: true,
+    },
+  });
+  return resources;
+}
+
+export async function deleteEipResourceTitle(resourceId: number) {
+  await prisma.eIP.delete({
+    where: {
+      id: resourceId,
+    },
+  });
+}
+
+export async function addEipResource(resourceId: number, resourceData: any) {
+  await prisma.eIPResources.create({
+    data: {
+      title: resourceData.title,
+      link: resourceData.link,
+      type: resourceData.type,
+      EIP: {
+        connect: {
+          id: resourceId,
+        },
+      },
+    },
+  });
+}
+
+export async function deleteEipResource(resourceId: number) {
+  await prisma.eIPResources.delete({
+    where: {
+      id: resourceId,
+    },
+  });
+}
+
+export async function getEipResourceTitle(resourceId: number) {
+  const resource = await prisma.eIP.findUnique({
+    where: {
+      id: resourceId,
+    },
+    include: {
+      resources: true,
+    
+    }
+  });
+  return resource;
+}
+
+export async function addMeeting(meetingData: any) {
+  await prisma.meetings.create({
+    data: {
+      title: meetingData.title,
+      issuesLink: meetingData.issuesLink,
+      notes: meetingData.notes,
+      videoLink: meetingData.videoLink,
+    },
+  });
+}
+
+export async function deleteMeeting(meetingId: number) {
+  await prisma.meetings.delete({
+    where: {
+      id: meetingId,
+    },
+  });
+}
+
+export async function getAllMeetings() {
+  const meetings = await prisma.meetings.findMany();
+  return meetings;
+}

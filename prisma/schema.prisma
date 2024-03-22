@@ -8,18 +8,18 @@ datasource db {
 }
 
 model Account {
-  id                 String  @id @default(cuid())
-  userId             String
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?  @db.Text
-  access_token       String?  @db.Text
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?  @db.Text
-  session_state      String?
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -57,9 +57,9 @@ model NetworkUpgrades {
   id                  Int                   @id @default(autoincrement())
   name                String
   consideredProposals ConsideredProposals[]
-  desc1               String? @default("")
-  desc2               String? @default("")
-  embedLink           String? @default("")
+  desc1               String?               @default("")
+  desc2               String?               @default("")
+  embedLink           String?               @default("")
   resources           UpgradeResources[]
   updates             UpgradeUpdates[]
   videos              UpgradeVideos[]
@@ -69,43 +69,43 @@ model NetworkUpgrades {
 
 model ConsideredProposals {
   id                Int              @id @default(autoincrement())
-  name              String? @default("")
-  description       String? @default("")
-  discussionLink    String? @default("")
-  proposalLink      String? @default("")
-  videoLink         String? @default("")
+  name              String?          @default("")
+  description       String?          @default("")
+  discussionLink    String?          @default("")
+  proposalLink      String?          @default("")
+  videoLink         String?          @default("")
   NetworkUpgrades   NetworkUpgrades? @relation(fields: [networkUpgradesId], references: [id])
   networkUpgradesId Int?
 }
 
 model UpgradeResources {
   id                Int              @id @default(autoincrement())
-  link              String? @default("")
-  title             String? @default("")
+  link              String?          @default("")
+  title             String?          @default("")
   NetworkUpgrades   NetworkUpgrades? @relation(fields: [networkUpgradesId], references: [id])
   networkUpgradesId Int?
 }
 
 model UpgradeUpdates {
   id                Int              @id @default(autoincrement())
-  link              String? @default("")
-  title             String? @default("")
-  linkTitle         String? @default("")
-  date              String @default("") 
+  link              String?          @default("")
+  title             String?          @default("")
+  linkTitle         String?          @default("")
+  date              String           @default("")
   NetworkUpgrades   NetworkUpgrades? @relation(fields: [networkUpgradesId], references: [id])
   networkUpgradesId Int?
 }
 
 model UpgradeVideos {
   id                Int              @id @default(autoincrement())
-  link              String? @default("")
-  title             String? @default("")
+  link              String?          @default("")
+  title             String?          @default("")
   NetworkUpgrades   NetworkUpgrades? @relation(fields: [networkUpgradesId], references: [id])
   networkUpgradesId Int?
 }
 
 model Blogs {
-  id    Int       @id @default(autoincrement())
+  id    Int     @id @default(autoincrement())
   title String? @default("")
   link  String? @default("")
   date  String? @default("")
@@ -117,7 +117,7 @@ model Events {
   link1      String? @default("")
   link2      String? @default("")
   link3      String? @default("")
-  linktitle1 String? @default("") 
+  linktitle1 String? @default("")
   linktitle2 String? @default("")
   linktitle3 String? @default("")
 }
@@ -129,27 +129,56 @@ model YoutubeLink {
 }
 
 model Surveys {
-  id    Int     @id @default(autoincrement())
+  id        Int     @id @default(autoincrement())
   completed Boolean @default(false)
+  link      String? @default("")
+  title     String? @default("")
+}
+
+model Feedback {
+  id       Int     @id @default(autoincrement())
+  approved Boolean @default(false)
+  name     String? @default("")
+  social   String? @default("")
+  feedback String? @default("")
+  image    String? @default("")
+}
+
+model Members {
+  id          Int     @id @default(autoincrement())
+  name        String? @default("")
+  description String? @default("")
+  twitter     String? @default("")
+  github      String? @default("")
+  image       String? @default("")
+  role        String? @default("")
+}
+
+model EIP {
+  id        Int            @id @default(autoincrement())
+  title     String?        @default("")
+  resources EIPResources[]
+}
+
+model EIPResources {
+  id    Int     @id @default(autoincrement())
   link  String? @default("")
   title String? @default("")
+  type  EipResourceType @default(BLOG)
+  EIP   EIP?    @relation(fields: [eipId], references: [id])
+  eipId Int?
 }
 
-model Feedback{
-  id Int @id @default(autoincrement())
-  approved Boolean @default(false)
-  name String? @default("")
-  social String? @default("")
-  feedback String? @default("")
-  image String? @default("")
+model Meetings{
+  id        Int     @id @default(autoincrement())
+  title     String? @default("")
+  issuesLink String? @default("")
+  videoLink String? @default("")
+  notes String? @default("")
 }
 
-model Members{
-  id Int @id @default(autoincrement())
-  name String? @default("")
-  description String? @default("")
-  twitter String? @default("")
-  github String? @default("")
-  image String? @default("")
-  role String? @default("")
+enum EipResourceType{
+  BLOG
+  VIDEO
+  DISCUSSIONS
 }

@@ -20,12 +20,15 @@ function PageContent() {
       setUser(user);
     }
     fetchData();
-  });
+  }, []);
   const tabs: any[] = [
     { label: "Network Upgrades", link: "/admin/network_upgrades" },
     { label: "Blogs and Events", link: "/admin/blogs_events" },
     { label: "Youtube", link: "/admin/youtube" },
     { label: "Surveys", link: "/admin/surveys" },
+    { label: "EIP Resources", link: "/admin/eip_resources" },
+    { label: "Surveys", link: "/admin/surveys" },
+    { label: "Meetings", link: "/admin/meetings" },
   ];
   return (
     <>

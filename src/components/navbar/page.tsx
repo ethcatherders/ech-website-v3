@@ -7,6 +7,8 @@ import { CgClose } from "react-icons/cg";
 import { usePathname } from "next/navigation";
 import { motion, useAnimate, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { Popover, PopoverContent } from "../ui/popover";
+import { PopoverTrigger } from "@radix-ui/react-popover";
 
 export default function Navbar() {
   const path = usePathname();
@@ -100,12 +102,52 @@ export default function Navbar() {
           {nav.map((item, index) => {
             if (item === nav[1]) {
               return (
-                <div key={index} className="group relative">
-                  <div
-                    onMouseEnter={() => setIsDropped(true)}
-                    onMouseLeave={() => setIsDropped(false)}
-                  >
-                    <p
+                // <div key={index} className="group relative">
+                //   <div
+                //     onMouseEnter={() => setIsDropped(true)}
+                //     onMouseLeave={() => setIsDropped(false)}
+                //   >
+                    // <p
+                    //   key={index}
+                    //   className={`text-3xl font-antonio  hover:text-black duration-500  ${
+                    //     path === item.link ? "text-black" : "text-lightGray"
+                    //   }`}
+                    // >
+                    //   {item.label.toUpperCase()}
+                    // </p>
+
+                //     <div className="flex justify-center">
+                //       <AnimatePresence>
+                //         {isDropped && (
+                          // <motion.div
+                          //   className={`bg-darkGray flex-col text-lightGray absolute w-max px-8 py-4 rounded-xl gap-y-2 ${
+                          //     isDropped ? "flex" : "hidden"
+                          //   }`}
+                          //   initial={{ opacity: 0, y: -10 }}
+                          //   exit={{ visibility: "hidden", y: -10 }}
+                          //   ref={activitiesRef}
+                          // >
+                          //   {item.children?.map((child, chi) => {
+                          //     return (
+                          //       <Link key={chi} href={child.link || "/"}>
+                          //         <p
+                          //           key={chi}
+                          //           className="text-2xl font-antonio duration-500"
+                          //         >
+                          //           {child.label}
+                          //         </p>
+                          //       </Link>
+                          //     );
+                          //   })}
+                          // </motion.div>
+                //         )}
+                //       </AnimatePresence>
+                //     </div>
+                //   </div>
+                // </div>
+                <Popover key={index}>
+                  <PopoverTrigger>
+                  <p
                       key={index}
                       className={`text-3xl font-antonio  hover:text-black duration-500  ${
                         path === item.link ? "text-black" : "text-lightGray"
@@ -113,36 +155,23 @@ export default function Navbar() {
                     >
                       {item.label.toUpperCase()}
                     </p>
+                  </PopoverTrigger>
 
-                    <div className="flex justify-center">
-                      <AnimatePresence>
-                        {isDropped && (
-                          <motion.div
-                            className={`bg-darkGray flex-col text-lightGray absolute w-max px-8 py-4 rounded-xl gap-y-2 ${
-                              isDropped ? "flex" : "hidden"
-                            }`}
-                            initial={{ opacity: 0, y: -10 }}
-                            exit={{ visibility: "hidden", y: -10 }}
-                            ref={activitiesRef}
-                          >
-                            {item.children?.map((child, chi) => {
+                  <PopoverContent sideOffset={20} className="dark gap-2 bg-darkGray">
+                  {item.children?.map((child, chi) => {
                               return (
                                 <Link key={chi} href={child.link || "/"}>
                                   <p
                                     key={chi}
                                     className="text-2xl font-antonio duration-500"
                                   >
-                                    {child.label}
+                                    {child.label.toUpperCase()}
                                   </p>
                                 </Link>
                               );
                             })}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  </div>
-                </div>
+                  </PopoverContent>
+                </Popover>
               );
             } else {
               return (

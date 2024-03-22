@@ -5,11 +5,6 @@ import Image from "next/image";
 import { CldUploadButton, CldUploadWidgetResults } from "next-cloudinary";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { useToast } from "@/components/ui/use-toast";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 
 export default function AddMember() {
   const [member, setMember] = useState<any>({

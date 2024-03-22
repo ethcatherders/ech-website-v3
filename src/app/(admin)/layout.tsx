@@ -95,6 +95,8 @@ function AdminNav({ userRole }: { userRole: string }) {
     { label: "Blogs and Events", link: "/admin/blogs_events" },
     { label: "Youtube", link: "/admin/youtube" },
     { label: "Surveys", link: "/admin/surveys" },
+    { label: "EIP Resources", link: "/admin/eip_resources" },
+    { label: "Meetings", link: "/admin/meetings" },
   ];
   return (
     <>
