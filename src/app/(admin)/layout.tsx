@@ -35,7 +35,7 @@ export default function RootLayout({
       <body className={inter.className}>
         {user ? (
           <>
-            {user?.role === "admin" || user?.role === "owner" ? (
+            {user?.role === "ADMIN" || user?.role === "OWNER" ? (
               <>
                 <Loader />
                 {/* <Navbar /> */}
@@ -139,9 +139,9 @@ function AdminNav({ userRole }: { userRole: string }) {
 function Tools({ userRole }: { userRole: string }) {
   return (
     <div className=" p-2 flex flex-col absolute bottom-[10rem] left-0 gap-2 ">
-      {userRole === "owner" && <UserDialog />}
+      {userRole === "OWNER" && <UserDialog />}
       <FeedbackAdmin />
-      {userRole === "owner" && <MemberDialog />}
+      {userRole === "OWNER" && <MemberDialog />}
     </div>
   );
 }

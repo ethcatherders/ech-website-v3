@@ -39,7 +39,7 @@ model User {
   name          String?
   email         String?   @unique
   emailVerified DateTime?
-  role          String?   @default("user")
+  role          Roles    @default(USER)
   image         String?
   accounts      Account[]
   sessions      Session[]
@@ -181,4 +181,10 @@ enum EipResourceType{
   BLOG
   VIDEO
   DISCUSSIONS
+}
+
+enum Roles{
+  ADMIN
+  USER
+  OWNER
 }
