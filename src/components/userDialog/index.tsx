@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/popover";
 
 import { IoTrashBinOutline } from "react-icons/io5";
+import { Roles } from "@prisma/client";
 
 export default function UserDialog() {
   const [users, setUsers] = useState<any[]>([]);
@@ -32,7 +33,7 @@ export default function UserDialog() {
     fetchUsers();
   }, []);
 
-  async function updateUsersRole(email: string, role: string) {
+  async function updateUsersRole(email: string, role: Roles) {
     try {
       await changeUserRole(email, role);
       toast({
@@ -96,7 +97,7 @@ export default function UserDialog() {
                           <Button
                             variant="ghost"
                             onClick={() => {
-                              updateUsersRole(user?.email, "owner");
+                              updateUsersRole(user?.email, "OWNER");
                             }}
                             className="w-full"
                           >
@@ -105,7 +106,7 @@ export default function UserDialog() {
                           <Button
                             variant="ghost"
                             onClick={() => {
-                              updateUsersRole(user?.email, "admin");
+                              updateUsersRole(user?.email, "ADMIN");
                             }}
                           >
                             ADMIN
@@ -113,7 +114,7 @@ export default function UserDialog() {
                           <Button
                             variant="ghost"
                             onClick={() => {
-                              updateUsersRole(user?.email, "user");
+                              updateUsersRole(user?.email, "USER");
                             }}
                           >
                             USER

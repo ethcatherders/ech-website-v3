@@ -2,6 +2,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "./authOptions";
 import prisma from "../../prisma/client";
+import { Roles } from "@prisma/client";
 
 export async function getCurrentUser() {
   const session = await getServerSession(authOptions);
@@ -27,7 +28,7 @@ export async function getAllUsers() {
   }
 }
 
-export async function changeUserRole(email: string, role: string) {
+export async function changeUserRole(email: string, role: Roles) {
   const user = await prisma.user.update({
     where: {
       email: email,
