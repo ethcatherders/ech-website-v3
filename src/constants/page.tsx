@@ -4,6 +4,7 @@ import type {
   MembersData,
   PodcastCards,
   ActiveTestnet,
+  BlockchainUpgrades,
 } from "@/types/page";
 
 import { BsTwitterX, BsGithub, BsYoutube } from "react-icons/bs";
@@ -274,3 +275,24 @@ export const activeTestnets: ActiveTestnet[] = [
     ],
   },
 ];
+
+export const Upgrades: BlockchainUpgrades[] = [
+  {
+    name: '',
+    number: 0,
+    proposals: [
+      {
+        link: '',
+        title:''
+      }
+    ],
+    readMoreLink: '',
+    date: '03/14/2016',
+    extraLinks: [
+      {
+        link: '',
+        title: ''
+      },
+    ]
+  }
+]

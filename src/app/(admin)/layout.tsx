@@ -9,10 +9,10 @@ import { signIn, signOut } from "next-auth/react";
 import { FaSignOutAlt } from "react-icons/fa";
 import UserDialog from "@/components/userDialog";
 import FeedbackAdmin from "@/components/feedback/feedbackAdmin";
-import { Toaster } from "@/components/ui/toaster";
 import MemberDialog from "@/components/memberDialog";
 import Link from "next/link";
 import Image from "next/image";
+import { Toaster } from "sonner";
 
 export default function RootLayout({
   children,
@@ -42,7 +42,7 @@ export default function RootLayout({
                 <AdminNav userRole={user?.role as string} />
                 <Tools userRole={user?.role as string} />
                 {children}
-                <Toaster />
+                <Toaster position="bottom-right" />
               </>
             ) : (
               <>
@@ -97,6 +97,7 @@ function AdminNav({ userRole }: { userRole: string }) {
     { label: "Surveys", link: "/admin/surveys" },
     { label: "EIP Resources", link: "/admin/eip_resources" },
     { label: "Meetings", link: "/admin/meetings" },
+    { label: "Meet the Herders", link: "/admin/meet-the-herders" },
   ];
   return (
     <>

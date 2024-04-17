@@ -42,6 +42,12 @@ export default function Hero() {
             />
             <Button text="Testnets" link="/testnets" size="md" fontSize="lg" />
             <Button text="Podcast" link="/podcast" size="md" fontSize="lg" />
+            <Button
+              text="Meet the Herders"
+              link="/meet-the-herders"
+              size="md"
+              fontSize="lg"
+            />
           </div>
         </div>
         <div>

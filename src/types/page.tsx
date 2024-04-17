@@ -1,4 +1,5 @@
 import { ReactElement } from "react";
+import { StringValidation } from "zod";
 
 export type Nav = {
   label: string;
@@ -102,3 +103,18 @@ export type ActiveTestnet = {
     link: string;
   }[];
 };
+
+export type BlockchainUpgrades = {
+  name: string;
+  number: number;
+  proposals: {
+    title: string;
+    link: string;
+  }[];
+  date: string;
+  readMoreLink: string;
+  extraLinks: {
+    link: string;
+    title: string;
+  }[]
+}
