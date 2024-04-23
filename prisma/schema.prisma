@@ -137,7 +137,7 @@ model Surveys {
 
 model Feedback {
   id       Int     @id @default(autoincrement())
-  approved Boolean @default(false)
+  approved Boolean @default(false)  
   name     String? @default("")
   social   String? @default("")
   feedback String? @default("")
@@ -177,6 +177,14 @@ model Meetings{
   notes String? @default("")
 }
 
+model MeetTheHerder{
+  id        Int     @id @default(autoincrement())
+  title     String?
+  type MTHType @default(ARTICLE)
+  link String?
+
+}
+
 enum EipResourceType{
   BLOG
   VIDEO
@@ -187,4 +195,10 @@ enum Roles{
   ADMIN
   USER
   OWNER
+}
+
+enum MTHType{
+  VIDEO
+  PODCAST
+  ARTICLE
 }

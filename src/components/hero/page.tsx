@@ -29,8 +29,8 @@ export default function Hero() {
               fontSize="lg"
             />
             <Button
-              text="Practra"
-              link="/network_upgrades/practra"
+              text="Pectra"
+              link="/network_upgrades/Pectra"
               size="md"
               fontSize="lg"
             />
@@ -42,6 +42,12 @@ export default function Hero() {
             />
             <Button text="Testnets" link="/testnets" size="md" fontSize="lg" />
             <Button text="Podcast" link="/podcast" size="md" fontSize="lg" />
+            <Button
+              text="Meet the Herders"
+              link="/meet-the-herders"
+              size="md"
+              fontSize="lg"
+            />
           </div>
         </div>
         <div>

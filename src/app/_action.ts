@@ -1,5 +1,7 @@
 "use server";
+import { StringValidation } from "zod";
 import prisma from "../../prisma/client";
+import { MTHType } from "@prisma/client";
 
 export async function createUpgrade(upgradeName: string) {
   await prisma.networkUpgrades.create({
@@ -524,7 +526,7 @@ export async function updateMemberRole(memberId: number, role: string) {
   });
 }
 
-export async function addEipResourceTitle(resourceName:string) {
+export async function addEipResourceTitle(resourceName: string) {
   await prisma.eIP.create({
     data: {
       title: resourceName,
@@ -579,8 +581,7 @@ export async function getEipResourceTitle(resourceId: number) {
     },
     include: {
       resources: true,
-    
-    }
+    },
   });
   return resource;
 }
@@ -607,4 +608,68 @@ export async function deleteMeeting(meetingId: number) {
 export async function getAllMeetings() {
   const meetings = await prisma.meetings.findMany();
   return meetings;
+}
+
+export async function getMTHItems() {
+  const items = await prisma.meetTheHerder.findMany();
+  return items;
+}
+
+export async function addMTHItem({
+  type,
+  title,
+  link,
+}: {
+  type: MTHType;
+  title: string;
+  link: string;
+}) {
+  const item = await prisma.meetTheHerder.create({
+    data: {
+      link: link,
+      title: title,
+      type: type,
+    },
+  });
+  return item;
+}
+
+export async function deleteMTHItem(id: number) {
+  await prisma.meetTheHerder.delete({
+    where: {
+      id: id,
+    },
+  });
+}
+
+export async function getMTHItemById(id: number) {
+  return await prisma.meetTheHerder.findUnique({
+    where: {
+      id: id,
+    },
+  });
+}
+
+export async function updateMTHById({
+  id,
+  type,
+  title,
+  link,
+}: {
+  id: number;
+  type: MTHType;
+  title: string;
+  link: string;
+}) {
+  const item = await prisma.meetTheHerder.update({
+    where: {
+      id: id,
+    },
+    data: {
+      title: title,
+      link: link,
+      type: type,
+    },
+  });
+  return item;
 }

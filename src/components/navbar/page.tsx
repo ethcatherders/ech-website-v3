@@ -3,12 +3,13 @@ import { nav } from "@/constants/page";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { IoMenuOutline } from "react-icons/io5";
-import { CgClose } from "react-icons/cg";
+import { CgAlignLeft, CgArrowLeft, CgClose } from "react-icons/cg";
 import { usePathname } from "next/navigation";
 import { motion, useAnimate, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { Popover, PopoverContent } from "../ui/popover";
 import { PopoverTrigger } from "@radix-ui/react-popover";
+import { BsBack } from "react-icons/bs";
 
 export default function Navbar() {
   const path = usePathname();
@@ -19,6 +20,7 @@ export default function Navbar() {
   const [activitiesRef, animateActivities] = useAnimate();
   const [navRef, animateNav] = useAnimate();
   const [navMenuRef, animateNavMenu] = useAnimate();
+  const [activitiesOpen, setActivitiesOpen] = useState(false);
 
   useEffect(() => {
     if (navMenuRef.current) {
@@ -26,13 +28,13 @@ export default function Navbar() {
         animateNavMenu(
           navMenuRef.current,
           { opacity: 1, y: 0 },
-          { duration: 0.5 }
+          { duration: 0.5 },
         );
       } else {
         animateNavMenu(
           navMenuRef.current,
           { opacity: 0, y: "100dvh" },
-          { duration: 0.5 }
+          { duration: 0.5 },
         );
       }
     }
@@ -44,13 +46,13 @@ export default function Navbar() {
         animateActivities(
           activitiesRef.current,
           { opacity: 1, y: 0 },
-          { duration: 0.5 }
+          { duration: 0.5 },
         );
       } else {
         animateActivities(
           activitiesRef.current,
           { opacity: 0, y: -10 },
-          { duration: 0.5 }
+          { duration: 0.5 },
         );
       }
     }
@@ -79,8 +81,8 @@ export default function Navbar() {
           scrollY === 0
             ? "flex justify-between fixed w-full md:py-12 py-6 md:px-16 px-8 items-center z-20 bg-white"
             : scrollY <= prevScroll
-            ? "flex justify-between fixed w-full py-4 shadow-xl shadow-lightGray/30 md:px-16 px-8 items-center bg-white z-50"
-            : "hidden"
+              ? "flex justify-between fixed w-full py-4 shadow-xl shadow-lightGray/30 md:px-16 px-8 items-center bg-white z-50"
+              : "hidden"
         }
       >
         <motion.a
@@ -102,52 +104,9 @@ export default function Navbar() {
           {nav.map((item, index) => {
             if (item === nav[1]) {
               return (
-                // <div key={index} className="group relative">
-                //   <div
-                //     onMouseEnter={() => setIsDropped(true)}
-                //     onMouseLeave={() => setIsDropped(false)}
-                //   >
-                    // <p
-                    //   key={index}
-                    //   className={`text-3xl font-antonio  hover:text-black duration-500  ${
-                    //     path === item.link ? "text-black" : "text-lightGray"
-                    //   }`}
-                    // >
-                    //   {item.label.toUpperCase()}
-                    // </p>
-
-                //     <div className="flex justify-center">
-                //       <AnimatePresence>
-                //         {isDropped && (
-                          // <motion.div
-                          //   className={`bg-darkGray flex-col text-lightGray absolute w-max px-8 py-4 rounded-xl gap-y-2 ${
-                          //     isDropped ? "flex" : "hidden"
-                          //   }`}
-                          //   initial={{ opacity: 0, y: -10 }}
-                          //   exit={{ visibility: "hidden", y: -10 }}
-                          //   ref={activitiesRef}
-                          // >
-                          //   {item.children?.map((child, chi) => {
-                          //     return (
-                          //       <Link key={chi} href={child.link || "/"}>
-                          //         <p
-                          //           key={chi}
-                          //           className="text-2xl font-antonio duration-500"
-                          //         >
-                          //           {child.label}
-                          //         </p>
-                          //       </Link>
-                          //     );
-                          //   })}
-                          // </motion.div>
-                //         )}
-                //       </AnimatePresence>
-                //     </div>
-                //   </div>
-                // </div>
                 <Popover key={index}>
                   <PopoverTrigger>
-                  <p
+                    <p
                       key={index}
                       className={`text-3xl font-antonio  hover:text-black duration-500  ${
                         path === item.link ? "text-black" : "text-lightGray"
@@ -157,19 +116,22 @@ export default function Navbar() {
                     </p>
                   </PopoverTrigger>
 
-                  <PopoverContent sideOffset={20} className="dark gap-2 bg-darkGray">
-                  {item.children?.map((child, chi) => {
-                              return (
-                                <Link key={chi} href={child.link || "/"}>
-                                  <p
-                                    key={chi}
-                                    className="text-2xl font-antonio duration-500"
-                                  >
-                                    {child.label.toUpperCase()}
-                                  </p>
-                                </Link>
-                              );
-                            })}
+                  <PopoverContent
+                    sideOffset={20}
+                    className="dark gap-2 bg-darkGray"
+                  >
+                    {item.children?.map((child, chi) => {
+                      return (
+                        <Link key={chi} href={child.link || "/"}>
+                          <p
+                            key={chi}
+                            className="text-2xl font-antonio duration-500"
+                          >
+                            {child.label.toUpperCase()}
+                          </p>
+                        </Link>
+                      );
+                    })}
                   </PopoverContent>
                 </Popover>
               );
@@ -212,9 +174,9 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: "100vh" }}
             ref={navMenuRef}
-            className="bg-black/90 min-h-screen w-full absolute z-[60] flex flex-col"
+            className="bg-black/90 min-h-screen w-full absolute z-[60] flex flex-col gap-6"
           >
-            <div className="flex justify-end px-32 pt-16">
+            <div className="flex justify-end md:pt-12 pt-6 md:px-16 px-8">
               <motion.div
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
@@ -222,9 +184,73 @@ export default function Navbar() {
                 onClick={() => setIsMenuOpen(false)}
                 className="hover:cursor-pointer text-white"
               >
-                <CgClose size={50} />
+                <span
+                  onClick={() => {
+                    setActivitiesOpen(!activitiesOpen);
+                  }}
+                >
+                  <CgClose size={50} />
+                </span>
               </motion.div>
             </div>
+
+            {activitiesOpen ? (
+              <>
+                <div className="flex flex-col sm:text-5xl text-3xl gap-4 xl:pl-32 lg:pl-26 md:pl-20 sm:pl-16 pl-10">
+                  <span
+                    onClick={() => {
+                      setActivitiesOpen(!activitiesOpen);
+                    }}
+                  >
+                    <CgArrowLeft
+                      size={40}
+                      className="text-white border-4 rounded-full cursor-pointer"
+                    />
+                  </span>
+                  {nav[1]?.children?.map((item, index) => {
+                    return (
+                      <a href={item.link} key={index}>
+                        <div key={index}>
+                          <p key={index} className={`font-antonio text-white`}>
+                            {item.label.toUpperCase()}
+                          </p>
+                        </div>
+                      </a>
+                    );
+                  })}
+                </div>
+              </>
+            ) : (
+              <div className="flex flex-col text-5xl gap-8 xl:pl-32 lg:pl-26 md:pl-20 sm:pl-16 pl-10">
+                {nav.map((item, index) => {
+                  if (item === nav[1]) {
+                    return (
+                      <div key={index} className="flex">
+                        <p
+                          key={index}
+                          className={`font-antonio text-white cursor-pointer`}
+                          onClick={() => {
+                            setActivitiesOpen(!activitiesOpen);
+                          }}
+                        >
+                          {item.label.toUpperCase()}
+                        </p>
+                      </div>
+                    );
+                  } else {
+                    return (
+                      <a href={item.link} key={index}>
+                        <div key={index}>
+                          <p key={index} className={`font-antonio text-white`}>
+                            {item.label.toUpperCase()}
+                          </p>
+                        </div>
+                      </a>
+                    );
+                  }
+                })}
+              </div>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
