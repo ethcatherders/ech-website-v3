@@ -234,7 +234,7 @@ export default function MTHAdmin() {
               setSelectedType("ARTICLE");
             }}
           >
-            + Add New Survey
+            + Add New MTH
           </span>
           <select
             onChange={(e) => {

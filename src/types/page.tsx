@@ -1,3 +1,4 @@
+import { MTHType } from "@prisma/client";
 import { ReactElement } from "react";
 import { StringValidation } from "zod";
 
@@ -116,5 +117,34 @@ export type BlockchainUpgrades = {
   extraLinks: {
     link: string;
     title: string;
-  }[]
-}
+  }[];
+};
+
+export type DepretectedTestnets = {
+  name: string;
+  description: string;
+  flavour: string;
+  genesis: string;
+  lts: string;
+  eos: string;
+  image: string;
+};
+
+export type NetworkUpgrades = {
+  upgrade: string;
+  image: string;
+  links?: {
+    linkTitle: string;
+    link: string;
+  }[];
+  number?: string;
+  readMore?: string;
+  date?: string;
+};
+
+export type MTHItem = {
+  id: number;
+  link: string;
+  title: string;
+  type: MTHType;
+};

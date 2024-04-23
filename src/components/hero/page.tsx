@@ -29,8 +29,8 @@ export default function Hero() {
               fontSize="lg"
             />
             <Button
-              text="Practra"
-              link="/network_upgrades/practra"
+              text="Pectra"
+              link="/network_upgrades/Pectra"
               size="md"
               fontSize="lg"
             />

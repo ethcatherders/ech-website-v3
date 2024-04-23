@@ -41,7 +41,7 @@ export default function ECHYoutube() {
             ></iframe>
           </div>
 
-          <div className="py-8 grid gap-5 xl:grid-cols-5 lg:grid-cols-3 grid-cols-1 w-full justify-center items-center">
+          <div className="py-8 grid gap-5 xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 w-full justify-center items-center">
             {data.map((item, index) => {
               return (
                 <div
