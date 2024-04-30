@@ -11,6 +11,10 @@ import { usePathname } from "next/navigation";
 import ConsdideredProposal from "@/components/consideredProposalCard/page";
 import { getUpgrade } from "@/app/_action";
 import { ConsideredProposals } from "@prisma/client";
+import PageContainer from "@/components/ui/pageContainer";
+import { CgSpinner } from "react-icons/cg";
+import TheMerge from "@/components/network_upgrades/theMerge";
+import ShanghaiExtras from "@/components/network_upgrades/shanghai";
 
 interface UpgradeData {
   considered: consdideredProposal[];
@@ -31,7 +35,25 @@ export default function Practra() {
     }
     fetchData();
   }, [upgradeName]);
-  console.log(data);
+
+  if (!data && upgradeName !== "the-merge") {
+    return (
+      <>
+        <PageContainer>
+          <div className="flex w-full h-[50dvh] justify-center items-center">
+            <span className="animate-spin">
+              <CgSpinner size={50} className="text-darkGray" />
+            </span>
+          </div>
+        </PageContainer>
+      </>
+    );
+  }
+
+  if (upgradeName === "the-merge") {
+    return <TheMerge />;
+  }
+
   return (
     <>
       <>
@@ -71,6 +93,8 @@ export default function Practra() {
             </div>
           </div>
 
+          {upgradeName === "shanghai" && <ShanghaiExtras />}
+
           <div className="flex flex-col mx-10 text-center pt-32">
             {data?.consideredProposals.length !== 0 ? (
               <h1 className="xl:text-4xl md:text-3xl text-2xl font-bold text-darkGray">
@@ -81,7 +105,7 @@ export default function Practra() {
               {data?.consideredProposals.map(
                 (item: ConsideredProposals, index: number) => {
                   return <ConsdideredProposal data={item} key={index} />;
-                }
+                },
               )}
             </div>
           </div>
@@ -92,7 +116,9 @@ export default function Practra() {
             <div className="flex justify-center text-center mx-5">
               <span className="md:text-3xl text-xl text-center font-roboto font-bold">
                 In the section below you can find more resources providing
-                information on the Dencun Upgrade.
+                information on the{" "}
+                {upgradeName.charAt(0).toUpperCase() + upgradeName.slice(1)}{" "}
+                Upgrade.
               </span>
             </div>
           ) : null}
