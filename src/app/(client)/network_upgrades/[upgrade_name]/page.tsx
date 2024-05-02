@@ -164,6 +164,7 @@ export default function Practra() {
                   <h1 className="lg:text-2xl text-xl font-bold font-roboto">
                     Videos
                   </h1>
+                  <div className="flex flex-col-reverse gap-y-4">
                   {data?.videos.map((item: VideosData, index: number) => {
                     return (
                       <span
@@ -176,6 +177,7 @@ export default function Practra() {
                       </span>
                     );
                   })}
+                  </div>
                 </div>
               ) : null}
 
@@ -184,6 +186,7 @@ export default function Practra() {
                   <h1 className="lg:text-2xl text-xl font-bold font-roboto">
                     Resources
                   </h1>
+                  <div className="flex flex-col-reverse gap-y-4">
                   {data?.resources.map((item: ResourcesData, index: number) => {
                     return (
                       <span
@@ -196,6 +199,7 @@ export default function Practra() {
                       </span>
                     );
                   })}
+                  </div>
                 </div>
               ) : null}
             </div>

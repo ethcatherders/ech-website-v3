@@ -13,6 +13,7 @@ import PageContainer from "@/components/ui/pageContainer";
 import { networkUpgrades } from "@/constants/networkUpgrades";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
+import UpgradesAccordion from "@/components/network_upgrades/upgradesAcordion";
 export default function NetworkUpgradesPage() {
   return(
     <PageContainer>
@@ -92,6 +93,8 @@ export default function NetworkUpgradesPage() {
           <CarouselPrevious />
           <CarouselNext />
         </Carousel>
+
+        <UpgradesAccordion />
 
         <Content>
           The network upgrade progress tracker helps with keeping track of
