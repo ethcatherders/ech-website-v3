@@ -223,57 +223,6 @@ export const activeTestnets: ActiveTestnet[] = [
       },
     ],
   },
-  {
-    name: "Goerli",
-    warning: "Deprecated By End of 2023",
-    description:
-      "Goerli is a testnet for testing validating and staking. The Goerli network is open for users wanting to run a testnet validator. Stakers wanting to test protocol upgrades before they are deployed to mainnet should therefore use Goerli.",
-    bullets: [
-      "Open validator set, stakers can test network upgrades",
-      "Large state, useful for testing complex smart contract interactions",
-      "Longer to sync and requires more storage to run a node",
-    ],
-    resources: [
-      {
-        title: "Website",
-        link: "https://goerli.net/",
-      },
-      {
-        title: "Github",
-        link: "https://github.com/eth-clients/goerli",
-      },
-      {
-        title: "Bitquery",
-        link: "https://explorer.bitquery.io/goerli",
-      },
-      {
-        title: "Etherscan",
-        link: "https://goerli.etherscan.io/",
-      },
-    ],
-    faucets: [
-      {
-        title: "PoW Faucet",
-        link: "https://goerli-faucet.pk910.de/",
-      },
-      {
-        title: "Quicknode",
-        link: "https://faucet.quicknode.com/drip",
-      },
-      {
-        title: "Grabteeth",
-        link: "https://grabteeth.xyz/",
-      },
-      {
-        title: "Alchemy",
-        link: "https://goerlifaucet.com/",
-      },
-      {
-        title: "Paradigm",
-        link: "https://faucet.paradigm.xyz/",
-      },
-    ],
-  },
 ];
 
 export const deprecatedTestnets: DepretectedTestnets[] = [

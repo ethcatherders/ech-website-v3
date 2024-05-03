@@ -130,6 +130,30 @@ export default function EIPResources() {
                             </span>
                           ))}
                       </div>
+
+                      <div className="flex flex-col gap-2">
+                        {title.resources?.filter(
+                          (resource: any) => resource.type === "OTHERS"
+                        ).length !== 0 && (
+                          <span className="text-darkGray font-semibold lg:text-2xl md:text-xl text-lg">
+                            Resources
+                          </span>
+                        )}
+                        {title.resources
+                          ?.filter((resource: any) => resource.type === "OTHERS")
+                          ?.map((resource: any, index: number) => (
+                            <span key={index}>
+                              <a
+                                href={resource.link}
+                                className="text-lightGray lg:text-xl md:text-lg text-base"
+                                target="_blank"
+                              >
+                                {resource.title}
+                              </a>
+                              <br />
+                            </span>
+                          ))}
+                      </div>
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
