@@ -123,6 +123,16 @@ export default function PeepAnEip() {
           );
         })}
       </div>
+      <div className="flex justify-center w-full pb-16">
+        <a
+            href={"https://github.com/ethcatherders/PM/projects/2#column-10491063"}
+            target="_blank"
+          >
+            <button className="border border-darkGray rounded-lg md:text-2xl text-xl px-4 py-2 hover:text-darkGray text-white hover:bg-white bg-darkGray hover:scale-110 duration-300">
+              PEEPanEIP Schedule Tracker 
+            </button>
+          </a>
+      </div>
     </PageContainer>
   );
 }

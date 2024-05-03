@@ -20,8 +20,8 @@ export default function NetworkUpgradesPage() {
         <Heading text="Network Upgrades" />
         <Content>
           Technical upgrades are made periodically to the Ethereum protocol.
-          Upgrades typically comprise of Core Ethereum Improvement Proposals
-          (EIPs) that have achieved consensus across the Ethereum clients &
+          Upgrades typically comprise of Core <a href="https://eips.ethereum.org/core" target="_blank" className="border-b border-dashed border-darkGray">Ethereum Improvement Proposals
+          (EIPs)</a> that have achieved consensus across the Ethereum clients &
           community.
         </Content>
         <Heading text="Ethereum Blockchain Upgrades" />
@@ -93,7 +93,8 @@ export default function NetworkUpgradesPage() {
           <CarouselPrevious />
           <CarouselNext />
         </Carousel>
-
+        
+        <span className="md:text-2xl text-xl font-bold text-darkGray">In the section below you can find more information on past and upcoming network upgrades.</span>
         <UpgradesAccordion />
 
         <Content>

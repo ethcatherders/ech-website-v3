@@ -27,7 +27,7 @@ export default function EIPResourcesAdmin() {
   const [newResource, setNewResource] = useState({
     title: "",
     link: "",
-    type: "BLOG",
+    type: "OTHERS",
   });
   const [newEipName, setNewEipName] = useState("");
   const [eipTitleData, setEipTitleData] = useState<
@@ -185,6 +185,7 @@ export default function EIPResourcesAdmin() {
               <option value={"DISCUSSIONS" as EipResourceType}>
                 Discussions
               </option>
+              <option value={"OTHERS" as EipResourceType}>Others</option>
             </select>
 
             <button
