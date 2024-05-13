@@ -57,8 +57,8 @@ export const nav: Nav[] = [
     ],
   },
   {
-    label: "Calender",
-    link: "/calender",
+    label: "Calendar",
+    link: "/calendar",
   },
   {
     label: "Blog",

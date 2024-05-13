@@ -20,6 +20,7 @@ export default function CalendarPage() {
               events={{
                 googleCalendarId: process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_ID
               }}
+              eventColor="black"
             />
           </div>
         </div>
