@@ -12,11 +12,11 @@ export default function consdideredProposal({ data }: { data: any }) {
         <p className="max-w-xl text-justify">{data.description}</p>
 
         <div className="flex flex-wrap gap-2 justify-center">
-          <a href={data.proposalLink} target="_blank">
+          {/* <a href={data.proposalLink} target="_blank">
             <button className="text-md border border-darkGray py-1 px-2 rounded-md w-32">
               EIP Proposal
             </button>
-          </a>
+          </a> */}
           <a href={data.proposalLink} target="_blank">
             <button className="text-md border border-darkGray py-1 px-2 rounded-md w-32">
               EIP Discussion

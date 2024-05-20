@@ -24,13 +24,13 @@ export default function Hero() {
           <div className="max-w-2xl flex flex-wrap justify-center md:gap-5 spacey-y-2 ">
             <Button
               text="Dencun"
-              link="/network_upgrades/dencun"
+              link="/upgrades/dencun"
               size="md"
               fontSize="lg"
             />
             <Button
               text="Pectra"
-              link="/network_upgrades/pectra"
+              link="/upgrades/pectra"
               size="md"
               fontSize="lg"
             />
