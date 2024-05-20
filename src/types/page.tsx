@@ -1,4 +1,4 @@
-import { MTHType } from "@prisma/client";
+import { MTHType, UpgradePropsalStatus } from "@prisma/client";
 import { ReactElement } from "react";
 import { StringValidation } from "zod";
 
@@ -30,6 +30,7 @@ export type consdideredProposal = {
   proposalLink: string;
   videoLink: string;
   discussionLink: string;
+  status : UpgradePropsalStatus
 };
 
 export type InfoForUpgrade = {

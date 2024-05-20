@@ -28,7 +28,7 @@ export default function Footer() {
                   key={index}
                   href={
                     item.label === "Activities"
-                      ? "/network_upgrades"
+                      ? "/upgrades"
                       : item.link || "/"
                   }
                   className="text-lg font-roboto hover:underline underline-offset-1 duration-200 font-light"

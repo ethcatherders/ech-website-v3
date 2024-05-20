@@ -20,15 +20,15 @@ export const nav: Nav[] = [
     children: [
       {
         label: "Network Upgrades",
-        link: "/network_upgrades",
+        link: "/upgrades",
       },
       {
         label: "Pectra Upgrade",
-        link: "/network_upgrades/pectra",
+        link: "/upgrades/pectra",
       },
       {
         label: "Dencun Upgrade",
-        link: "/network_upgrades/dencun",
+        link: "/upgrades/dencun",
       },
       {
         label: "EIP Resources",
