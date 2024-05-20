@@ -30,7 +30,7 @@ export default function Hero() {
             />
             <Button
               text="Pectra"
-              link="/network_upgrades/Pectra"
+              link="/network_upgrades/pectra"
               size="md"
               fontSize="lg"
             />

@@ -86,7 +86,6 @@ export default function Home() {
           <div>
             <iframe 
               src="https://discord.com/widget?id=916850601919393832&theme=dark" width="300" height="350"
-              allowTransparency={true}
               sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
             ></iframe>
           </div>

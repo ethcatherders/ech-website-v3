@@ -26,7 +26,7 @@ interface UpgradeData {
 
 export default function Practra() {
   const path = usePathname();
-  const upgradeName = path.split("/")[2];
+  const upgradeName = path.split("/")[2].toLowerCase();
   const [data, setData] = useState<any>();
   useEffect(() => {
     async function fetchData() {
