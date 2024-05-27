@@ -8,9 +8,12 @@ export type Nav = {
   children?: Nav[];
 };
 
+export type Target = "_blank" | "_self" | "_parent" | "_top";
+
 export type Button = {
   text: string;
   link: string;
+  target?: Target;
   height?: string;
   width?: string;
   size?: "sm" | "md" | "lg";
