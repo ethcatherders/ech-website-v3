@@ -74,6 +74,7 @@ model ConsideredProposals {
   discussionLink    String?          @default("")
   proposalLink      String?          @default("")
   videoLink         String?          @default("")
+  status            UpgradePropsalStatus @default(CONSIDERED)
   NetworkUpgrades   NetworkUpgrades? @relation(fields: [networkUpgradesId], references: [id])
   networkUpgradesId Int?
 }
@@ -202,4 +203,9 @@ enum MTHType{
   VIDEO
   PODCAST
   ARTICLE
+}
+
+enum UpgradePropsalStatus{
+  CONSIDERED
+  INCLUDED
 }

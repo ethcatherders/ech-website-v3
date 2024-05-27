@@ -32,7 +32,7 @@ export default function UpgradesAccordion(){
                             }
                         </ul>
                         <br />
-                        For more information regarding Dencun do check our Dencun page by clicking <a href="/network_upgrades/dencun" className="border-b border-dashed border-darkGray">here</a>.
+                        For more information regarding Dencun do check our Dencun page by clicking <a href="/upgrades/dencun" className="border-b border-dashed border-darkGray">here</a>.
                         <div className="grid lg:grid-cols-2 grid-cols-1 gap-5 pt-4">
                             <div className="flex flex-col gap-2">
                                 <span className="font-medium text-2xl" >Consensus Layer</span>
@@ -117,7 +117,7 @@ export default function UpgradesAccordion(){
                             }
                         </ul>
                         <br />
-                        For more information regarding Shapella do check our Shapella page by clicking <a href="/network_upgrades/shanghai" className="border-b border-dashed border-darkGray">here</a>.
+                        For more information regarding Shapella do check our Shapella page by clicking <a href="/upgrades/shanghai" className="border-b border-dashed border-darkGray">here</a>.
                         <div className="grid lg:grid-cols-2 grid-cols-1 gap-5 pt-4">
                             <div className="flex flex-col gap-2">
                                 <span className="font-medium text-2xl" >Consensus Layer</span>
@@ -202,7 +202,7 @@ export default function UpgradesAccordion(){
                             }
                         </ul>
                         <br />
-                        For more information regarding Shapella do check our Shapella page by clicking <a href="/network_upgrades/the-merge" className="border-b border-dashed border-darkGray">here</a>.
+                        For more information regarding Shapella do check our Shapella page by clicking <a href="/upgrades/the-merge" className="border-b border-dashed border-darkGray">here</a>.
                         <div className="grid lg:grid-cols-2 grid-cols-1 gap-5 pt-4">
                             <div className="flex flex-col gap-2">
                                 <span className="font-medium text-2xl" >Consensus Layer</span>

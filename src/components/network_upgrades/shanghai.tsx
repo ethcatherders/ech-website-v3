@@ -22,7 +22,7 @@ export default function ShanghaiExtras() {
             </li>
           </ul>
           <Image
-            src="/network_upgrades/shanghai-checklist.jpeg"
+            src="/upgrades/shanghai-checklist.jpeg"
             alt="Shanghai Checklist"
             width={500}
             height={500}
