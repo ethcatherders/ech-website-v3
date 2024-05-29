@@ -64,11 +64,13 @@ model NetworkUpgrades {
   updates             UpgradeUpdates[]
   videos              UpgradeVideos[]
 
+
   @@unique([name])
 }
 
 model ConsideredProposals {
   id                Int              @id @default(autoincrement())
+  eipName           String?          @default("")
   name              String?          @default("")
   description       String?          @default("")
   discussionLink    String?          @default("")

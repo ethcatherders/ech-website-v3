@@ -9,7 +9,10 @@ export default function consdideredProposal({ data }: { data: any }) {
           {data.name}
         </h1>
 
-        <p className="max-w-xl text-justify">{data.description}</p>
+        <div className="flex flex-col justify-center items-center gap-2">
+          <p>{data?.eipName}</p>
+          <p className="max-w-xl text-justify">{data.description}</p>
+        </div>
 
         <div className="flex flex-wrap gap-2 justify-center">
           {/* <a href={data.proposalLink} target="_blank">

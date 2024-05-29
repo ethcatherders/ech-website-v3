@@ -186,7 +186,7 @@ export default function Navbar() {
               >
                 <span
                   onClick={() => {
-                    setActivitiesOpen(!activitiesOpen);
+                    setActivitiesOpen(false);
                   }}
                 >
                   <CgClose size={50} />
