@@ -30,7 +30,7 @@ export default function MeetTheHerders() {
           landscape changes.
         </Content>
         <Heading text="Medium" />
-        <div className="flex flex-wrap gap-8 justify-center">
+        <div className="flex flex-wrap gap-8 justify-center pb-12">
           <div className="box-black-bg border-2 border-black rounded-2xl p-4 w-2/5">
             <h3 className="text-2xl font-semibold">Medium Blogs</h3>
             <ul className="flex flex-col font-light hover:font-normal duration-300 gap-3 text-xl text-lightGray">

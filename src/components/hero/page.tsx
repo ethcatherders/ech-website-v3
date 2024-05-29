@@ -7,27 +7,26 @@ export default function Hero() {
   const y = useTransform(scrollYProgress, [0, 1000], [0, -500]);
   return (
     <>
-      <div className="flex md:flex-row flex-col min-h-screen justify-center items-center px-12 md:bg-white bg-black/80 gap-x-8">
+      <div className="flex md:flex-row flex-col min-h-screen justify-center items-center px-12 md:bg-white bg-black/80 gap-x-8 pt-12">
         <div className="flex flex-col md:gap-y-6 gap-y-4">
           <h3 className="text-4xl font-antonio md:text-black text-white">
             ETHEREUM CAT HERDERS
           </h3>
-          <h1 className="xl:text-6xl lg:text-4xl md:text-2xl sm:text-xl text-md max-w-2xl font-roboto font-extrabold md:text-black text-white">
-            Decentralized project management to support the Ethereum Network.
+          <h1 className="xl:text-4xl lg:text-3xl md:text-2xl sm:text-xl text-md max-w-4xl font-roboto font-extrabold md:text-darkGray text-white">
+            Herding Knowledge, Building Community, Homesteading Ethereum!
           </h1>
 
-          <p className="font-roboto xl:text-3xl lg:text-xl md:text-lg sm:text-md text-sm max-w-2xl md:text-darkGray text-white/60 font-light">
-            Our aim is to bring the minimum amount of order that chaos needs to
-            move Ethereum forward.
+          <p className="font-roboto xl:text-2xl lg:text-xl md:text-lg sm:text-md text-sm max-w-2xl md:text-darkGray text-white/60 font-light">
+            A public goods enhancing the Ethereum ecosystem through education, community building, and coordination to ensure smooth network upgrades and foster a cohesive, informed Ethereum community.
           </p>
 
           <div className="max-w-2xl flex flex-wrap justify-center md:gap-5 spacey-y-2 ">
-            <Button
+            {/* <Button
               text="Dencun"
               link="/upgrades/dencun"
               size="md"
               fontSize="lg"
-            />
+            /> */}
             <Button
               text="Pectra"
               link="/upgrades/pectra"
@@ -44,7 +43,7 @@ export default function Hero() {
             <Button text="Podcast" link="/podcast" size="md" fontSize="lg" />
             <Button
               text="Meet the Herders"
-              link="/meet-the-herders"
+              link="/mth"
               size="md"
               fontSize="lg"
             />

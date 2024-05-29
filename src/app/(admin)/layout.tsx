@@ -97,7 +97,7 @@ function AdminNav({ userRole }: { userRole: string }) {
     { label: "Surveys", link: "/admin/surveys" },
     { label: "EIP Resources", link: "/admin/eip_resources" },
     { label: "Meetings", link: "/admin/meetings" },
-    { label: "Meet the Herders", link: "/admin/meet-the-herders" },
+    { label: "Meet the Herders", link: "/admin/mth" },
   ];
   return (
     <>
