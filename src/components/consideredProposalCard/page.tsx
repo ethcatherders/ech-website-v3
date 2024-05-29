@@ -10,8 +10,10 @@ export default function consdideredProposal({ data }: { data: any }) {
         </h1>
 
         <div className="flex flex-col justify-center items-center gap-2">
-          <p>{data?.eipName}</p>
-          <p className="max-w-xl text-justify">{data.description}</p>
+          <p className="max-w-xl text-justify">The proposal to add {" "}
+            <a href={data.proposalLink} target="_blank" className="text-darkGray border-b border-dashed border-darkGray font-semibold italic">
+              {data?.eipName}
+            </a>{" "}{data.description}</p>
         </div>
 
         <div className="flex flex-wrap gap-2 justify-center">
@@ -25,11 +27,15 @@ export default function consdideredProposal({ data }: { data: any }) {
               EIP Discussion
             </button>
           </a>
-          <a href={data.proposalLink} target="_blank">
-            <button className="text-md border border-darkGray py-1 px-2 rounded-md w-28">
-              Video
-            </button>
-          </a>
+          {
+            data.eipLink && (
+              <a href={data.proposalLink} target="_blank">
+                <button className="text-md border border-darkGray py-1 px-2 rounded-md w-28">
+                  Video
+                </button>
+              </a>
+            )
+          }
         </div>
       </div>
     </>
