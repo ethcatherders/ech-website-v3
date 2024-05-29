@@ -21,12 +21,12 @@ export default function Hero() {
           </p>
 
           <div className="max-w-2xl flex flex-wrap justify-center md:gap-5 spacey-y-2 ">
-            <Button
+            {/* <Button
               text="Dencun"
               link="/upgrades/dencun"
               size="md"
               fontSize="lg"
-            />
+            /> */}
             <Button
               text="Pectra"
               link="/upgrades/pectra"
@@ -43,7 +43,7 @@ export default function Hero() {
             <Button text="Podcast" link="/podcast" size="md" fontSize="lg" />
             <Button
               text="Meet the Herders"
-              link="/meet-the-herders"
+              link="/mth"
               size="md"
               fontSize="lg"
             />
