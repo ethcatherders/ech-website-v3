@@ -45,6 +45,7 @@ export default function NetworkUpgrades() {
     discussionLink: string;
     proposalLink: string;
     videoLink: string;
+    eipName: string;
   }>({
     id: 0,
     name: "",
@@ -52,6 +53,7 @@ export default function NetworkUpgrades() {
     discussionLink: "",
     proposalLink: "",
     videoLink: "",
+    eipName: ""
   });
   const [info, setInfo] = useState<{
     desc1: string;
@@ -239,6 +241,7 @@ export default function NetworkUpgrades() {
                                         discussionLink: proposal.discussionLink,
                                         proposalLink: proposal.proposalLink,
                                         videoLink: proposal.videoLink,
+                                        eipName: proposal.eipName
                                       });
                                       setNewProposal(false);
                                     }}
@@ -262,6 +265,7 @@ export default function NetworkUpgrades() {
                                         discussionLink: "",
                                         proposalLink: "",
                                         videoLink: "",
+                                        eipName: ""
                                       });
                                     }}
                                     className="cursor-pointer"
@@ -292,6 +296,7 @@ export default function NetworkUpgrades() {
                           discussionLink: "",
                           proposalLink: "",
                           videoLink: "",
+                          eipName: ""
                         });
                       }}
                     >
@@ -305,7 +310,16 @@ export default function NetworkUpgrades() {
                         onChange={(e) => {
                           setProposal({ ...proposal, name: e.target.value });
                         }}
-                        placeholder="Proposal Name"
+                        placeholder="EIP Number"
+                        className="border border-lightGray focus:border-darkGray rounded-lg p-2 w-64"
+                      />
+                      <input
+                        type="text"
+                        value={proposal.eipName}
+                        onChange={(e) => {
+                          setProposal({ ...proposal, eipName: e.target.value });
+                        }}
+                        placeholder="EIP Name"
                         className="border border-lightGray focus:border-darkGray rounded-lg p-2 w-64"
                       />
                       <textarea
@@ -364,6 +378,7 @@ export default function NetworkUpgrades() {
                               discussionLink: proposal.discussionLink,
                               proposalLink: proposal.proposalLink,
                               videoLink: proposal.videoLink,
+                              eipName: proposal.eipName
                             });
                           } else {
                             updateConsideredProposalFromUpgrade(proposal.id, {
@@ -372,6 +387,7 @@ export default function NetworkUpgrades() {
                               discussionLink: proposal.discussionLink,
                               proposalLink: proposal.proposalLink,
                               videoLink: proposal.videoLink,
+                              eipName: proposal.eipName
                             });
                           }
                           getUpgrade(selectedUpgrade).then((res) => {
@@ -384,6 +400,7 @@ export default function NetworkUpgrades() {
                             discussionLink: "",
                             proposalLink: "",
                             videoLink: "",
+                            eipName: ""
                           });
                         }}
                         className="bg-darkGray text-white rounded-lg p-2"
