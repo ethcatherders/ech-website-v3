@@ -13,7 +13,7 @@ export default function Hero() {
             ETHEREUM CAT HERDERS
           </h3>
           <h1 className="xl:text-6xl lg:text-4xl md:text-2xl sm:text-xl text-md max-w-2xl font-roboto font-extrabold md:text-black text-white">
-            The OG community resource for Etherem.
+            The Ethereum Community
           </h1>
 
           <p className="font-roboto xl:text-3xl lg:text-xl md:text-lg sm:text-md text-sm max-w-2xl md:text-darkGray text-white/60 font-light">
