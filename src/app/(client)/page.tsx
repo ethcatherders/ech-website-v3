@@ -10,7 +10,7 @@ export default function Home() {
     <>
       <Hero />
       <div className="lg:max-w-[75vw] md:max-w-[85vw] sm:max-w-[90vw] max-w-[95vw] mx-auto flex flex-col gap-y-24">
-        <div className="flex xl:flex-row flex-col justify-between gap-6 items-center pt-16">
+        <div className="flex xl:flex-row flex-col justify-between gap-6 items-center pt-16 px-6">
           <Image
             src="/assets/cat_laptop.png"
             height={500}
@@ -56,7 +56,7 @@ export default function Home() {
           <Image src="/assets/paws.png" alt="paws" width={200} height={200} />
         </div>
 
-        <div className="flex xl:flex-row flex-col justify-between gap-6 items-center">
+        <div className="flex xl:flex-row flex-col justify-between gap-6 items-center px-6">
           <div className="flex flex-col max-w-2xl  space-y-6">
             <h1 className="font-bold lg:text-6xl md:text-5xl sm:text-4xl text-3xl">
               Get Involved

@@ -47,7 +47,7 @@ export default function Hero() {
           </motion.div>
         </div>
       </div>
-      <div className="w-100wh flex flex-wrap justify-center md:gap-5 spacey-y-2 ">
+      <div className="w-100wh flex flex-wrap justify-center md:gap-5 spacey-y-2 p-4 gap-2">
         <Button
           text="Dencun"
           link="/network_upgrades/dencun"
@@ -56,7 +56,7 @@ export default function Hero() {
         />
         <Button
           text="Pectra"
-          link="/network_upgrades/Pectra"
+          link="/network_upgrades/pectra"
           size="md"
           fontSize="lg"
         />
