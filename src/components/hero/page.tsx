@@ -12,12 +12,12 @@ export default function Hero() {
           <h3 className="text-4xl font-antonio md:text-black text-white">
             ETHEREUM CAT HERDERS
           </h3>
-          <h1 className="xl:text-6xl lg:text-4xl md:text-2xl sm:text-xl text-md max-w-2xl font-roboto font-extrabold md:text-black text-white">
-            The Ethereum Community
+          <h1 className="xl:text-4xl lg:text-3xl md:text-2xl sm:text-xl text-md max-w-4xl font-roboto font-extrabold md:text-darkGray text-white">
+            Herding Knowledge, Building Community, Homesteading Ethereum!
           </h1>
 
-          <p className="font-roboto xl:text-3xl lg:text-xl md:text-lg sm:text-md text-sm max-w-2xl md:text-darkGray text-white/60 font-light">
-            We help people learn and get involved with the Ethereum ecosystem.
+          <p className="font-roboto xl:text-2xl lg:text-xl md:text-lg sm:text-md text-sm max-w-2xl md:text-darkGray text-white/60 font-light">
+            A public good enhancing the Ethereum ecosystem through education, community building, and coordination to ensure smooth network upgrades and foster a cohesive, informed Ethereum community.
           </p>
 
           <div>
