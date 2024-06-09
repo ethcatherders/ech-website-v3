@@ -64,9 +64,9 @@ export default function PeepAnEip() {
     <PageContainer>
       <Heading text="Get Involved" />
       <Content>
-        Whether you're a developer, researcher, writer, or enthusiast, there are numerous ways to contribute. 
+        Whether you&apos;re a developer, researcher, writer, or enthusiast, there are numerous ways to contribute. 
         By participating in creating educational content, project management, documentation, community outreach, 
-        or EIP editing, you'll help shape the future of Ethereum. Collaborate with like-minded individuals, gain 
+        or EIP editing, you&apos;ll help shape the future of Ethereum. Collaborate with like-minded individuals, gain 
         valuable experience, and be at the forefront of blockchain innovation. Your skills and enthusiasm are what 
         we need to drive Ethereum forward. Get involved today and make a difference!
       </Content>
