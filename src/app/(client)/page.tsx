@@ -63,8 +63,8 @@ export default function Home() {
             </h1>
 
             <p className="md:text-2xl sm:text-xl text-lg text-lightGray text-justify">
-              Whether you're a developer, researcher, writer, or enthusiast, there are numerous ways to contribute. 
-              By participating in creating educational content, project management, documentation, community outreach, or EIP editing, you'll help shape the future of Ethereum. 
+              Whether you&apos;re a developer, researcher, writer, or enthusiast, there are numerous ways to contribute. 
+              By participating in creating educational content, project management, documentation, community outreach, or EIP editing, you&apos;ll help shape the future of Ethereum. 
               Your skills and enthusiasm are what we need to drive Ethereum forward. 
               Get involved today and make a difference!
             </p>
