@@ -6,6 +6,7 @@ import type { Button } from "@/types/page";
 export default function Button({
   text,
   link,
+  target,
   height,
   width,
   fontSize,
@@ -13,7 +14,7 @@ export default function Button({
   size,
 }: Button) {
   return (
-    <Link href={link}>
+    <Link href={link} target={target} className={`max-w-${width ? width : 12}`}>
       <motion.button
         className={`h-${height ? height : 6} w-${width ? width : 12} ${
           fontSize ? `text-${fontSize}` : "text-3xl"

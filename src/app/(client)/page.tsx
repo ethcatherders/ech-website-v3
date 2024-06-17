@@ -3,12 +3,14 @@ import Image from "next/image";
 import Hero from "@/components/hero/page";
 import HelpUs from "@/components/others/helpUs";
 import Feedback from "@/components/feedback";
+import Button from "@/components/button/page";
+import LogoCarousel from "@/components/carousel/logoCarousel";
 export default function Home() {
   return (
     <>
       <Hero />
       <div className="lg:max-w-[75vw] md:max-w-[85vw] sm:max-w-[90vw] max-w-[95vw] mx-auto flex flex-col gap-y-24">
-        <div className="flex xl:flex-row flex-col justify-between gap-6 items-center pt-16">
+        <div className="flex xl:flex-row flex-col justify-between gap-6 items-center pt-16 px-6">
           <Image
             src="/assets/cat_laptop.png"
             height={500}
@@ -23,20 +25,29 @@ export default function Home() {
             </h1>
 
             <p className="md:text-2xl sm:text-xl text-lg text-lightGray text-justify">
-              Ethereum Cat Herders is a group of individuals, working together
-              to support the Ethereum core developers with project management
-              and other aspects of communication and coordination.
-              <br />
-              <br />
-              Read our journey with Ethereum ecosystem - <br />
+              Ethereum Cat Herder is a non profit organization. 
+              Its goal is to make it easy for anyone to get involved with and improve Ethereum. 
+              We make {" "}
               <a
-                href="https://medium.com/ethereum-cat-herders/review-2020-the-ethereum-cat-herders-70164265c8d9"
+                href="https://www.youtube.com/playlist?list=PL4cwHXAawZxqu0PKKyMzG_3BJV_xZTi1F"
                 target="_blank"
               >
                 <span className="border-b border-dotted pb-1 border-lightGray">
-                  Review 2020: The Ethereum Cat Herders
+                  in-depth videos and podcasts
                 </span>
               </a>
+              {" "}explaining the EIPs. We have a {" "}
+              <a
+                href="https://medium.com/ethereum-cat-herders/learn2earn-is-back-with-dencun-nft-3712d2b086fd"
+                target="_blank"
+              >
+                <span className="border-b border-dotted pb-1 border-lightGray">
+                  fun app
+                </span>
+              </a>
+              {" "}about the Ethereum improvement process and the Ethereum community. 
+              We help authors edit, publish and solicit feedback on EIPs.  
+              And we write about how Ethereum and the Ethereum community evolves over time. 
             </p>
           </div>
         </div>
@@ -45,52 +56,54 @@ export default function Home() {
           <Image src="/assets/paws.png" alt="paws" width={200} height={200} />
         </div>
 
-        <Feedback />
+        <div className="flex xl:flex-row flex-col justify-between gap-6 items-center px-6">
+          <div className="flex flex-col max-w-2xl  space-y-6">
+            <h1 className="font-bold lg:text-6xl md:text-5xl sm:text-4xl text-3xl">
+              Get Involved
+            </h1>
 
-        <div className="flex w-full justify-center items-center lg:flex-row flex-col gap-5">
-          <div className="grid grid-cols-3 items-center">
-            <div className="flex flex-col gap-2">
-            <Image
-              src="/assets/cat_peek.png"
-              height={150}
-              width={150}
-              alt="cat_laptop"
-              className="basis-1/2"
-            />
+            <p className="md:text-2xl sm:text-xl text-lg text-lightGray text-justify">
+              Whether you&apos;re a developer, researcher, writer, or enthusiast, there are numerous ways to contribute. 
+              By participating in creating educational content, project management, documentation, community outreach, or EIP editing, you&apos;ll help shape the future of Ethereum. 
+              Your skills and enthusiasm are what we need to drive Ethereum forward. 
+              Get involved today and make a difference!
+            </p>
+
+            <div className="flex sm:flex-row gap-10 items-center">
+              <Button
+                text="Join ECH"
+                link="https://docs.google.com/forms/d/1o2Oidzt6qZZ296KkqeNMi6xAALIv8zsBK1Va3Lzc9IQ/viewform?edit_requested=true"
+                inverted={true}
+                fontSize={"xl"}
+                size="sm"
+              />
+              <a
+                href="https://medium.com/ethereum-cat-herders/learn2earn-is-back-with-dencun-nft-3712d2b086fd"
+                target="_blank"
+                className="border-b border-dotted pb-1 border-lightGray"
+              >
+                Join our Discord
+              </a>
             </div>
-            <ul className="h-full w-full lg:text-2xl text-lg col-span-2 flex flex-col justify-center items-start">
-              <li>
-                <span className="font-bold lg:text-3xl text-xl">S</span>ynergy
-              </li>
-              <li>
-                <span className="font-bold lg:text-3xl text-xl">U</span>nderpin Improvement Proposals
-              </li>
-              <li>
-                <span className="font-bold lg:text-3xl text-xl">P</span>ublicize Network Upgrade
-              </li>
-              <li>
-                <span className="font-bold lg:text-3xl text-xl">P</span> rocess Improvement
-              </li>
-              <li>
-                <span className="font-bold lg:text-3xl text-xl">O</span>utreach
-              </li>
-              <li>
-                <span className="font-bold lg:text-3xl text-xl">R</span>esource Curation
-              </li>
-              <li>
-                <span className="font-bold lg:text-3xl text-xl">T</span>ranscript Availability
-              </li>
-            </ul>
           </div>
 
           <div>
             <iframe 
-              src="https://discord.com/widget?id=916850601919393832&theme=dark" width="300" height="350"
+              src="https://discord.com/widget?id=916850601919393832&theme=dark" width="400" height="350"
+              allowTransparency={true}
               sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
             ></iframe>
           </div>
         </div>
-        <HelpUs />
+
+        <div className="flex flex-col w-full justify-center gap-10 pt-10 pb-20">
+          <h1 className="font-bold lg:text-6xl md:text-5xl sm:text-4xl text-3xl text-center">
+            Our Supporters
+          </h1>
+          <LogoCarousel />
+        </div>
+
+        {/* <HelpUs /> */}
       </div>
     </>
   );
