@@ -23,8 +23,7 @@ export default function Hero() {
           <div>
             <Button
               text="Join Us"
-              link="https://docs.google.com/forms/d/1o2Oidzt6qZZ296KkqeNMi6xAALIv8zsBK1Va3Lzc9IQ/viewform?edit_requested=true"
-              target="_blank"
+              link="/join"
               size="md"
               fontSize="lg"
             />
@@ -50,13 +49,13 @@ export default function Hero() {
       <div className="w-100wh flex flex-wrap justify-center md:gap-5 spacey-y-2 p-4 gap-2">
         <Button
           text="Dencun"
-          link="/network_upgrades/dencun"
+          link="/upgrades/dencun"
           size="md"
           fontSize="lg"
         />
         <Button
           text="Pectra"
-          link="/network_upgrades/pectra"
+          link="/upgrades/pectra"
           size="md"
           fontSize="lg"
         />

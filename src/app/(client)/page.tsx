@@ -72,13 +72,13 @@ export default function Home() {
             <div className="flex sm:flex-row gap-10 items-center">
               <Button
                 text="Join ECH"
-                link="https://docs.google.com/forms/d/1o2Oidzt6qZZ296KkqeNMi6xAALIv8zsBK1Va3Lzc9IQ/viewform?edit_requested=true"
+                link="/join"
                 inverted={true}
                 fontSize={"xl"}
                 size="sm"
               />
               <a
-                href="https://medium.com/ethereum-cat-herders/learn2earn-is-back-with-dencun-nft-3712d2b086fd"
+                href="https://dsc.gg/ech"
                 target="_blank"
                 className="border-b border-dotted pb-1 border-lightGray"
               >
