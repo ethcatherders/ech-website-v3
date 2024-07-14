@@ -19,12 +19,12 @@ export default function ConsideredProposalCard({ data }: { data: any }) {
         <div className="flex flex-wrap gap-2 justify-center">
           <a href={data.proposalLink} target="_blank">
             <button className="text-md border border-darkGray py-1 px-2 rounded-md w-32">
-              EIP Proposal
+              Proposal
             </button>
           </a>
           <a href={data.discussionLink} target="_blank">
             <button className="text-md border border-darkGray py-1 px-2 rounded-md w-32">
-              EIP Discussion
+              Discussion
             </button>
           </a>
           {data.videoLink && (
