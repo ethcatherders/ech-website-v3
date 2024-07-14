@@ -4,7 +4,7 @@ import PageContainer from "@/components/ui/pageContainer";
 import Content from "@/components/ui/content";
 import { useEffect, useState } from "react";
 import { getMTHItems } from "@/app/_action";
-import { MTHItem } from "@/types/page";
+import { MTHItem } from "@/types";
 
 export default function MeetTheHerders() {
   const [data, setData] = useState<MTHItem[]>([]);

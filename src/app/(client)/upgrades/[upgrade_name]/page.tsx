@@ -1,14 +1,14 @@
 "use client";
 import { useState, useEffect } from "react";
 import type {
-  consdideredProposal,
+  consideredEIP,
   InfoForUpgrade,
   UpdatesData,
   VideosData,
   ResourcesData,
-} from "@/types/page";
+} from "@/types";
 import { usePathname } from "next/navigation";
-import ConsdideredProposal from "@/components/consideredProposalCard/page";
+import ConsideredProposalCard from "@/components/consideredProposalCard/page";
 import { getUpgrade } from "@/app/_action";
 import { ConsideredProposals } from "@prisma/client";
 import PageContainer from "@/components/ui/pageContainer";
@@ -17,7 +17,7 @@ import TheMerge from "@/components/network_upgrades/theMerge";
 import ShanghaiExtras from "@/components/network_upgrades/shanghai";
 
 type  UpgradeData = {
-  consideredProposals: consdideredProposal[];
+  consideredProposals: consideredEIP[];
   desc1:string;
   desc2:string;
   embedLink: string;
@@ -221,7 +221,7 @@ export default function Practra() {
             <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1  gap-x-10 gap-y-6 ">
               {data?.consideredProposals.filter((item) => item.status === 'INCLUDED').map(
                 (item: ConsideredProposals, index: number) => {
-                  return <ConsdideredProposal data={item} key={index} />;
+                  return <ConsideredProposalCard data={item} key={index} />;
                 },
               )}
             </div>
@@ -236,15 +236,11 @@ export default function Practra() {
             <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1  gap-x-10 gap-y-6 ">
               {data?.consideredProposals.filter((item) => item.status === 'CONSIDERED').map(
                 (item: ConsideredProposals, index: number) => {
-                  return <ConsdideredProposal data={item} key={index} />;
+                  return <ConsideredProposalCard data={item} key={index} />;
                 },
               )}
             </div>
           </div>
-
-          
-
-          
         </div>
       </>
     </>

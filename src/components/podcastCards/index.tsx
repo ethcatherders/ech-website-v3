@@ -1,4 +1,4 @@
-import { PodcastCards } from "@/types/page";
+import { PodcastCards } from "@/types";
 import Image from "next/image";
 export default function PodcastCard({ card }: { card: PodcastCards }) {
   return (

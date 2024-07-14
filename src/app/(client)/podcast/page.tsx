@@ -1,5 +1,5 @@
 import { podcastCardData } from "@/constants/page";
-import { PodcastCards } from "@/types/page";
+import { PodcastCards } from "@/types";
 import PodcastCard from "@/components/podcastCards";
 export default function Podcast() {
   return (

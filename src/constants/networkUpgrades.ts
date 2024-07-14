@@ -1,4 +1,4 @@
-import { NetworkUpgrades } from "@/types/page";
+import { NetworkUpgrades } from "@/types";
 import { exec } from "child_process";
 import { version } from "os";
 

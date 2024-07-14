@@ -120,7 +120,7 @@ export default function Navbar() {
                     sideOffset={20}
                     className="dark gap-2 bg-darkGray"
                   >
-                    {item.children?.map((child, chi) => {
+                    {item.children?.map((child: any, chi: any) => {
                       return (
                         <Link key={chi} href={child.link || "/"}>
                           <p
@@ -207,7 +207,7 @@ export default function Navbar() {
                       className="text-white border-4 rounded-full cursor-pointer"
                     />
                   </span>
-                  {nav[1]?.children?.map((item, index) => {
+                  {nav[1]?.children?.map((item: any, index: any) => {
                     return (
                       <a href={item.link} key={index}>
                         <div key={index}>

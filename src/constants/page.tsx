@@ -5,7 +5,7 @@ import type {
   ActiveTestnet,
   BlockchainUpgrades,
   DepretectedTestnets,
-} from "@/types/page";
+} from "@/types";
 
 import { BsTwitterX, BsGithub, BsYoutube } from "react-icons/bs";
 import { GrLinkedinOption } from "react-icons/gr";
