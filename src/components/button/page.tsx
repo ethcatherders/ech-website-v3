@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import type { Button } from "@/types/page";
+import type { Button } from "@/types";
 
 export default function Button({
   text,
