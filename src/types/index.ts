@@ -26,7 +26,7 @@ export type Socials = {
   link: string;
 };
 
-export type consdideredProposal = {
+export type consideredEIP = {
   id: number;
   name: string;
   description: string;

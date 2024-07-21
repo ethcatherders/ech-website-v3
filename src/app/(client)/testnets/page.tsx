@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { activeTestnets, deprecatedTestnets } from "@/constants/page";
-import type { ActiveTestnet } from "@/types/page";
+import type { ActiveTestnet } from "@/types";
 import PageContainer from "@/components/ui/pageContainer";
 import Heading from "@/components/ui/Heading";
 import Content from "@/components/ui/content";

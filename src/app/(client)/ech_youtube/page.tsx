@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-import type { YoutubeLinks } from "@/types/page";
+import type { YoutubeLinks } from "@/types";
 import { getAllYoutubeVideos } from "@/app/_action";
 
 export default function ECHYoutube() {

@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { BlogsData, EventsData } from "@/types/page";
+import { BlogsData, EventsData } from "@/types";
 import { getAllBlogs, getAllEvents } from "@/app/_action";
 interface Props {
   blogs: BlogsData[];

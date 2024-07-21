@@ -1,7 +1,7 @@
-import type { consdideredProposal } from "@/types/page";
+import type { consideredEIP } from "@/types";
 import Button from "@/components/button/page";
 
-export default function consdideredProposal({ data }: { data: any }) {
+export default function ConsideredProposalCard({ data }: { data: any }) {
   return (
     <>
       <div className="max-w-sm flex flex-col space-y-6 h-full justify-between py-12">
@@ -17,25 +17,23 @@ export default function consdideredProposal({ data }: { data: any }) {
         </div>
 
         <div className="flex flex-wrap gap-2 justify-center">
-          {/* <a href={data.proposalLink} target="_blank">
-            <button className="text-md border border-darkGray py-1 px-2 rounded-md w-32">
-              EIP Proposal
-            </button>
-          </a> */}
           <a href={data.proposalLink} target="_blank">
             <button className="text-md border border-darkGray py-1 px-2 rounded-md w-32">
-              EIP Discussion
+              Proposal
             </button>
           </a>
-          {
-            data.eipLink && (
-              <a href={data.proposalLink} target="_blank">
-                <button className="text-md border border-darkGray py-1 px-2 rounded-md w-28">
-                  Video
-                </button>
-              </a>
-            )
-          }
+          <a href={data.discussionLink} target="_blank">
+            <button className="text-md border border-darkGray py-1 px-2 rounded-md w-32">
+              Discussion
+            </button>
+          </a>
+          {data.videoLink && (
+            <a href={data.videoLink} target="_blank">
+              <button className="text-md border border-darkGray py-1 px-2 rounded-md w-28">
+                Video
+              </button>
+            </a>
+          )}
         </div>
       </div>
     </>
