@@ -14,7 +14,7 @@ export default function Footer() {
             ETHEREUM CAT HERDERS
           </h1>
           <h3 className="text-2xl font-roboto">
-            Decentralized project management for <br /> the Ethereum Network
+            Herding Knowledge, Building Community, Homesteading Ethereum!
           </h3>
           <Image src="/assets/paws.png" alt="paws" width={200} height={200} />
         </div>
@@ -83,7 +83,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <p className="text-center text-lightGray text-sm">© 2024 ECH Institute. All Rights Reserved.</p>
+      <p className="text-center text-lightGray text-sm">© 2024 ECH Institute</p>
     </div>
   );
 }

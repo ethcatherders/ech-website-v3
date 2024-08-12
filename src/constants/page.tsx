@@ -7,7 +7,7 @@ import type {
   DepretectedTestnets,
 } from "@/types";
 
-import { BsTwitterX, BsGithub, BsYoutube } from "react-icons/bs";
+import { BsTwitterX, BsGithub, BsYoutube, BsReddit } from "react-icons/bs";
 import { GrLinkedinOption } from "react-icons/gr";
 
 export const nav: Nav[] = [
@@ -90,6 +90,10 @@ export const socials: Socials[] = [
   {
     icon: <GrLinkedinOption size={20} />,
     link: "https://www.linkedin.com/company/ethereum-cat-herders/",
+  },
+  {
+    icon: <BsReddit size={20} />,
+    link: "https://www.reddit.com/r/EthereumCatHerders/",
   },
 ];
 

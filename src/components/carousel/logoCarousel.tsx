@@ -2,6 +2,7 @@ import Image from 'next/image'
 import EEA from '../../../public/assets/logos/eea-logo.webp'
 import ESP from '../../../public/assets/logos/esp-logo.svg'
 import Gitcoin from '../../../public/assets/logos/gitcoin-logo.png'
+import Octant from '../../../public/assets/logos/octant-logo.svg'
 
 export default function LogoCarousel() {
 
@@ -11,7 +12,7 @@ export default function LogoCarousel() {
     // Fellowship of Ethereum Magicians,
     { src: EEA, alt: 'Enterprise Ethereum Alliance' },
     { src: Gitcoin, alt: 'Gitcoin' },
-    // Octant,
+    { src: Octant, alt: 'Octant' },
   ]
 
   return (
