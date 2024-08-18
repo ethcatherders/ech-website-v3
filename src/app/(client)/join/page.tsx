@@ -3,63 +3,75 @@ import Content from "@/components/ui/content";
 import PageContainer from "@/components/ui/pageContainer";
 import Image from "next/image";
 
-const resources: {
-  title: string;
-  link: string;
-}[] = [
+const community = [
   {
-    title: "Non-EIP Content",
-    link: "https://youtube.com/playlist?list=PL4cwHXAawZxpby7LszzOnyuAyQl8WLLvh&si=8e04CIz6UZoA90ke",
+    name: "Ethereum Foundation",
+    url: "https://ethereum.org/en/community/get-involved/#ethereum-jobs/",
+    category: "Community",
   },
   {
-    title: "Beacon Chain Improvements",
-    link: "https://youtube.com/playlist?list=PL4cwHXAawZxoEw29YmqJtNoFaENUUAREn&si=p55ScjtIdp7cQvUx",
+    name: "Fellowship of Ethereum Magicians",
+    url: "https://ethereum-magicians.org/faq",
+    category: "Community",
   },
   {
-    title: "ERCs",
-    link: "https://youtube.com/playlist?list=PL4cwHXAawZxqXee9EMQDIEz2CslTnsW0K&si=UurSHYNdf0bzt3on",
+    name: "Toolsuite for testing Ethereum applications",
+    url: "https://github.com/ethereum/eth-tester/issues",
+    category: "Community",
   },
   {
-    title: "NFTs",
-    link: "https://youtube.com/playlist?list=PL4cwHXAawZxpUmj2UjD4BtfgC1nAAyv3p&si=wBs0rY5H7sPG8zRY",
+    name: "Gitcoin",
+    url: "https://gitcoin.co/",
+    category: "Community",
   },
-];
+  {
+    name: "Lighthouse",
+    url: "https://lighthouse.sigmaprime.io/",
+    category: "Consensus Layer Client"
+  },
+  {
+    name: "Lodestar",
+    url: "https://lodestar.chainsafe.io/",
+    category: "Consensus Layer Client"
+  },
+  {
+    name: "Nimbus",
+    url: "https://nimbus.team/",
+    category: "Consensus Layer Client"
+  },
+  {
+    name: "Prysm",
+    url: "https://docs.prylabs.network/docs/getting-started",
+    category: "Consensus Layer Client"
+  },
+  {
+    name: "Teku",
+    url: "https://consensys.io/teku",
+    category: "Consensus Layer Client"
+  },
+  {
+    name: "Besu",
+    url: "https://www.hyperledger.org/projects/besu",
+    category: "Execution Layer Client"
+  },
+  {
+    name: "Erigon",
+    url: "https://erigon.tech/",
+    category: "Execution Layer Client"
+  },
+  {
+    name: "Go Ethereum",
+    url: "https://geth.ethereum.org/docs/developers/geth-developer/contributing",
+    category: "Execution Layer Client"
+  },
+  {
+    name: "Nethermind",
+    url: "https://www.nethermind.io/",
+    category: "Execution Layer Client"
+  },
+]
 
-const Upgrades: {
-  title: string;
-  link: string;
-}[] = [
-  {
-    title: "Dencun",
-    link: "https://youtube.com/playlist?list=PL4cwHXAawZxpnKFDl1KzGOKqwux5JaLlv&si=ZF3ua23ubiyJXSIG",
-  },
-  {
-    title: "Shapella",
-    link: "https://youtube.com/playlist?list=PL4cwHXAawZxpok0smGmq-dFGVHQzW84a2&si=keP7mfvXTdsOgabs",
-  },
-  {
-    title: "The Merge",
-    link: "https://youtube.com/playlist?list=PL4cwHXAawZxqoLxXqZqT4hcYhoHoP6w12&si=XJ2mHIezVIYzBPee",
-  },
-  {
-    title: "Arrow Glacier",
-    link: "https://www.youtube.com/watch?v=qy81t7bZ-4Q&list=PL4cwHXAawZxqu0PKKyMzG_3BJV_xZTi1F&index=9&t=3s",
-  },
-  {
-    title: "Altair",
-    link: "https://youtube.com/playlist?list=PL4cwHXAawZxoliK_lEjyks7ogHsjp2uEE&si=rffpfZfpOLkQ6P1H",
-  },
-  {
-    title: "London",
-    link: "https://youtube.com/playlist?list=PL4cwHXAawZxppsQYazgJ3EWWWjY2vNxVp&si=-nr0TCFGpJl6ZCfs",
-  },
-  {
-    title: "Berlin",
-    link: "https://youtube.com/playlist?list=PL4cwHXAawZxrR3Z0I0eubH2fx_4Rej794&si=yF6dVP3KfORY7TS5",
-  },
-];
-
-export default function PeepAnEip() {
+export default function Join() {
   return (
     <PageContainer>
       <Heading text="Get Involved" />
@@ -73,13 +85,32 @@ export default function PeepAnEip() {
 
       <div className="flex justify-center w-full pb-16">
         <a
-            href={"https://dsc.gg/ech"}
-            target="_blank"
-          >
-            <button className="border border-darkGray rounded-lg md:text-2xl text-xl px-4 py-2 hover:text-darkGray text-white hover:bg-white bg-darkGray hover:scale-110 duration-300">
-              Join our Discord
-            </button>
-          </a>
+          href={"https://dsc.gg/ech"}
+          target="_blank"
+        >
+          <button className="border border-darkGray rounded-lg md:text-2xl text-xl px-4 py-2 hover:text-darkGray text-white hover:bg-white bg-darkGray hover:scale-110 duration-300">
+            Join our Discord
+          </button>
+        </a>
+      </div>
+
+      <div className="flex flex-col w-full justify-center gap-10 pb-20">
+        <Heading text="The Ethereum Community" />
+        <Content>The Ethereum community has many opportunites for contributors of different backgrounds and skill-sets.</Content>
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {community.map((item, index) => (
+            <a
+              key={index}
+              href={item.url}
+              target="_blank"
+            >
+              <div className="flex flex-col w-full h-full justify-between border border-darkGray rounded-lg md:text-2xl text-xl px-4 py-2 hover:text-darkGray text-white hover:bg-white bg-darkGray hover:scale-110 duration-300">
+                <p className="flex-grow">{item.name}</p>
+                <p className="text-xs mt-2">{item.category}</p>
+              </div>
+            </a>
+          ))}
+        </div>
       </div>
     </PageContainer>
   );
