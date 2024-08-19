@@ -21,7 +21,7 @@ export default function Home() {
 
           <div className="flex flex-col max-w-2xl  space-y-6">
             <h1 className="font-bold lg:text-6xl md:text-5xl sm:text-4xl text-3xl">
-              What is Eth Cat Herders?
+              What is EthCatHerders?
             </h1>
 
             <p className="md:text-2xl sm:text-xl text-lg text-lightGray text-justify">
@@ -77,13 +77,13 @@ export default function Home() {
                 fontSize={"xl"}
                 size="sm"
               />
-              <a
+              {/* <a
                 href="https://dsc.gg/ech"
                 target="_blank"
                 className="border-b border-dotted pb-1 border-lightGray"
               >
                 Join our Discord
-              </a>
+              </a> */}
             </div>
           </div>
 

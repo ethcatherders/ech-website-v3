@@ -48,16 +48,16 @@ export default function Hero() {
       </div>
       <div className="w-100wh flex flex-wrap justify-center md:gap-5 spacey-y-2 p-4 gap-2">
         <Button
-          text="Dencun"
-          link="/upgrades/dencun"
-          size="md"
-          fontSize="lg"
-        />
-        <Button
           text="Pectra"
           link="/upgrades/pectra"
           size="md"
           fontSize="lg"
+        />
+        <Button
+          text="Testnets" 
+          link="/testnets" 
+          size="md" 
+          fontSize="lg" 
         />
         <Button
           text="PEEPanEIP"
@@ -65,8 +65,12 @@ export default function Hero() {
           size="md"
           fontSize="lg"
         />
-        <Button text="Testnets" link="/testnets" size="md" fontSize="lg" />
-        <Button text="Podcast" link="/podcast" size="md" fontSize="lg" />
+        <Button 
+          text="Podcast" 
+          link="/podcast" 
+          size="md" 
+          fontSize="lg" 
+        />
         <Button
           text="Meet the Herders"
           link="/meet-the-herders"

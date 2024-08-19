@@ -29,7 +29,7 @@ function PageContent() {
     { label: "EIP Resources", link: "/admin/eip_resources" },
     { label: "Surveys", link: "/admin/surveys" },
     { label: "Meetings", link: "/admin/meetings" },
-    { label: "Meet the Herders", link: "/admin/mth" },
+    { label: "Meet the Herders", link: "/admin/meet-the-herders" },
   ];
   return (
     <>
