@@ -20,11 +20,6 @@ const community = [
     category: "Community",
   },
   {
-    name: "Gitcoin",
-    url: "https://gitcoin.co/",
-    category: "Community",
-  },
-  {
     name: "Lighthouse",
     url: "https://lighthouse.sigmaprime.io/",
     category: "Consensus Layer Client"
