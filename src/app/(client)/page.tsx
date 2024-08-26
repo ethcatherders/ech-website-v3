@@ -10,7 +10,7 @@ export default function Home() {
     <>
       <Hero />
       <div className="lg:max-w-[75vw] md:max-w-[85vw] sm:max-w-[90vw] max-w-[95vw] mx-auto flex flex-col gap-y-24">
-        <div className="flex xl:flex-row flex-col justify-between gap-6 items-center pt-16 px-6">
+        <div className="flex xl:flex-row flex-col justify-between gap-10 items-center pt-16 px-6">
           <Image
             src="/assets/cat_laptop.png"
             height={500}
@@ -19,7 +19,7 @@ export default function Home() {
             className="md:h-[20rem] md:w-[30rem] w-[21rem] h-[14rem]"
           />
 
-          <div className="flex flex-col max-w-2xl  space-y-6">
+          <div className="flex flex-col max-w-2xl space-y-6">
             <h1 className="font-bold lg:text-6xl md:text-5xl sm:text-4xl text-3xl">
               What is EthCatHerders?
             </h1>
@@ -56,7 +56,7 @@ export default function Home() {
           <Image src="/assets/paws.png" alt="paws" width={200} height={200} />
         </div>
 
-        <div className="flex xl:flex-row flex-col justify-between gap-6 items-center px-6">
+        <div className="flex xl:flex-row flex-col justify-between gap-10 items-center px-6">
           <div className="flex flex-col max-w-2xl  space-y-6">
             <h1 className="font-bold lg:text-6xl md:text-5xl sm:text-4xl text-3xl">
               Get Involved
@@ -88,10 +88,22 @@ export default function Home() {
           </div>
 
           <div>
-            <iframe 
+            {/* <iframe 
               src="https://discord.com/widget?id=916850601919393832&theme=dark" width="400" height="350"
               allowTransparency={true}
               sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+            ></iframe> */}
+            <iframe 
+              // width="560" 
+              // height="315"
+              width="500" 
+              height="283"
+              src="https://www.youtube.com/embed/ZV8_NRSyQCM?si=8F9ex4mDaPS4lgw3" 
+              title="YouTube video player" 
+              frameBorder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              referrerPolicy="strict-origin-when-cross-origin" 
+              allowFullScreen
             ></iframe>
           </div>
         </div>
