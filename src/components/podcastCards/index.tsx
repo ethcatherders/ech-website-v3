@@ -12,7 +12,7 @@ export default function PodcastCard({ card }: { card: PodcastCards }) {
             width={100}
             className="w-8 h-8"
           />
-          <p className="md:text-3xl text-xl font-roboto font-semibold">
+          <p className="md:text-3xl sm:text-2xl text-xl font-roboto font-semibold">
             {card.title}
           </p>
         </div>
