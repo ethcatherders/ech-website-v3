@@ -8,7 +8,7 @@ export default function Podcast() {
         <div className="w-[90vw] left-0">
           <div className="flex flex-col space-y-4">
             <h1 className="xl:text-6xl lg:text-4xl sm:text-4xl text-3xl text-left font-roboto font-bold text-darkGray">
-              Eth Cat Herders Podcasts
+              EthCatHerders Podcasts
             </h1>
             <h3 className="xl:text-2xl text-lightGray">
               In depth interviews of the people building our ecosystem and
