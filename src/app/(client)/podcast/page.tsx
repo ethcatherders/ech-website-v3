@@ -8,7 +8,7 @@ export default function Podcast() {
         <div className="w-[90vw] left-0">
           <div className="flex flex-col space-y-4">
             <h1 className="xl:text-6xl lg:text-4xl sm:text-4xl text-3xl text-left font-roboto font-bold text-darkGray">
-              Eth Cat Herders Podcasts
+              EthCatHerders Podcasts
             </h1>
             <h3 className="xl:text-2xl text-lightGray">
               In depth interviews of the people building our ecosystem and
@@ -20,7 +20,7 @@ export default function Podcast() {
             Listen to the podcasts of ethereum-cat-herders
           </h1>
 
-          <div className="grid grid-cols-2 md:gap-10 gap-5">
+          <div className="grid grid-cols-2 md:grid-cols-3 md:gap-10 gap-5">
             {podcastCardData.map((item: PodcastCards, index) => {
               return <PodcastCard card={item} key={index} />;
             })}
@@ -31,7 +31,7 @@ export default function Podcast() {
           </h1>
 
           <iframe
-            className="w-full h-[500px] pb-8"
+            className="w-full h-[800px] pb-8"
             src="https://anchor.fm/ethereum-cat-herders"
           ></iframe>
         </div>
