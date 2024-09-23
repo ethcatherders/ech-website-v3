@@ -5,6 +5,7 @@ import HelpUs from "@/components/others/helpUs";
 import Feedback from "@/components/feedback";
 import Button from "@/components/button/page";
 import LogoCarousel from "@/components/carousel/logoCarousel";
+import FeedbackCarousel from "@/components/feedback/feedbackCarousel";
 export default function Home() {
   return (
     <>
@@ -52,9 +53,11 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex w-full justify-center">
+        <FeedbackCarousel />
+
+        {/* <div className="flex w-full justify-center">
           <Image src="/assets/paws.png" alt="paws" width={200} height={200} />
-        </div>
+        </div> */}
 
         <div className="flex xl:flex-row flex-col justify-between gap-10 items-center px-6">
           <div className="flex flex-col max-w-2xl  space-y-6">
