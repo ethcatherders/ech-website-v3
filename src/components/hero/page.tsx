@@ -72,8 +72,8 @@ export default function Hero() {
           fontSize="lg" 
         />
         <Button
-          text="Meet the Herders"
-          link="/meet-the-herders"
+          text="Meet The Herders"
+          link="/mth"
           size="md"
           fontSize="lg"
         />
