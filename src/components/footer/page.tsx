@@ -83,7 +83,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <p className="text-center text-lightGray text-sm">© 2024 ECH Institute</p>
+      <p className="text-center text-lightGray text-sm">© 2024 ECH Institute, Inc.</p>
     </div>
   );
 }

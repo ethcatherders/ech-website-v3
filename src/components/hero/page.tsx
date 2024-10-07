@@ -65,6 +65,13 @@ export default function Hero() {
           size="md"
           fontSize="lg"
         />
+        <Button
+          text="Ecosystem Project Demo"
+          link="https://youtube.com/playlist?list=PL4cwHXAawZxrhbMXuCqMsCiwx1lwu_cNs&si=CIlA6anqN17yEaCz"
+          target="_blank"
+          size="md"
+          fontSize="lg"
+        />
         <Button 
           text="Podcast" 
           link="/podcast" 
