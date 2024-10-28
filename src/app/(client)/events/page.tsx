@@ -2,6 +2,8 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import Heading from "@/components/ui/Heading";
 import PageContainer from "@/components/ui/pageContainer";
 import Image from "next/image";
+import Event1Image from "../../../../public/assets/events/ech-event-1.png";
+import Event2Image from "../../../../public/assets/events/ech-event-2.png";
 
 export default function Events() {
   return (
@@ -13,9 +15,12 @@ export default function Events() {
       </div>
       <Carousel>
         <CarouselContent>
-          <CarouselItem>Image 1</CarouselItem>
-          <CarouselItem>Image 2</CarouselItem>
-          <CarouselItem>Image 3</CarouselItem>
+          <CarouselItem>
+            <Image src={Event1Image} alt="Event 1" width={1000} height={1000} />
+          </CarouselItem>
+          <CarouselItem>
+            <Image src={Event2Image} alt="Event 2" width={1000} height={1000} />
+          </CarouselItem>
         </CarouselContent>
         <CarouselPrevious />
         <CarouselNext />
