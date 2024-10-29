@@ -43,7 +43,7 @@ export default function Events() {
           <p className="text-lg text-lightGray text-justify">
             Visit us at our booth for some exclusive merch! For more information, check out our location here:{" "}
             <a
-              href="https://lu.ma"
+              href="https://lu.ma/2q0wpfe4"
               target="_blank"
             >
               <span className="border-b border-dotted pb-1 border-lightGray">
@@ -59,13 +59,22 @@ export default function Events() {
       <div className="flex xl:flex-row flex-col justify-between gap-10 pb-16">
         <div>
           <h1 className="font-bold text-2xl">
-            ETH Singapore
+            ETH Singapore 2024
           </h1>
-          <p className="text-lg">Contributing to Ethereum's Infinite Garden</p>
+          {/* <p className="text-lg">In the Ether</p> */}
         </div>
 
         <div className="flex flex-col justify-start max-w-xl space-y-6">
-          <p className="text-lg text-lightGray text-justify">
+          <iframe 
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/v9G684uz6Rk?si=PDwjhCzqtqCPnUJO" 
+            title="YouTube video player" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerPolicy="strict-origin-when-cross-origin" 
+            allowFullScreen 
+          />
+          {/* <p className="text-lg text-lightGray text-justify">
             The ETH Cat Herders are heading to Devcon in Bangkok next month! We can’t wait to connect with the Ethereum community, share our resources, and learn from the amazing builders, researchers, and innovators attending.
           </p>
           <p className="text-lg text-lightGray text-justify">
@@ -78,7 +87,7 @@ export default function Events() {
                 lu.ma
               </span>
             </a>.
-          </p>
+          </p> */}
         </div>
       </div>
     </PageContainer>
