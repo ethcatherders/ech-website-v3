@@ -33,7 +33,7 @@ export default function Events() {
           <h1 className="font-bold text-2xl">
             DEVCON Bangkok 2024
           </h1>
-          <p className="text-lg">Contributing to Ethereum's Infinite Garden</p>
+          <p className="text-lg">Contributing to Ethereum’s Infinite Garden</p>
         </div>
 
         <div className="flex flex-col justify-start max-w-xl space-y-6">
