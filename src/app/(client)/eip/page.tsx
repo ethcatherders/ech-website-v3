@@ -10,6 +10,7 @@ import {
   AccordionItem,
   AccordionContent,
 } from "@/components/ui/accordion";
+import { NftClaimCard } from "@/components/nft-claim";
 export default function EIPResources() {
   const [resourcesData, setResourcesData] = useState<any[]>([]);
   useEffect(() => {
@@ -22,6 +23,7 @@ export default function EIPResources() {
   }, []);
   return (
     <PageContainer>
+      {/* <NftClaimCard /> */}
       <Heading text="EIP Resources" />
 
       <Content>
