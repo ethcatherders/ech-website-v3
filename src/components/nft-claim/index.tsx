@@ -5,8 +5,10 @@ import { getSession, signIn, signOut } from "next-auth/react";
 import { authOptions } from "@/lib/authOptions";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
+import { NetworkUpgrade } from "@/constants/eip-authors";
 
 export function NftClaimCard() {
+  const upgrade: NetworkUpgrade = 'pectra'
   const [isEligible, setIsEligible] = useState(false);
   const [isClaimed, setIsClaimed] = useState(false);
   const [githubProfile, setGithubProfile] = useState<{ name: string, image: string }|null>(null);
@@ -19,6 +21,10 @@ export function NftClaimCard() {
     const session = await getSession();
     if (session) {
       setGithubProfile({ name: session.user.name, image: session.user.image ?? "" });
+      const { data: author } = await fetch(`/api/eip-author/${upgrade}/${session.user.name}`).then((res) => res.json());
+      setIsEligible(!!author)
+      // TO DO: check if the user has claimed the NFT
+      // Requires either adding table to database or updating NFT smart contract to emit event with github username
     }
   }
 
