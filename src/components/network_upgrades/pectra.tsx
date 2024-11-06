@@ -9,6 +9,7 @@ import ConsideredProposalCard from "@/components/consideredProposalCard/page";
 import { ConsideredProposals } from "@prisma/client";
 import { UpgradeData } from "./types";
 import { NftClaimCard } from "../nft-claim";
+import Image from "next/image";
 
 export default function Pectra({ data }: { data?: UpgradeData }) {
   const upgradeName = 'pectra';
@@ -62,8 +63,16 @@ export default function Pectra({ data }: { data?: UpgradeData }) {
             </div>
           </div>
           
-          <div className="flex justify-center">
-            <NftClaimCard upgrade={upgradeName} />
+          <div className="flex justify-center items-center gap-10 w-full">
+            <div className="hidden xl:block">
+              <Image src="/assets/paws.png" alt="Paws" width={200} height={100} />
+            </div>
+            <div className="max-w-[490px]">
+              <NftClaimCard upgrade={'pectra'} />
+            </div>
+            <div className="hidden xl:block">
+              <Image src="/assets/paws.png" alt="Paws" width={200} height={100} />
+            </div>
           </div>
 
           {data?.updates.length !== 0 ||

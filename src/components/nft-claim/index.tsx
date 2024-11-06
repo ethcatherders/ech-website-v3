@@ -27,9 +27,9 @@ export function NftClaimCard({ upgrade }: { upgrade: NetworkUpgrade }) {
   }
 
   return (
-    <div className={`flex flex-col box-black-bg w-full justify-between h-[${isEligible && !isClaimed ? "25" : "18"}rem] items-center p-6 border-2 border-black rounded-2xl space-y-8`}>
+    <div className={`flex flex-col box-black-bg w-full justify-between min-h-[${isEligible && !isClaimed ? "25" : "18"}rem] items-center p-6 border-2 border-black rounded-2xl space-y-8`}>
       <div className="flex flex-col gap-4 justify-center items-center">
-        <h3 className="text-lg font-bold">Is your EIP in {upgradeName}?</h3>
+        <h3 className="text-lg font-bold text-center">Is your EIP in {upgradeName}?</h3>
         <p className="text-sm text-center max-w-md mb-4">If you authored an EIP included in the upcoming {upgradeName} upgrade, you can claim our {upgradeName} edition NFT.</p>
         {githubProfile ? (
           isEligible ? (
@@ -52,7 +52,7 @@ export function NftClaimCard({ upgrade }: { upgrade: NetworkUpgrade }) {
 function UnverifiedGithubContent() {
   return (
     <div className="flex flex-col gap-4 justify-center items-center w-full">
-      <p className="text-sm">To prove you are an author, we need to verify your Github account.</p>
+      <p className="text-sm text-center">To prove you are an author, we need to verify your Github account.</p>
       <Button
         className="w-full max-w-xs"
         onClick={() => signIn("github")}
@@ -70,7 +70,7 @@ function EligibleClaimContent({ githubUsername, githubImage }: { githubUsername:
         <Image src={githubImage} alt="profile" width={30} height={30} className="rounded-full" />
         <p className="text-lg font-bold">{githubUsername}</p>
       </div>
-      <p className="text-sm">You are eligible to claim!</p>
+      <p className="text-sm text-center">You are eligible to claim!</p>
       <Input placeholder="Enter your ENS or address" className="text-center max-w-sm" />
       <Button className="w-full max-w-xs">Claim</Button>
       <Button variant="ghost" className="w-full max-w-xs" onClick={() => signOut()}>Disconnect</Button>
@@ -85,7 +85,7 @@ function AlreadyClaimedContent({ githubUsername, githubImage }: { githubUsername
         <Image src={githubImage} alt="profile" width={30} height={30} className="rounded-full" />
         <p className="text-lg font-bold">{githubUsername}</p>
       </div>
-      <p className="text-sm">You have already claimed the NFT.</p>
+      <p className="text-sm text-center">You have already claimed the NFT.</p>
       <Button variant="ghost" className="w-full max-w-xs" onClick={() => signOut()}>Disconnect</Button>
     </div>
   )
@@ -98,7 +98,7 @@ function IneligibleClaimContent({ githubUsername, githubImage }: { githubUsernam
         <Image src={githubImage} alt="profile" width={30} height={30} className="rounded-full" />
         <p className="text-lg font-bold">{githubUsername}</p>
       </div>
-      <p className="text-sm">You are not eligible to claim.</p>
+      <p className="text-sm text-center">You are not eligible to claim.</p>
       <Button variant="ghost" className="w-full max-w-xs" onClick={() => signOut()}>Disconnect</Button>
     </div>
   )
