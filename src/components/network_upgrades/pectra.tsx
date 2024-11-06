@@ -63,7 +63,7 @@ export default function Pectra({ data }: { data?: UpgradeData }) {
             </div>
           </div>
           
-          <div className="flex justify-center items-center gap-10 w-full">
+          <div className="flex justify-evenly items-center gap-10 w-full py-10">
             <div className="hidden xl:block">
               <Image src="/assets/paws.png" alt="Paws" width={200} height={100} />
             </div>
