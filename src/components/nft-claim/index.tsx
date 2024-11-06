@@ -2,13 +2,11 @@ import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { getSession, signIn, signOut } from "next-auth/react";
-import { authOptions } from "@/lib/authOptions";
-import { getServerSession } from "next-auth";
 import Image from "next/image";
 import { NetworkUpgrade } from "@/constants/eip-authors";
 
-export function NftClaimCard() {
-  const upgrade: NetworkUpgrade = 'pectra'
+export function NftClaimCard({ upgrade }: { upgrade: NetworkUpgrade }) {
+  const upgradeName = upgrade.charAt(0).toUpperCase() + upgrade.slice(1);
   const [isEligible, setIsEligible] = useState(false);
   const [isClaimed, setIsClaimed] = useState(false);
   const [githubProfile, setGithubProfile] = useState<{ name: string, image: string }|null>(null);
@@ -31,8 +29,8 @@ export function NftClaimCard() {
   return (
     <div className={`flex flex-col box-black-bg w-full justify-between h-[${isEligible && !isClaimed ? "25" : "18"}rem] items-center p-6 border-2 border-black rounded-2xl space-y-8`}>
       <div className="flex flex-col gap-4 justify-center items-center">
-        <h3 className="text-lg font-bold">Is your EIP in Pectra?</h3>
-        <p className="text-sm text-center max-w-md mb-4">If you authored an EIP included in the upcoming Pectra upgrade, you can claim our Pectra edition NFT.</p>
+        <h3 className="text-lg font-bold">Is your EIP in {upgradeName}?</h3>
+        <p className="text-sm text-center max-w-md mb-4">If you authored an EIP included in the upcoming {upgradeName} upgrade, you can claim our {upgradeName} edition NFT.</p>
         {githubProfile ? (
           isEligible ? (
             isClaimed ? (
