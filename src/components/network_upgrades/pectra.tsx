@@ -52,18 +52,18 @@ export default function Pectra({ data }: { data?: UpgradeData }) {
             </div>
 
             <div className=" md:scale-100 scale-50">
-              <NftClaimCard upgrade={upgradeName} />
+              <iframe
+                width="560"
+                height="315"
+                src={data?.embedLink}
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              ></iframe>
             </div>
           </div>
           
-          <div className=" md:scale-100 scale-50">
-            <iframe
-              width="560"
-              height="315"
-              src={data?.embedLink}
-              title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            ></iframe>
+          <div className="flex justify-center">
+            <NftClaimCard upgrade={upgradeName} />
           </div>
 
           {data?.updates.length !== 0 ||
