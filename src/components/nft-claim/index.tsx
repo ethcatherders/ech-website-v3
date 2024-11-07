@@ -7,7 +7,7 @@ import { NetworkUpgrade } from "@/constants/eip-authors";
 import { createPublicClient, encodePacked, getAddress, GetEnsAddressReturnType, hexToBigInt, http, isAddress, keccak256, parseAbi } from "viem";
 import { foundry, mainnet } from "viem/chains";
 import { normalize } from "viem/ens";
-import { getTokenIdOfUpgrade, hasAlreadyClaimed } from "./utils";
+import { chainId, eipAuthorNftAddress, getChain, getTokenIdOfUpgrade, hasAlreadyClaimed } from "./utils";
 import { CgSpinner } from "react-icons/cg";
 import Link from "next/link";
 
@@ -80,6 +80,7 @@ function EligibleClaimContent({
 }) {
   const [addressOrEns, setAddressOrEns] = useState<string>("")
   const [resolvedAddress, setResolvedAddress] = useState<`0x${string}`|null>(null)
+  const [isResolving, setIsResolving] = useState(false)
   const [isClaiming, setIsClaiming] = useState(false)
   const [claimSuccess, setClaimSuccess] = useState(false)
 
@@ -90,9 +91,12 @@ function EligibleClaimContent({
 
   useEffect(() => {
     if (addressOrEns) {
+      setIsResolving(true)
       resolveAddress(addressOrEns).then((address) => {
         console.log({address})
         setResolvedAddress(address)
+      }).finally(() => {
+        setIsResolving(false)
       })
     }
   }, [addressOrEns])
@@ -145,20 +149,22 @@ function EligibleClaimContent({
       {claimSuccess ? (
         <>
         <p className="text-sm text-center text-green-500">Claimed!</p>
-        <Link href={`https://opensea.io/assets/ethereum/${process.env.NEXT_PUBLIC_EIP_AUTHOR_NFT_ADDRESS}/${getTokenIdOfUpgrade(upgrade)}`} target="_blank" passHref className="w-full">
+        <Link href={`https://opensea.io/assets/${getChain(chainId).name.toLowerCase()}/${eipAuthorNftAddress}/${getTokenIdOfUpgrade(upgrade)}`} target="_blank" passHref className="w-full flex justify-center">
           <Button variant="outline" className="w-full max-w-sm">View on OpenSea</Button>
         </Link>
         </>
       ) : (
         <>
         <p className="text-sm text-center">You are eligible to claim!</p>
-        <Input
-          placeholder="Enter your ENS or address"
-          className="text-center max-w-sm"
-          value={addressOrEns}
-          onChange={(e) => setAddressOrEns(e.target.value)}
-        />
-        <Button className="w-full max-w-xs" onClick={() => claimNft(upgrade)} disabled={isClaiming}>
+        <div className="flex flex-col w-full max-w-sm">
+          <Input
+            placeholder="Enter your ENS or address"
+            className="text-center max-w-sm"
+            value={addressOrEns}
+            onChange={(e) => setAddressOrEns(e.target.value)}
+          />
+        </div>
+        <Button className="w-full max-w-xs" onClick={() => claimNft(upgrade)} disabled={isClaiming||isResolving||!resolvedAddress}>
           {isClaiming ? <CgSpinner className="animate-spin" /> : "Claim"}
         </Button>
         </>

@@ -1,9 +1,8 @@
-import { getTokenIdOfUpgrade, hasAlreadyClaimed } from "@/components/nft-claim/utils";
+import { chainId, eipAuthorNftAddress, getTokenIdOfUpgrade, hasAlreadyClaimed } from "@/components/nft-claim/utils";
 import { NetworkUpgrade } from "@/constants/eip-authors";
 import { NextRequest, NextResponse } from "next/server";
-import { http, isAddress, parseAbi, toHex } from "viem";
-import { createWalletClient } from "viem";
-import { generatePrivateKey, privateKeyToAccount, signTypedData } from "viem/accounts";
+import { http, isAddress, parseAbi, createWalletClient } from "viem";
+import { privateKeyToAccount } from "viem/accounts";
 import { foundry } from "viem/chains";
 
 export async function POST(req: NextRequest, { params }: { params: { upgrade: NetworkUpgrade } }) {
@@ -17,41 +16,46 @@ export async function POST(req: NextRequest, { params }: { params: { upgrade: Ne
   if (alreadyClaimed) {
     return NextResponse.json({ error: "Already claimed" }, { status: 400 })
   }
+  const owner = privateKeyToAccount(process.env.OWNER_PRIVATE_KEY as `0x${string}`)
   const client = createWalletClient({
-    account: privateKeyToAccount(process.env.OWNER_PRIVATE_KEY as `0x${string}`),
+    account: owner,
     chain: foundry,
     transport: http('http://localhost:8545')
   })
   const claimable = {
     id: getTokenIdOfUpgrade(upgrade),
     to: address,
-    author: githubUsername
+    author: githubUsername as string
   }
-  // const signature  = await client.signTypedData({
-  //   domain: {
-  //     name: "EIP Author Reward",
-  //     version: "1"
-  //   },
-  //   types: {
-  //     Claimable: [
-  //       { name: "id", type: "uint256" },
-  //       { name: "to", type: "address" },
-  //       { name: "author", type: "string" }
-  //     ]
-  //   },
-  //   primaryType: "Claimable",
-  //   message: claimable
-  // })
+  const signature  = await client.signTypedData({
+    domain: {
+      name: "EIP Author Reward",
+      version: "1",
+      chainId: chainId,
+      verifyingContract: eipAuthorNftAddress
+    },
+    types: {
+      Claimable: [
+        { name: "id", type: "uint256" },
+        { name: "to", type: "address" },
+        { name: "author", type: "string" }
+      ]
+    },
+    primaryType: "Claimable",
+    message: claimable,
+  })
+  
   const hash = await client.writeContract({
-    address: process.env.EIP_AUTHOR_NFT_ADDRESS as `0x${string}`,
+    address: eipAuthorNftAddress,
     abi: parseAbi([
       'struct Claimable {uint256 id; address to; string author;}',
+      "error InvalidSignature()",
       'function claim(Claimable calldata claimable, bytes calldata signature) external'
     ]),
     functionName: "claim",
     args: [
       claimable,
-      "0x" // signature
+      signature
     ]
   })
   return NextResponse.json({ hash })
