@@ -7,8 +7,9 @@ import { NetworkUpgrade } from "@/constants/eip-authors";
 import { createPublicClient, encodePacked, getAddress, GetEnsAddressReturnType, hexToBigInt, http, isAddress, keccak256, parseAbi } from "viem";
 import { foundry, mainnet } from "viem/chains";
 import { normalize } from "viem/ens";
-import { hasAlreadyClaimed } from "./utils";
+import { getTokenIdOfUpgrade, hasAlreadyClaimed } from "./utils";
 import { CgSpinner } from "react-icons/cg";
+import Link from "next/link";
 
 export function NftClaimCard({ upgrade }: { upgrade: NetworkUpgrade }) {
   const upgradeName = upgrade.charAt(0).toUpperCase() + upgrade.slice(1);
@@ -24,12 +25,9 @@ export function NftClaimCard({ upgrade }: { upgrade: NetworkUpgrade }) {
     const session = await getSession();
     if (session) {
       setGithubProfile({ name: session.user.name, image: session.user.image ?? "" });
-      const { data: author } = await fetch(`/api/eip-author/${upgrade}/${session.user.name}`).then((res) => res.json());
+      const { author, hasClaimed } = await fetch(`/api/eip-author/${upgrade}/${session.user.name}`).then((res) => res.json());
       setIsEligible(!!author)
-      if (!!author) {
-        const alreadyClaimed = await hasAlreadyClaimed(session.user.name, upgrade)
-        setIsClaimed(alreadyClaimed)
-      }
+      setIsClaimed(hasClaimed)
     }
   }
 
@@ -37,7 +35,8 @@ export function NftClaimCard({ upgrade }: { upgrade: NetworkUpgrade }) {
     <div className={`flex flex-col box-black-bg w-full justify-between min-h-[${isEligible && !isClaimed ? "25" : "18"}rem] items-center p-6 border-2 border-black rounded-2xl space-y-8`}>
       <div className="flex flex-col gap-4 justify-center items-center">
         <h3 className="text-lg font-bold text-center">Is your EIP in {upgradeName}?</h3>
-        <p className="text-sm text-center max-w-md mb-4">If you authored an EIP included in the upcoming {upgradeName} upgrade, you can claim our {upgradeName} edition NFT.</p>
+        <p className="text-sm text-center max-w-md">If you authored an EIP included in the upcoming {upgradeName} upgrade, you can claim our {upgradeName} edition NFT.</p>
+        <Image src={`/assets/nfts/${upgrade}_nft_eip_author.png`} alt={`${upgradeName} edition NFT`} width={100} height={100} className="mb-3" />
         {githubProfile ? (
           isEligible ? (
             isClaimed ? (
@@ -82,6 +81,7 @@ function EligibleClaimContent({
   const [addressOrEns, setAddressOrEns] = useState<string>("")
   const [resolvedAddress, setResolvedAddress] = useState<`0x${string}`|null>(null)
   const [isClaiming, setIsClaiming] = useState(false)
+  const [claimSuccess, setClaimSuccess] = useState(false)
 
   const ensClient = createPublicClient({
     chain: mainnet,
@@ -114,7 +114,7 @@ function EligibleClaimContent({
       }
       const res = await fetch(`/api/eip-author/${upgrade}/claim-nft`, {
         method: "POST",
-        body: JSON.stringify({ githubUsername, upgrade, address: resolvedAddress })
+        body: JSON.stringify({ githubUsername, address: resolvedAddress })
       })
       const data = await res.json()
       if (data.error) {
@@ -125,9 +125,11 @@ function EligibleClaimContent({
           chain: foundry,
           transport: http('http://localhost:8545')
         })
-        await client.waitForTransactionReceipt({ hash: data.hash })
+        const receipt = await client.waitForTransactionReceipt({ hash: data.hash })
+        if (receipt.status === 'success') {
+          setClaimSuccess(true)
+        }
       }
-      console.log(data)
     } catch (error) {
       console.error(error)
     }
@@ -140,16 +142,27 @@ function EligibleClaimContent({
         <Image src={githubImage} alt="profile" width={30} height={30} className="rounded-full" />
         <p className="text-lg font-bold">{githubUsername}</p>
       </div>
-      <p className="text-sm text-center">You are eligible to claim!</p>
-      <Input
-        placeholder="Enter your ENS or address"
-        className="text-center max-w-sm"
-        value={addressOrEns}
-        onChange={(e) => setAddressOrEns(e.target.value)}
-      />
-      <Button className="w-full max-w-xs" onClick={() => claimNft(upgrade)} disabled={isClaiming}>
-        {isClaiming ? <CgSpinner className="animate-spin" /> : "Claim"}
-      </Button>
+      {claimSuccess ? (
+        <>
+        <p className="text-sm text-center text-green-500">Claimed!</p>
+        <Link href={`https://opensea.io/assets/ethereum/${process.env.NEXT_PUBLIC_EIP_AUTHOR_NFT_ADDRESS}/${getTokenIdOfUpgrade(upgrade)}`} target="_blank" passHref className="w-full">
+          <Button variant="outline" className="w-full max-w-sm">View on OpenSea</Button>
+        </Link>
+        </>
+      ) : (
+        <>
+        <p className="text-sm text-center">You are eligible to claim!</p>
+        <Input
+          placeholder="Enter your ENS or address"
+          className="text-center max-w-sm"
+          value={addressOrEns}
+          onChange={(e) => setAddressOrEns(e.target.value)}
+        />
+        <Button className="w-full max-w-xs" onClick={() => claimNft(upgrade)} disabled={isClaiming}>
+          {isClaiming ? <CgSpinner className="animate-spin" /> : "Claim"}
+        </Button>
+        </>
+      )}
       <Button variant="ghost" className="w-full max-w-xs" onClick={() => signOut()}>Disconnect</Button>
     </div>
   )
@@ -162,7 +175,7 @@ function AlreadyClaimedContent({ githubUsername, githubImage }: { githubUsername
         <Image src={githubImage} alt="profile" width={30} height={30} className="rounded-full" />
         <p className="text-lg font-bold">{githubUsername}</p>
       </div>
-      <p className="text-sm text-center">You have already claimed the NFT.</p>
+      <p className="text-sm text-center">You have already claimed this NFT.</p>
       <Button variant="ghost" className="w-full max-w-xs" onClick={() => signOut()}>Disconnect</Button>
     </div>
   )

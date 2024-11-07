@@ -1,12 +1,15 @@
 import { getTokenIdOfUpgrade, hasAlreadyClaimed } from "@/components/nft-claim/utils";
+import { NetworkUpgrade } from "@/constants/eip-authors";
 import { NextRequest, NextResponse } from "next/server";
 import { http, isAddress, parseAbi, toHex } from "viem";
 import { createWalletClient } from "viem";
 import { generatePrivateKey, privateKeyToAccount, signTypedData } from "viem/accounts";
 import { foundry } from "viem/chains";
 
-export async function POST(req: NextRequest) {
-  const { githubUsername, upgrade, address } = await req.json();
+export async function POST(req: NextRequest, { params }: { params: { upgrade: NetworkUpgrade } }) {
+  const { githubUsername, address } = await req.json();
+  const upgrade = params.upgrade;
+  
   if (!address || !isAddress(address)) {
     return NextResponse.json({ error: "No address provided" }, { status: 400 })
   }
@@ -24,21 +27,21 @@ export async function POST(req: NextRequest) {
     to: address,
     author: githubUsername
   }
-  const signature  = await client.signTypedData({
-    domain: {
-      name: "EIP Author Reward",
-      version: "1"
-    },
-    types: {
-      Claimable: [
-        { name: "id", type: "uint256" },
-        { name: "to", type: "address" },
-        { name: "author", type: "string" }
-      ]
-    },
-    primaryType: "Claimable",
-    message: claimable
-  })
+  // const signature  = await client.signTypedData({
+  //   domain: {
+  //     name: "EIP Author Reward",
+  //     version: "1"
+  //   },
+  //   types: {
+  //     Claimable: [
+  //       { name: "id", type: "uint256" },
+  //       { name: "to", type: "address" },
+  //       { name: "author", type: "string" }
+  //     ]
+  //   },
+  //   primaryType: "Claimable",
+  //   message: claimable
+  // })
   const hash = await client.writeContract({
     address: process.env.EIP_AUTHOR_NFT_ADDRESS as `0x${string}`,
     abi: parseAbi([
@@ -48,7 +51,7 @@ export async function POST(req: NextRequest) {
     functionName: "claim",
     args: [
       claimable,
-      signature
+      "0x" // signature
     ]
   })
   return NextResponse.json({ hash })
