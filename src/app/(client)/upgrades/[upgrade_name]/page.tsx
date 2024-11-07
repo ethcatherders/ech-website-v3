@@ -16,6 +16,7 @@ import TheMerge from "@/components/network_upgrades/theMerge";
 import ShanghaiExtras from "@/components/network_upgrades/shanghai";
 import Pectra from "@/components/network_upgrades/pectra";
 import { UpgradeData } from "@/components/network_upgrades/types";
+import { NftClaimCard } from "@/components/nft-claim";
 
 export default function NetworkUpgradePage() {
   const path = usePathname();
@@ -33,6 +34,9 @@ export default function NetworkUpgradePage() {
     return (
       <>
         <PageContainer>
+          {/* <div className="max-w-[490px]">
+            <NftClaimCard upgrade={'pectra'} />
+          </div> */}
           <div className="flex w-full h-[50dvh] justify-center items-center">
             <span className="animate-spin">
               <CgSpinner size={50} className="text-darkGray" />
