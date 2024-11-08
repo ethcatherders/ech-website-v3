@@ -126,8 +126,8 @@ function EligibleClaimContent({
       }
       if (data.hash) {
         const client = createPublicClient({
-          chain: foundry,
-          transport: http('http://localhost:8545')
+          chain: getChain(chainId),
+          transport: http()
         })
         const receipt = await client.waitForTransactionReceipt({ hash: data.hash })
         if (receipt.status === 'success') {
@@ -149,7 +149,7 @@ function EligibleClaimContent({
       {claimSuccess ? (
         <>
         <p className="text-sm text-center text-green-500">Claimed!</p>
-        <Link href={`https://opensea.io/assets/${getChain(chainId).name.toLowerCase()}/${eipAuthorNftAddress}/${getTokenIdOfUpgrade(upgrade)}`} target="_blank" passHref className="w-full flex justify-center">
+        <Link href={`https://testnets.opensea.io/assets/base-sepolia/${eipAuthorNftAddress}/${getTokenIdOfUpgrade(upgrade)}`} target="_blank" passHref className="w-full flex justify-center">
           <Button variant="outline" className="w-full max-w-sm">View on OpenSea</Button>
         </Link>
         </>

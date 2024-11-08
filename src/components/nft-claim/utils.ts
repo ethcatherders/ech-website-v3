@@ -35,8 +35,8 @@ export async function hasAlreadyClaimed(githubUsername: string, upgrade: Network
   try {
     const tokenId = getTokenIdOfUpgrade(upgrade)
     const client = createPublicClient({
-      chain: foundry,
-      transport: http('http://localhost:8545')
+      chain: getChain(chainId),
+      transport: http()
     })
     const alreadyClaimed = await client.readContract({
       address: process.env.EIP_AUTHOR_NFT_ADDRESS as `0x${string}`,

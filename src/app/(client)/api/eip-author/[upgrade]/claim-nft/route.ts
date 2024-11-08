@@ -1,4 +1,4 @@
-import { chainId, eipAuthorNftAddress, getTokenIdOfUpgrade, hasAlreadyClaimed } from "@/components/nft-claim/utils";
+import { chainId, eipAuthorNftAddress, getChain, getTokenIdOfUpgrade, hasAlreadyClaimed } from "@/components/nft-claim/utils";
 import { NetworkUpgrade } from "@/constants/eip-authors";
 import { NextRequest, NextResponse } from "next/server";
 import { http, isAddress, parseAbi, createWalletClient } from "viem";
@@ -19,8 +19,8 @@ export async function POST(req: NextRequest, { params }: { params: { upgrade: Ne
   const owner = privateKeyToAccount(process.env.OWNER_PRIVATE_KEY as `0x${string}`)
   const client = createWalletClient({
     account: owner,
-    chain: foundry,
-    transport: http('http://localhost:8545')
+    chain: getChain(chainId),
+    transport: http(process.env.RPC_URL as string)
   })
   const claimable = {
     id: getTokenIdOfUpgrade(upgrade),
