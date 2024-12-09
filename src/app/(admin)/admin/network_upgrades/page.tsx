@@ -46,6 +46,7 @@ export default function NetworkUpgrades() {
     proposalLink: string;
     videoLink: string;
     eipName: string;
+    status: string;
   }>({
     id: 0,
     name: "",
@@ -53,7 +54,8 @@ export default function NetworkUpgrades() {
     discussionLink: "",
     proposalLink: "",
     videoLink: "",
-    eipName: ""
+    eipName: "",
+    status: "CONSIDERED"
   });
   const [info, setInfo] = useState<{
     desc1: string;
@@ -241,7 +243,8 @@ export default function NetworkUpgrades() {
                                         discussionLink: proposal.discussionLink,
                                         proposalLink: proposal.proposalLink,
                                         videoLink: proposal.videoLink,
-                                        eipName: proposal.eipName
+                                        eipName: proposal.eipName,
+                                        status: proposal.status
                                       });
                                       setNewProposal(false);
                                     }}
@@ -265,7 +268,8 @@ export default function NetworkUpgrades() {
                                         discussionLink: "",
                                         proposalLink: "",
                                         videoLink: "",
-                                        eipName: ""
+                                        eipName: "",
+                                        status: "CONSIDERED"
                                       });
                                     }}
                                     className="cursor-pointer"
@@ -296,7 +300,8 @@ export default function NetworkUpgrades() {
                           discussionLink: "",
                           proposalLink: "",
                           videoLink: "",
-                          eipName: ""
+                          eipName: "",
+                          status: "CONSIDERED"
                         });
                       }}
                     >
@@ -357,6 +362,20 @@ export default function NetworkUpgrades() {
                         placeholder="Proposal Lnk"
                         className="border border-lightGray focus:border-darkGray rounded-lg p-2 w-64"
                       />
+                      <select
+                        value={proposal.status}
+                        onChange={(e) => {
+                          setProposal({
+                            ...proposal,
+                            status: e.target.value,
+                          });
+                        }}
+                        defaultValue="CONSIDERED"
+                        className="border border-lightGray focus:border-darkGray rounded-lg p-2 w-64"
+                      >
+                        <option value="CONSIDERED">CONSIDERED</option>
+                        <option value="INCLUDED">INCLUDED</option>
+                      </select>
                       <input
                         type="text"
                         value={proposal.videoLink}
@@ -378,7 +397,8 @@ export default function NetworkUpgrades() {
                               discussionLink: proposal.discussionLink,
                               proposalLink: proposal.proposalLink,
                               videoLink: proposal.videoLink,
-                              eipName: proposal.eipName
+                              eipName: proposal.eipName,
+                              status: proposal.status
                             });
                           } else {
                             updateConsideredProposalFromUpgrade(proposal.id, {
@@ -387,7 +407,8 @@ export default function NetworkUpgrades() {
                               discussionLink: proposal.discussionLink,
                               proposalLink: proposal.proposalLink,
                               videoLink: proposal.videoLink,
-                              eipName: proposal.eipName
+                              eipName: proposal.eipName,
+                              status: proposal.status
                             });
                           }
                           getUpgrade(selectedUpgrade).then((res) => {
@@ -400,7 +421,8 @@ export default function NetworkUpgrades() {
                             discussionLink: "",
                             proposalLink: "",
                             videoLink: "",
-                            eipName: ""
+                            eipName: "",
+                            status: ""
                           });
                         }}
                         className="bg-darkGray text-white rounded-lg p-2"
