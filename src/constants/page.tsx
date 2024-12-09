@@ -54,6 +54,10 @@ export const nav: Nav[] = [
         label: "Surveys",
         link: "/surveys",
       },
+      {
+        label: "Events",
+        link: "/events",
+      },
     ],
   },
   {
