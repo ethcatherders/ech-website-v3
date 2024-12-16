@@ -5,3 +5,18 @@
 ### Purpose
 
 This repository is created to manage the content of [EthereumCatHerders.com](https://www.ethereumcatherders.com/).
+
+### Running locally
+This app is built using [Next JS](https://nextjs.org/)
+
+#### Prerequisites
+You may need the additional prisma library to build locally
+
+```
+npm i -g prisma
+```
+
+#### Run your local server
+```
+npm run dev
+```
