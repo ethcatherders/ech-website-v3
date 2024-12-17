@@ -21,7 +21,7 @@ export default function Podcast() {
               and exclusive interviews with key players in the Ethereum space.
             </h3>
             <h3 className="text-lg xl:text-2xl text-lightGray">
-              Whether you're here to learn, stay informed, or explore the
+              Whether you’re here to learn, stay informed, or explore the
               vibrant Ethereum community, we’ve got you covered with engaging
               content designed to educate and connect. Join us as we unravel the
               ever-evolving world of Ethereum! 🐾✨
