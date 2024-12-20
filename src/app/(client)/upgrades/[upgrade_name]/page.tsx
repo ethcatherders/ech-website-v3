@@ -88,12 +88,13 @@ export default function Practra() {
                   ): (
                     <>
                       <p className="text-justify font-roboto font-light lg:text-lg md:text-md sm:text-sm text-xs">
-                      The upcoming Pectra upgrade for Ethereum, expected in late 2024, focuses on improvements including EL-CL communication, staking design, and everyday transactions experience.
+                      The Pectra upgrade for Ethereum, expected in late 2024, focuses on improvements including EL-CL communication, staking design, and everyday transactions experience.
                       </p>
                       <br />
                       <p className="text-justify font-roboto font-light lg:text-lg md:text-md sm:text-sm text-xs">
-                      In the recent interop meetup in Kenya, Ethereum developers made a large amount of progress implementing and ironing out technical details of important upcoming Ethereum improvements and launched <a href="https://pectra-devnet-0.ethpandaops.io/" target="_blank" className="border-b border-darkGray border-dashed">Pectra Devnet - 0</a> .
-                      </p>
+                    The "Pectra Upgrade", expected in early 2025 is planned to enhance Ethereum with advanced cryptographic tools, improved validator operations, increased scalability, and better economic incentives. Key updates include efficient BLS12-381 precompiles, on-chain validator deposits, optimized attestations, blob throughput increases, and calldata cost adjustments, positioning Ethereum for greater performance and usability.
+                      <br />
+                    Other highlights include <a href="https://eips.ethereum.org/EIPS/eip-7623" target="_blank" className="border-b border-darkGray border-dashed"> EIP-7623, </a> adjusting calldata costs for network balance, and <a href="https://eips.ethereum.org/EIPS/eip-7702" target="_blank" className="border-b border-darkGray border-dashed"> EIP-7702, </a> which introduces account codes for EOAs, enhancing contract interoperability. Together, these proposals make Ethereum more robust and future-ready.  </p>
                       <br />
                       <p className="text-justify font-roboto font-light lg:text-lg md:text-md sm:text-sm text-xs">
                       <a href="https://eips.ethereum.org/EIPS/eip-7600" target="_blank" className="border-b border-darkGray border-dashed">EIP-7600: Hardfork Meta - Pectra</a> is created to provide the update list of proposals for the Network Upgrade. You may read about them <a href="/upgrades/pectra#eips" className="border-b border-darkGray border-dashed">here</a>. 
