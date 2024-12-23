@@ -1,59 +1,18 @@
 "use client";
-import { useState, useEffect } from "react";
+
 import type {
-  consideredEIP,
   UpdatesData,
   VideosData,
   ResourcesData,
 } from "@/types";
-import { usePathname } from "next/navigation";
 import ConsideredProposalCard from "@/components/consideredProposalCard/page";
-import { getUpgrade } from "@/app/_action";
 import { ConsideredProposals } from "@prisma/client";
-import PageContainer from "@/components/ui/pageContainer";
-import { CgSpinner } from "react-icons/cg";
-import TheMerge from "@/components/network_upgrades/theMerge";
-import ShanghaiExtras from "@/components/network_upgrades/shanghai";
-import Pectra from "@/components/network_upgrades/pectra";
-import { UpgradeData } from "@/components/network_upgrades/types";
-import { NftClaimCard } from "@/components/nft-claim";
+import { UpgradeData } from "./types";
+import { NftClaimCard } from "../nft-claim";
+import Image from "next/image";
 
-export default function NetworkUpgradePage() {
-  const path = usePathname();
-  const upgradeName = path.split("/")[2].toLowerCase();
-  const [data, setData] = useState<UpgradeData>();
-  useEffect(() => {
-    async function fetchData() {
-      const upgradeData = await getUpgrade(upgradeName);
-      setData(upgradeData);
-    }
-    fetchData();
-  }, [upgradeName]);
-
-  if (!data && upgradeName !== "the-merge") {
-    return (
-      <>
-        <PageContainer>
-          {/* <div className="max-w-[490px]">
-            <NftClaimCard upgrade={'pectra'} />
-          </div> */}
-          <div className="flex w-full h-[50dvh] justify-center items-center">
-            <span className="animate-spin">
-              <CgSpinner size={50} className="text-darkGray" />
-            </span>
-          </div>
-        </PageContainer>
-      </>
-    );
-  }
-
-  if (upgradeName === "the-merge") {
-    return <TheMerge />;
-  }
-
-  if (upgradeName === "pectra") {
-    return <Pectra data={data} />;
-  }
+export default function Pectra({ data }: { data?: UpgradeData }) {
+  const upgradeName = 'pectra';
 
   return (
     <>
@@ -73,33 +32,23 @@ export default function NetworkUpgradePage() {
                 </h3>
               </section>
               <section>
-                {
-                  upgradeName !== 'pectra' ? (
-                    <>
-                      <p className="text-justify font-roboto font-light lg:text-lg md:text-md sm:text-sm text-xs">
-                        {data?.desc1}
-                      </p>
-                      <br />
-                      <p className="text-justify font-roboto font-light lg:text-lg md:text-md sm:text-sm text-xs">
-                        {data?.desc2}
-                      </p>
-                    </>
-                  ): (
-                    <>
-                      <p className="text-justify font-roboto font-light lg:text-lg md:text-md sm:text-sm text-xs">
-                      The upcoming Pectra upgrade for Ethereum, expected in late 2024, focuses on improvements including EL-CL communication, staking design, and everyday transactions experience.
-                      </p>
-                      <br />
-                      <p className="text-justify font-roboto font-light lg:text-lg md:text-md sm:text-sm text-xs">
-                      In the recent interop meetup in Kenya, Ethereum developers made a large amount of progress implementing and ironing out technical details of important upcoming Ethereum improvements and launched <a href="https://pectra-devnet-0.ethpandaops.io/" target="_blank" className="border-b border-darkGray border-dashed">Pectra Devnet - 0</a> .
-                      </p>
-                      <br />
-                      <p className="text-justify font-roboto font-light lg:text-lg md:text-md sm:text-sm text-xs">
-                      <a href="https://eips.ethereum.org/EIPS/eip-7600" target="_blank" className="border-b border-darkGray border-dashed">EIP-7600: Hardfork Meta - Pectra</a> is created to provide the update list of proposals for the Network Upgrade. You may read about them <a href="/upgrades/pectra#eips" className="border-b border-darkGray border-dashed">here</a>. 
-                      </p>
-                    </>
-                  )
-                }
+                <p className="text-justify font-roboto font-light lg:text-lg md:text-md sm:text-sm text-xs">
+                  The upcoming Pectra upgrade for Ethereum, expected in late 2024, focuses on improvements including EL-CL communication, staking design, and everyday transactions experience.
+                </p>
+                <br />
+                <p className="text-justify font-roboto font-light lg:text-lg md:text-md sm:text-sm text-xs">
+                  In the recent interop meetup in Kenya, Ethereum developers made a large amount of progress implementing and ironing out technical details of important upcoming Ethereum improvements and launched <a href="https://pectra-devnet-0.ethpandaops.io/" target="_blank" className="border-b border-darkGray border-dashed">Pectra Devnet - 0</a> .
+                </p>
+                <br />
+                <p className="text-justify font-roboto font-light lg:text-lg md:text-md sm:text-sm text-xs">
+                  <a href="https://eips.ethereum.org/EIPS/eip-7600" target="_blank" className="border-b border-darkGray border-dashed">
+                    EIP-7600: Hardfork Meta - Pectra
+                  </a>{" "}
+                  is created to provide the update list of proposals for the Network Upgrade. You may read about them{" "}
+                  <a href="/upgrades/pectra#eips" className="border-b border-darkGray border-dashed">
+                    here
+                  </a>. 
+                </p>
               </section>
             </div>
 
@@ -113,8 +62,18 @@ export default function NetworkUpgradePage() {
               ></iframe>
             </div>
           </div>
-
-          {upgradeName === "shanghai" && <ShanghaiExtras />}
+          
+          <div className="flex justify-center items-center gap-16 w-full p-10">
+            <div className="hidden xl:block">
+              <Image src="/assets/paws.png" alt="Paws" width={200} height={100} />
+            </div>
+            <div className="max-w-[490px]">
+              <NftClaimCard upgrade={'pectra'} />
+            </div>
+            <div className="hidden xl:block">
+              <Image src="/assets/paws.png" alt="Paws" width={200} height={100} />
+            </div>
+          </div>
 
           {data?.updates.length !== 0 ||
           data?.videos.length !== 0 ||
