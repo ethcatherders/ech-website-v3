@@ -45,3 +45,6 @@ To contribute to this project, please follow the steps below:
 Once your PR is merged to the `develop` branch, it will be deployed to the staging website. 
 
 To deploy changes to the production website, you need to create a PR from the `develop` branch to the `main` branch. A reviewer must approve the PR before it can be merged.
+
+## Questions
+If you're a new contributor with questions, contact the team in our [Discord](https://discord.gg/gHy6pS5mGy) server.
