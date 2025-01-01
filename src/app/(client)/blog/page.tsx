@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { BlogsData, EventsData } from "@/types";
 import { getAllBlogs, getAllEvents } from "@/app/_action";
+import PageContainer from "@/components/ui/pageContainer";
 interface Props {
   blogs: BlogsData[];
   events: EventsData[];
@@ -22,7 +23,7 @@ export default function Blog() {
     getData();
   }, []);
   return (
-    <>
+    <PageContainer>
       <div className="flex items-center min-h-screen lg:pt-0 md:pt-[20dvh] pt-[10dvh]">
         <div className="grid lg:grid-cols-2 grid-cols-1 gap-5 pb-16 w-[80vw] mx-auto  pt-8">
           {data?.blogs.length !== 0 ? (
@@ -127,6 +128,6 @@ export default function Blog() {
           </div>
         </div>
       </div>
-    </>
+    </PageContainer>
   );
 }
