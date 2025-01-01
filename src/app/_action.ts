@@ -240,7 +240,11 @@ export async function addBlog(blogData: any) {
 }
 
 export async function getAllBlogs() {
-  const blogs = await prisma.blogs.findMany();
+  const blogs = await prisma.blogs.findMany({
+    orderBy: {
+      date: "desc",
+    },
+  });
   return blogs;
 }
 
