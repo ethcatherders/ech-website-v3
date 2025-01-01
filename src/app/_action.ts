@@ -245,7 +245,7 @@ export async function getAllBlogs() {
       date: "desc",
     },
   });
-  return blogs;
+  return blogs.sort((a: any, b: any) => new Date(b.date).valueOf() - new Date(a.date).valueOf());
 }
 
 export async function updateBlog(blogId: number, blogData: any) {
