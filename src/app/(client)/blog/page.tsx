@@ -24,7 +24,7 @@ export default function Blog() {
   }, []);
   return (
     <PageContainer>
-      <div className="flex items-center min-h-screen lg:pt-0 md:pt-[20dvh] pt-[10dvh]">
+      <div className="flex items-center min-h-screen">
         <div className="grid lg:grid-cols-2 grid-cols-1 gap-5 pb-16 w-[80vw] mx-auto  pt-8">
           {data?.blogs.length !== 0 ? (
             <div className="flex flex-col lg:border-r lg:border-b-0 border-b gap-y-4 lg:pb-0 pb-8 lg:pr-8 pr-0 border-darkGray border-dashed">
