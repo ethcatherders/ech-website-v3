@@ -44,7 +44,7 @@ export default function Events() {
               </Link>
             </div>
             <div className="box-black-bg rounded-xl h-[8rem] max-w-lg w-full flex md:p-6 p-3 flex-col font-bold justify-between text-darkGray border-2 border-black">
-              <p className="text-md">Shaping Ethereum's Protocol Governance & Decision Making</p>
+              <p className="text-md">Shaping Ethereum’s Protocol Governance & Decision Making</p>
               <p className="text-sm font-normal">Pooja Ranjan</p>
               <Link href="https://youtu.be/U_UN8FRqi5c" className="text-center text-sm font-normal" target="_blank" passHref>
                 <div className="flex items-center gap-1">
@@ -83,7 +83,7 @@ export default function Events() {
           </Link>
         </div>
         <div className="box-black-bg rounded-xl h-[8rem] max-w-lg w-full flex md:p-6 p-3 flex-col font-bold justify-between text-darkGray border-2 border-black">
-          <p className="text-md">Sandra Johnson's Journey</p>
+          <p className="text-md">Sandra Johnson’s Journey</p>
           <p className="text-sm font-normal">Sandra Johnson</p>
           <Link href="https://youtu.be/wQ2RqrAFxG8?si=-vNfyhe8jNbJnVm4" className="text-center text-sm font-normal" target="_blank" passHref>
             <div className="flex items-center gap-1">
