@@ -86,7 +86,7 @@ function EligibleClaimContent({
 
   const ensClient = createPublicClient({
     chain: mainnet,
-    transport: http()
+    transport: http("https://ethereum-rpc.publicnode.com")
   })
 
   useEffect(() => {
