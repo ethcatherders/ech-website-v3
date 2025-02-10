@@ -92,8 +92,8 @@ export default function PeepAnEip() {
           </h3>
           <span className="flex w-full justify-center items-center">
             <iframe
-              width="300"
-              height="180"
+              width="450"
+              height="270"
               src="https://www.youtube.com/embed/videoseries?si=i7c_6KUkemo4CmL0&amp;list=PL4cwHXAawZxqu0PKKyMzG_3BJV_xZTi1F"
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -106,7 +106,6 @@ export default function PeepAnEip() {
               alt="peepaneip"
               width={150}
               height={50}
-              className="w-[12rem] h-[5rem]"
             />
           </div>
         </div>
@@ -123,7 +122,7 @@ export default function PeepAnEip() {
           );
         })}
       </div>
-      <div className="flex justify-center w-full pb-16">
+      {/* <div className="flex justify-center w-full pb-16">
         <a
             href={"https://github.com/ethcatherders/PM/projects/2#column-10491063"}
             target="_blank"
@@ -132,7 +131,7 @@ export default function PeepAnEip() {
               PEEPanEIP Schedule Tracker 
             </button>
           </a>
-      </div>
+      </div> */}
     </PageContainer>
   );
 }
