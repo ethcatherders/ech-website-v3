@@ -2,11 +2,21 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ExternalLinkIcon } from "@radix-ui/react-icons";
+import { useState } from "react";
 
 export default function DonatePage() {
+  const [copied, setCopied] = useState(false);
+
+  const address = "0x8D3AcA27963D5BAD978d3e953D3F3680cEa3FAeC";
+
+  function copyAddress() {
+    navigator.clipboard.writeText(address);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <main className="min-h-screen pt-40 px-4 sm:px-8 md:px-16 max-w-7xl mx-auto">
       <div className="flex flex-col lg:flex-row justify-between items-start gap-16">
@@ -30,12 +40,73 @@ export default function DonatePage() {
 
           <div className="mt-12">
             <h2 className="text-2xl font-antonio mb-4">Donate through</h2>
-            <Button
-              className="flex items-center gap-2 bg-darkGray text-white px-6 py-3 rounded-lg"
-            >
-              Ethereum
-              <ExternalLinkIcon className="w-4 h-4" />
-            </Button>
+            <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-4">
+              <Link 
+                href="https://etherscan.io/address/0x8D3AcA27963D5BAD978d3e953D3F3680cEa3FAeC" 
+                target="_blank"
+                className="w-full"
+                passHref
+              >
+                <Button
+                  className="flex items-center gap-2 bg-darkGray text-white px-5 py-3 rounded-lg w-full"
+                >
+                  Ethereum
+                  <ExternalLinkIcon className="w-4 h-4" />
+                </Button>
+              </Link>
+              <Link
+                href="https://optimistic.etherscan.io/address/0x8D3AcA27963D5BAD978d3e953D3F3680cEa3FAeC"
+                target="_blank"
+                className="w-full"
+                passHref
+              >
+                <Button
+                  className="flex items-center gap-2 bg-darkGray text-white px-5 py-3 rounded-lg w-full"
+                >
+                  Optimism
+                  <ExternalLinkIcon className="w-4 h-4" />
+                </Button>
+              </Link>
+              <Link
+                href="https://polygonscan.com/address/0x8D3AcA27963D5BAD978d3e953D3F3680cEa3FAeC"
+                target="_blank"
+                className="w-full"
+                passHref
+              >
+                <Button
+                  className="flex items-center gap-2 bg-darkGray text-white px-5 py-3 rounded-lg w-full"
+                >
+                  Polygon
+                  <ExternalLinkIcon className="w-4 h-4" />
+                </Button>
+              </Link>
+              <Link
+                href="https://basescan.org/address/0x8D3AcA27963D5BAD978d3e953D3F3680cEa3FAeC"
+                target="_blank"
+                className="w-full"
+                passHref
+              >
+                <Button
+                  className="flex items-center gap-2 bg-darkGray text-white px-5 py-3 rounded-lg w-full"
+                >
+                  Base
+                  <ExternalLinkIcon className="w-4 h-4" />
+                </Button>
+              </Link>
+              <Link
+                href="https://arbiscan.io/address/0x8D3AcA27963D5BAD978d3e953D3F3680cEa3FAeC"
+                target="_blank"
+                className="w-full"
+                passHref
+              >
+                <Button
+                  className="flex items-center gap-2 bg-darkGray text-white px-5 py-3 rounded-lg w-full"
+                >
+                  Arbitrum
+                  <ExternalLinkIcon className="w-4 h-4" />
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
 
@@ -48,9 +119,12 @@ export default function DonatePage() {
             height={400}
             className="w-full max-w-sm"
           />
-          <p className="text-center mt-4 font-mono text-sm break-all">
-            0x8D3AcA27963D5BAD978d3e953D3F3680cEa3FAeC
-          </p>
+          <div className="mt-4 flex flex-col items-center">
+            <p className="text-center font-mono text-sm break-all cursor-pointer" onClick={copyAddress}>
+              {address}
+            </p>
+            {copied && <p className="text-center text-xs text-green-400 mt-6 absolute">Copied address</p>}
+          </div>
         </div>
       </div>
 
@@ -81,23 +155,46 @@ export default function DonatePage() {
       </div>
 
       <div className="my-16 grid md:grid-cols-2 gap-8">
-        <div className="bg-white p-8 rounded-lg shadow-lg">
-          <h3 className="text-2xl font-antonio mb-4">Octant Epoch 1 - 5</h3>
-          <p className="text-gray-600 mb-4">
-            Ethereum Cat Herders participate in Octant Epoch rounds that occur every 90 days. We received significant funding over the last 5 rounds.
-          </p>
+        <div className="bg-white p-8 box-black-bg rounded-xl border-2 border-black flex flex-col justify-between h-full">
+          <div>
+            <h3 className="text-2xl font-antonio mb-4">Octant Epoch 6</h3>
+            <p className="text-gray-600 mb-4">
+              Our latest Octant Epoch public goods funding round ended on 25 Jan 2025. We received Medium funding of 19.225 ETH. 
+            </p>
+          </div>
+          <Link 
+            href="#"
+            className="inline-flex items-center text-darkGray hover:underline"
+            passHref
+          >
+            <Button className="bg-darkGray text-white px-6 py-3 rounded-lg">
+              View our Octant updates
+            </Button>
+          </Link>
+        </div>
+        
+        <div className="bg-white p-8 box-black-bg rounded-xl border-2 border-black flex flex-col justify-between h-full">
+          <div>
+            <h3 className="text-2xl font-antonio mb-4">Octant Epoch 1 - 5</h3>
+            <p className="text-gray-600 mb-4">
+              Ethereum Cat Herders participate in Octant Epoch rounds that occur every 90 days. We received significant funding over the last 5 rounds.
+            </p>
+          </div>
           <Link 
             href="#"
             className="inline-flex items-center text-darkGray hover:underline"
           >
-            View our Octant updates
-            <span className="ml-2">→</span>
+            <Button className="bg-darkGray text-white px-6 py-3 rounded-lg">
+              View our Octant updates
+            </Button>
           </Link>
         </div>
 
-        <div className="bg-white p-8 rounded-lg shadow-lg">
-          <h3 className="text-2xl font-antonio mb-4">Optimism grant</h3>
-          <p className="text-gray-600">xxxx</p>
+        <div className="bg-white p-8 box-black-bg rounded-xl border-2 border-black flex flex-col justify-between h-full">
+          <div>
+            <h3 className="text-2xl font-antonio mb-4">Optimism grant</h3>
+            <p className="text-gray-600">We received Medium funding from Optimism in 2024. </p>
+          </div>
         </div>
       </div>
     </main>
