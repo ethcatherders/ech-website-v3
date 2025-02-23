@@ -59,7 +59,7 @@ export const eipAuthorsByUpgrade: {
     },
     {
       github: "https://github.com/mkalinin",
-      eips: ["6110", "7002", "7251"],
+      eips: ["6110", "7002", "7251", "7549"],
     },
     {
       github: "https://github.com/djrtwo",
@@ -71,7 +71,7 @@ export const eipAuthorsByUpgrade: {
     },
     {
       github: "https://github.com/adietrichs",
-      eips: ["7002", "7702"],
+      eips: ["7002", "7702", "7691"],
     },
     {
       github: "https://github.com/hwwhww",
@@ -79,7 +79,7 @@ export const eipAuthorsByUpgrade: {
     },
     {
       github: "https://github.com/lightclient",
-      eips: ["7002", "7251", "7685", "7702"],
+      eips: ["7002", "7251", "7685", "7702", "7840"],
     },
     {
       github: "https://github.com/michaelneuder",
@@ -102,16 +102,24 @@ export const eipAuthorsByUpgrade: {
       eips: ["7251"],
     },
     {
+      github: "https://github.com/parithosh",
+      eips: ["7691"],
+    },
+    {
+      github: "https://github.com/samcm",
+      eips: ["7691"],
+    },
+    {
+      github: "https://github.com/savid",
+      eips: ["7691"],
+    },
+    {
       github: "https://github.com/SamWilsn",
       eips: ["7702"],
     },
     {
       github: "https://github.com/nerolation",
-      eips: ["7623"],
-    },
-    {
-      github: "https://github.com/MaxResnick",
-      eips: ["7762"],
+      eips: ["7623", "7691"],
     },
   ],
 };
