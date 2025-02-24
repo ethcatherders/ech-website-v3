@@ -76,6 +76,10 @@ export const nav: Nav[] = [
     label: "About Us",
     link: "/about",
   },
+  {
+    label: "Donate",
+    link: "/donate",
+  },
 ];
 
 export const socials: Socials[] = [
