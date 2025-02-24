@@ -4,19 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ExternalLinkIcon } from "@radix-ui/react-icons";
-import { useState } from "react";
+import { DonationCard } from "@/components/DonationCard";
 
 export default function DonatePage() {
-  const [copied, setCopied] = useState(false);
-
-  const address = "0x8D3AcA27963D5BAD978d3e953D3F3680cEa3FAeC";
-
-  function copyAddress() {
-    navigator.clipboard.writeText(address);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
   return (
     <main className="min-h-screen pt-40 px-4 sm:px-8 md:px-16 max-w-7xl mx-auto">
       <div className="flex flex-col lg:flex-row justify-between items-start gap-16">
@@ -112,7 +102,11 @@ export default function DonatePage() {
 
         {/* Right Content - QR Code */}
         <div className="w-full lg:w-1/3 flex flex-col items-center">
-          <Image
+          {/* Donation Card */}
+          <div className="w-full max-w-md mx-auto">
+            <DonationCard />
+          </div>
+          {/* <Image
             src="/assets/ech_donate_addr_qrcode.png"
             alt="Donation QR Code"
             width={400}
@@ -120,11 +114,10 @@ export default function DonatePage() {
             className="w-full max-w-sm"
           />
           <div className="mt-4 flex flex-col items-center">
-            <p className="text-center font-mono text-sm break-all cursor-pointer" onClick={copyAddress}>
-              {address}
+            <p className="text-center font-mono text-sm break-all">
+              0x8D3AcA27963D5BAD978d3e953D3F3680cEa3FAeC
             </p>
-            {copied && <p className="text-center text-xs text-green-400 mt-6 absolute">Copied address</p>}
-          </div>
+          </div> */}
         </div>
       </div>
 
