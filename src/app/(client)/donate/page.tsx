@@ -150,6 +150,20 @@ export default function DonatePage() {
       <div className="my-16 grid md:grid-cols-2 gap-8">
         <div className="bg-white p-8 box-black-bg rounded-xl border-2 border-black flex flex-col justify-between h-full">
           <div>
+            <h3 className="text-2xl font-antonio mb-4">Optimism grant</h3>
+            <p className="text-gray-600">We received Medium funding from Optimism in 2024. </p>
+          </div>
+        </div>
+
+        <div className="bg-white p-8 box-black-bg rounded-xl border-2 border-black flex flex-col justify-between h-full">
+          <div>
+            <h3 className="text-2xl font-antonio mb-4">ENS grant</h3>
+            <p className="text-gray-600">We received Medium funding of 50K USDC from ENS in 2021. </p>
+          </div>
+        </div>
+
+        <div className="bg-white p-8 box-black-bg rounded-xl border-2 border-black flex flex-col justify-between h-full">
+          <div>
             <h3 className="text-2xl font-antonio mb-4">Octant Epoch 6</h3>
             <p className="text-gray-600 mb-4">
               Our latest Octant Epoch public goods funding round ended on 25 Jan 2025. We received Medium funding of 19.225 ETH. 
@@ -182,13 +196,25 @@ export default function DonatePage() {
             </Button>
           </Link>
         </div>
+      </div>
 
-        <div className="bg-white p-8 box-black-bg rounded-xl border-2 border-black flex flex-col justify-between h-full">
-          <div>
-            <h3 className="text-2xl font-antonio mb-4">Optimism grant</h3>
-            <p className="text-gray-600">We received Medium funding from Optimism in 2024. </p>
-          </div>
-        </div>
+      <div className="my-16">
+        <p className="text-lg font-antonio mb-4">Disclaimer</p>
+        <p className="text-xs mb-2">
+          ECH Institute Inc., operating as Ethereum Cat Herders, is dedicated to education, community building, and homesteading Ethereum. Our mission is to coordinate and support Ethereum network upgrades and the Ethereum Improvement Proposal (EIP) process; empower and connect individuals through the creation of content on EIPs, open-source infrastructures and technical expertise in the Ethereum ecosystem. We encourage a permissionless free exchange of ideas in the Ethereum community.
+        </p>
+        <p className="text-xs mb-2">
+          ECH Institute Inc. is a non-partisan 501(c)(3) tax-exempt charitable organization and operates in accordance with federal, state, and local laws regarding nonprofit activities in the United States of America.
+        </p>
+        <p className="text-xs mb-2">
+          All donations to ECH Institute Inc. are voluntary, non-refundable, and tax-deductible to the extent permitted by U.S. state and federal law. Donations made in fiat or cryptocurrency will be used solely to further our nonprofit mission. If you require a tax receipt, please provide the necessary donor information at the time of your contribution or promptly thereafter.
+        </p>
+        <p className="text-xs mb-2">
+          For any questions regarding donations, funding expenses, compliance, or tax deductibility, please contact us at team@ethcatherders.com.
+        </p>
+        <p className="text-xs mb-2">
+          Thank you for supporting Ethereum Cat Herders and our mission to advance the Ethereum ecosystem! 🚀
+        </p>
       </div>
     </main>
   );
