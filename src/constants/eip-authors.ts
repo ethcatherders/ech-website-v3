@@ -10,6 +10,10 @@ export const eipAuthorsByUpgrade: {
   dencun: [],
   pectra: [
     {
+      github: "https://github.com/timbeiko",
+      eips: ["7600"],
+    },
+    {
       github: "https://github.com/shamatar",
       eips: ["2537"],
     },
