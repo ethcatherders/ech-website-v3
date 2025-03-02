@@ -8,6 +8,10 @@ const resources: {
   link: string;
 }[] = [
   {
+    title: "Rollup Proposals (RIPs)",
+    link: "https://youtube.com/playlist?list=PL4cwHXAawZxqzFC6fGsHi79lyXJlPCtUl&si=pub3RpKLEe-GL5Tt",
+  },
+  {
     title: "Non-EIP Content",
     link: "https://youtube.com/playlist?list=PL4cwHXAawZxpby7LszzOnyuAyQl8WLLvh&si=8e04CIz6UZoA90ke",
   },
@@ -29,6 +33,10 @@ const Upgrades: {
   title: string;
   link: string;
 }[] = [
+  {
+    title: "Pectra",
+    link: "https://youtube.com/playlist?list=PL4cwHXAawZxqOHV_F40AJbzcl8b6tG8xw&si=si_cjLl3hvTIIHWu",
+  },
   {
     title: "Dencun",
     link: "https://youtube.com/playlist?list=PL4cwHXAawZxpnKFDl1KzGOKqwux5JaLlv&si=ZF3ua23ubiyJXSIG",
@@ -68,7 +76,7 @@ export default function PeepAnEip() {
         (EIPs) and key features of upcoming upgrades.
       </Content>
 
-      <div className="flex xl:flex-row flex-col gap-10 ">
+      <div className="flex xl:flex-row flex-col-reverse gap-10 ">
         <div className="flex flex-col gap-4 border-b-2 border-black pb-8 border-dashed ">
           <h3 className="xl:text-3xl text-2xl font-bold text-black">
             Resources
@@ -76,8 +84,8 @@ export default function PeepAnEip() {
           <div className="grid grid-cols-2 gap-10 xl:max-w-2xl w-full ">
             {resources.map((res, index) => {
               return (
-                <a href={res.link} key={index}>
-                  <div className="box-black-bg rounded-xl h-[8rem] flex gap-5 md:p-6 p-3 flex-col md:text-2xl text-xl font-bold justify-between text-darkGray border-2 border-black">
+                <a href={res.link} key={index} target="_blank">
+                  <div className="box-black-bg rounded-xl h-[6rem] flex gap-5 md:p-4 p-3 flex-col md:text-xl text-lg font-bold justify-between text-darkGray border-2 border-black">
                     {res.title}
                   </div>
                 </a>
@@ -100,7 +108,7 @@ export default function PeepAnEip() {
               className="rounded-lg"
             ></iframe>
           </span>
-          <div className="w-full justify-center items-center flex">
+          <div className="w-full justify-center items-center mt-4 hidden xl:flex">
             <Image
               src="/assets/paws.png"
               alt="peepaneip"
@@ -114,8 +122,8 @@ export default function PeepAnEip() {
       <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10 pb-16">
         {Upgrades.map((res, index) => {
           return (
-            <a href={res.link} key={index}>
-              <div className="box-black-bg rounded-xl h-[8rem] flex gap-5 md:p-6 p-3 flex-col md:text-2xl text-xl font-bold justify-between text-darkGray border-2 border-black">
+            <a href={res.link} key={index} target="_blank">
+              <div className="box-black-bg rounded-xl h-[6rem] flex gap-5 md:p-4 p-3 flex-col md:text-xl text-lg font-bold justify-between text-darkGray border-2 border-black">
                 {res.title}
               </div>
             </a>
