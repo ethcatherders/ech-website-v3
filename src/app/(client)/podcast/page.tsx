@@ -38,7 +38,7 @@ export default function Podcast() {
           <div className="flex flex-col-reverse lg:flex-row gap-5 justify-start">
             <iframe
               className="w-full h-[800px] lg:h-[650px] pb-8"
-              src="https://anchor.fm/ethereum-cat-herders"
+              src="https://anchor.fm/ethcatherders"
             ></iframe>
             <div className="grid grid-cols-2 gap-5 sm:min-w-[500px] sm:max-h-[400px] pb-8">
               {podcastCardData.map((item: PodcastCards, index) => {
