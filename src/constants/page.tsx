@@ -12,73 +12,144 @@ import { GrLinkedinOption } from "react-icons/gr";
 
 export const nav: Nav[] = [
   {
-    label: "Home",
-    link: "/",
-  },
-  {
-    label: "Activities",
+    label: "Education",
     children: [
       {
-        label: "Network Upgrades",
-        link: "/upgrades",
-      },
-      {
-        label: "Pectra Upgrade",
-        link: "/upgrades/pectra",
-      },
-      {
-        label: "Dencun Upgrade",
-        link: "/upgrades/dencun",
-      },
-      {
-        label: "EIP Resources",
+        label: "EIPs",
         link: "/eip",
-      },
-      {
-        label: "Meetings",
-        link: "/dev_meetings",
       },
       {
         label: "Testnets",
         link: "/testnets",
       },
       {
-        label: "Podcasts",
-        link: "/podcast",
+        label: "Upgrades",
+        link: "/upgrades",
+      children: [   
+        
+        {
+          label: "Fusaka Upgrade",
+          link: "/upgrade/fusaka",
+        },
+        {
+          label: "Pectra Upgrade",
+          link: "/upgrades/pectra",
+        },
+        {
+          label: "All Upgrade",
+          link: "/upgrades",
+        },
+        
+      ],
       },
       {
-        label: "PEEPanEIP",
-        link: "/peepaneip",
+        label: "Learn2Earn",
+        link: "learn2earn",
+      },
+    ],
+  },
+  
+  {
+    label: "Community",
+    children: [ 
+      {
+        label: "Podcasts",
+        link: "/podcast",
+        children: [    
+          {
+            label: "PEEPanEIP",
+            link: "/peepaneip",
+          },
+          {
+            label: "Ecosystem Project Demo",
+            link: "/demo",
+          },
+          {
+            label: "Meet The Herders",
+            link: "/about",
+          },
+          {
+            label: "Audio Podcast",
+            link: "/podcast"
+          }
+          
+        ],
+      },
+      {
+        label: "Events & Talks",
+        link: "/events",
+      },
+      {
+        label: "Blogs",
+        children: [
+          {
+            label: "Blog Posts",
+            link: "/blog",
+          },
+          {
+            label: "ECH Updates",
+            link: "/ech-updates",
+          },
+        ]
+      },
+      {
+        label: "Testimonial",
+        link: "/testimonial",
+        children: [
+          {
+            label: "Donate",
+             link: "/donate",
+          },
+        ]
+      },
+      {
+        label: "Get involved",
+        link: "/get-involved",
+      }
+    ],
+    },
+  {
+    label: "Homestead",
+    children: [
+      {
+        label: "Calendar",
+        link: "/calendar",
+      },
+      {
+        label: "Meeting & Notes",
+        link: "/meetings",
+        children: [
+          {
+            label: "EIPIP",
+            link: "/eipip"
+          },
+          {
+            label: "Protocol Dev",
+            link: "/protocol-dev",
+          },
+          {
+            label: "Wallet Dev",
+            link: "/wallet-dev"
+          },
+          {
+            label: "ERC Dev",
+            link: "/erc-dev",
+          },
+          {
+            label: "Eth_multicall",
+            link: "/eth_multicall",
+          },
+          {
+            label: "EOF",
+            link: "/eof",
+          },
+        ]
       },
       {
         label: "Surveys",
         link: "/surveys",
       },
-      {
-        label: "Events",
-        link: "/events",
-      },
     ],
-  },
-  {
-    label: "Calendar",
-    link: "/calendar",
-  },
-  {
-    label: "Blog",
-    link: "/blog",
-  },
-  {
-    label: "ECH Youtube",
-    link: "/ech_youtube",
-  },
-  {
-    label: "About Us",
-    link: "/about",
-  },
-  {
-    label: "Donate",
-    link: "/donate",
   },
 ];
 

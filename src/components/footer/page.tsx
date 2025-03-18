@@ -27,7 +27,7 @@ export default function Footer() {
                 <Link
                   key={index}
                   href={
-                    item.label === "Activities"
+                    item.label === "Education"
                       ? "/upgrades"
                       : item.link || "/"
                   }
