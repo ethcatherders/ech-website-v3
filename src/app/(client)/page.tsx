@@ -6,6 +6,7 @@ import Feedback from "@/components/feedback";
 import Button from "@/components/button/page";
 import LogoCarousel from "@/components/carousel/logoCarousel";
 import FeedbackCarousel from "@/components/feedback/feedbackCarousel";
+
 export default function Home() {
   return (
     <>
