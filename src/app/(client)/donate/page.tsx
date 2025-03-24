@@ -40,8 +40,9 @@ export default function DonatePage() {
                 <Button
                   className="flex items-center gap-2 bg-darkGray text-white px-5 py-3 rounded-lg w-full"
                 >
+                  <Image src="/assets/chains/ethereum.png" alt="Ethereum" width={12} height={20} />
                   Ethereum
-                  <ExternalLinkIcon className="w-4 h-4" />
+                  {/* <ExternalLinkIcon className="w-4 h-4" /> */}
                 </Button>
               </Link>
               <Link
@@ -53,8 +54,9 @@ export default function DonatePage() {
                 <Button
                   className="flex items-center gap-2 bg-darkGray text-white px-5 py-3 rounded-lg w-full"
                 >
+                  <Image src="/assets/chains/optimism.png" alt="Optimism" width={20} height={20} />
                   Optimism
-                  <ExternalLinkIcon className="w-4 h-4" />
+                  {/* <ExternalLinkIcon className="w-4 h-4" /> */}
                 </Button>
               </Link>
               <Link
@@ -66,8 +68,9 @@ export default function DonatePage() {
                 <Button
                   className="flex items-center gap-2 bg-darkGray text-white px-5 py-3 rounded-lg w-full"
                 >
+                  <Image src="/assets/chains/polygon.png" alt="Polygon" width={20} height={20} />
                   Polygon
-                  <ExternalLinkIcon className="w-4 h-4" />
+                  {/* <ExternalLinkIcon className="w-4 h-4" /> */}
                 </Button>
               </Link>
               <Link
@@ -79,8 +82,9 @@ export default function DonatePage() {
                 <Button
                   className="flex items-center gap-2 bg-darkGray text-white px-5 py-3 rounded-lg w-full"
                 >
+                  <Image src="/assets/chains/base.png" alt="Base" width={20} height={20} />
                   Base
-                  <ExternalLinkIcon className="w-4 h-4" />
+                  {/* <ExternalLinkIcon className="w-4 h-4" /> */}
                 </Button>
               </Link>
               <Link
@@ -92,8 +96,9 @@ export default function DonatePage() {
                 <Button
                   className="flex items-center gap-2 bg-darkGray text-white px-5 py-3 rounded-lg w-full"
                 >
+                  <Image src="/assets/chains/arbitrum.png" alt="Arbitrum" width={20} height={20} />
                   Arbitrum
-                  <ExternalLinkIcon className="w-4 h-4" />
+                  {/* <ExternalLinkIcon className="w-4 h-4" /> */}
                 </Button>
               </Link>
             </div>
@@ -201,7 +206,7 @@ export default function DonatePage() {
       <div className="my-16">
         <p className="text-lg font-antonio mb-4">Disclaimer</p>
         <p className="text-xs mb-2">
-          ECH Institute Inc., operating as Ethereum Cat Herders, is dedicated to education, community building, and homesteading Ethereum. Our mission is to coordinate and support Ethereum network upgrades and the Ethereum Improvement Proposal (EIP) process; empower and connect individuals through the creation of content on EIPs, open-source infrastructures and technical expertise in the Ethereum ecosystem. We encourage a permissionless free exchange of ideas in the Ethereum community.
+          Ethereum Cat Herders, a project of ECH Institute Inc., is dedicated to education, community building, and homesteading Ethereum. Our mission is to coordinate and support Ethereum network upgrades and the Ethereum Improvement Proposal (EIP) process; empower and connect individuals through the creation of content on EIPs, open-source infrastructures and technical expertise in the Ethereum ecosystem. We encourage a permissionless free exchange of ideas in the Ethereum community.
         </p>
         <p className="text-xs mb-2">
           ECH Institute Inc. is a non-partisan 501(c)(3) tax-exempt charitable organization and operates in accordance with federal, state, and local laws regarding nonprofit activities in the United States of America.
