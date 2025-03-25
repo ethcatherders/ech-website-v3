@@ -9,7 +9,7 @@ import {
   Chain,
 } from "viem";
 import { base, baseSepolia, foundry, optimism, optimismSepolia } from "viem/chains"
-import { NetworkUpgrade } from "@/constants/eip-authors";
+import { EipAuthor, NetworkUpgrade } from "@/constants/eip-authors";
 
 export const chainId = Number(process.env.NEXT_PUBLIC_CHAIN_ID || process.env.CHAIN_ID)
 
@@ -51,4 +51,10 @@ export async function hasAlreadyClaimed(githubUsername: string, upgrade: Network
     console.error(error)
     return false
   }
+}
+
+// Find an EIP author with case-insensitive GitHub username matching
+export function findEipAuthorByGithubUsername(authors: EipAuthor[], username: string) {
+  const githubUrl = `https://github.com/${username}`.toLowerCase();
+  return authors.find(author => author.github.toLowerCase() === githubUrl);
 }
