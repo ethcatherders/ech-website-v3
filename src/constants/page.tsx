@@ -29,7 +29,7 @@ export const nav: Nav[] = [
         
         {
           label: "Fusaka Upgrade",
-          link: "/upgrade/fusaka",
+          link: "/upgrades/fusaka",
         },
         {
           label: "Pectra Upgrade",
@@ -44,7 +44,7 @@ export const nav: Nav[] = [
       },
       {
         label: "Learn2Earn",
-        link: "learn2earn",
+        link: "https://l2e.ethereumcatherders.com",
       },
     ],
   },
@@ -62,11 +62,7 @@ export const nav: Nav[] = [
           },
           {
             label: "Ecosystem Project Demo",
-            link: "/demo",
-          },
-          {
-            label: "Meet The Herders",
-            link: "/about",
+            link: "https://youtube.com/playlist?list=PL4cwHXAawZxrhbMXuCqMsCiwx1lwu_cNs",
           },
           {
             label: "Audio Podcast",
@@ -81,30 +77,15 @@ export const nav: Nav[] = [
       },
       {
         label: "Blogs",
-        children: [
-          {
-            label: "Blog Posts",
-            link: "/blog",
-          },
-          {
-            label: "ECH Updates",
-            link: "/ech-updates",
-          },
-        ]
+        link: "https://blog.ethcatherders.com"
       },
       {
-        label: "Testimonial",
-        link: "/testimonial",
-        children: [
-          {
-            label: "Donate",
-             link: "/donate",
-          },
-        ]
+        label: "Meet The Herders",
+        link: "/about",
       },
       {
         label: "Get involved",
-        link: "/get-involved",
+        link: "/join",
       }
     ],
     },
@@ -116,40 +97,14 @@ export const nav: Nav[] = [
         link: "/calendar",
       },
       {
-        label: "Meeting & Notes",
-        link: "/meetings",
-        children: [
-          {
-            label: "EIPIP",
-            link: "/eipip"
-          },
-          {
-            label: "Protocol Dev",
-            link: "/protocol-dev",
-          },
-          {
-            label: "Wallet Dev",
-            link: "/wallet-dev"
-          },
-          {
-            label: "ERC Dev",
-            link: "/erc-dev",
-          },
-          {
-            label: "Eth_multicall",
-            link: "/eth_multicall",
-          },
-          {
-            label: "EOF",
-            link: "/eof",
-          },
-        ]
-      },
-      {
         label: "Surveys",
         link: "/surveys",
       },
     ],
+  },
+  {
+    label: "Donate",
+     link: "/donate",
   },
 ];
 
