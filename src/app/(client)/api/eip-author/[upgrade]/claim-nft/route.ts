@@ -1,4 +1,4 @@
-import { chainId, eipAuthorNftAddress, getChain, getTokenIdOfUpgrade, hasAlreadyClaimed } from "@/components/nft-claim/utils";
+import { chainId, eipAuthorNftAddress, getChain, getTokenIdOfUpgrade, hasAlreadyClaimed, findEipAuthorByGithubUsername } from "@/components/nft-claim/utils";
 import { eipAuthorsByUpgrade, NetworkUpgrade } from "@/constants/eip-authors";
 import { NextRequest, NextResponse } from "next/server";
 import { http, isAddress, parseAbi, createWalletClient } from "viem";
@@ -9,7 +9,7 @@ export async function POST(req: NextRequest, { params }: { params: { upgrade: Ne
   const upgrade = params.upgrade;
 
   const eipAuthors = eipAuthorsByUpgrade[upgrade];
-  const author = eipAuthors.find((author) => author.github === `https://github.com/${githubUsername}`);
+  const author = findEipAuthorByGithubUsername(eipAuthors, githubUsername);
   if (!author) {
     return NextResponse.json({ error: "Not an EIP author" }, { status: 400 })
   }
