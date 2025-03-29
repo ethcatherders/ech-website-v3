@@ -12,73 +12,99 @@ import { GrLinkedinOption } from "react-icons/gr";
 
 export const nav: Nav[] = [
   {
-    label: "Home",
-    link: "/",
-  },
-  {
-    label: "Activities",
+    label: "Education",
     children: [
       {
-        label: "Network Upgrades",
-        link: "/upgrades",
-      },
-      {
-        label: "Pectra Upgrade",
-        link: "/upgrades/pectra",
-      },
-      {
-        label: "Dencun Upgrade",
-        link: "/upgrades/dencun",
-      },
-      {
-        label: "EIP Resources",
+        label: "EIPs",
         link: "/eip",
-      },
-      {
-        label: "Meetings",
-        link: "/dev_meetings",
       },
       {
         label: "Testnets",
         link: "/testnets",
       },
       {
-        label: "Podcasts",
-        link: "/podcast",
+        label: "Upgrades",
+        link: "/upgrades",
+      children: [   
+        
+        {
+          label: "Fusaka Upgrade",
+          link: "/upgrades/fusaka",
+        },
+        {
+          label: "Pectra Upgrade",
+          link: "/upgrades/pectra",
+        },
+        {
+          label: "All Upgrade",
+          link: "/upgrades",
+        },
+        
+      ],
       },
       {
-        label: "PEEPanEIP",
-        link: "/peepaneip",
+        label: "Learn2Earn",
+        link: "https://l2e.ethereumcatherders.com",
+      },
+    ],
+  },
+  
+  {
+    label: "Community",
+    children: [ 
+      {
+        label: "Podcasts",
+        link: "/podcast",
+        children: [    
+          {
+            label: "PEEPanEIP",
+            link: "/peepaneip",
+          },
+          {
+            label: "Ecosystem Project Demo",
+            link: "https://youtube.com/playlist?list=PL4cwHXAawZxrhbMXuCqMsCiwx1lwu_cNs",
+          },
+          {
+            label: "Audio Podcast",
+            link: "/podcast"
+          }
+          
+        ],
+      },
+      {
+        label: "Events & Talks",
+        link: "/events",
+      },
+      {
+        label: "Blogs",
+        link: "https://blog.ethcatherders.com"
+      },
+      {
+        label: "Meet The Herders",
+        link: "/about",
+      },
+      {
+        label: "Get involved",
+        link: "/join",
+      }
+    ],
+    },
+  {
+    label: "Homestead",
+    children: [
+      {
+        label: "Calendar",
+        link: "/calendar",
       },
       {
         label: "Surveys",
         link: "/surveys",
       },
-      {
-        label: "Events",
-        link: "/events",
-      },
     ],
   },
   {
-    label: "Calendar",
-    link: "/calendar",
-  },
-  {
-    label: "Blog",
-    link: "/blog",
-  },
-  {
-    label: "ECH Youtube",
-    link: "/ech_youtube",
-  },
-  {
-    label: "About Us",
-    link: "/about",
-  },
-  {
     label: "Donate",
-    link: "/donate",
+     link: "/donate",
   },
 ];
 

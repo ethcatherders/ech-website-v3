@@ -21,6 +21,9 @@ export default function Navbar() {
   const [navRef, animateNav] = useAnimate();
   const [navMenuRef, animateNavMenu] = useAnimate();
   const [activitiesOpen, setActivitiesOpen] = useState(false);
+  const [communityOpen, setCommunityOpen] = useState(false);
+  const [homesteadOpen, setHomesteadOpen] = useState(false);
+  const [expandedItems, setExpandedItems] = useState<{ [key: string]: boolean }>({});
 
   useEffect(() => {
     if (navMenuRef.current) {
@@ -70,6 +73,19 @@ export default function Navbar() {
     };
   }, [scrollY]);
 
+  const closeAllMenus = () => {
+    setActivitiesOpen(false);
+    setCommunityOpen(false);
+    setHomesteadOpen(false);
+  };
+
+  const toggleExpand = (label: string) => {
+    setExpandedItems(prev => ({
+      ...prev,
+      [label]: !prev[label]
+    }));
+  };
+
   return (
     <>
       <motion.div
@@ -102,13 +118,13 @@ export default function Navbar() {
 
         <div className="xl:flex hidden gap-x-16 items-center">
           {nav.map((item, index) => {
-            if (item === nav[1]) {
+            // Check if the item has children to show dropdown
+            if (item.children && item.children.length > 0) {
               return (
                 <Popover key={index}>
                   <PopoverTrigger>
                     <p
-                      key={index}
-                      className={`text-3xl font-antonio  hover:text-black duration-500  ${
+                      className={`text-3xl font-antonio hover:text-black duration-500 ${
                         path === item.link ? "text-black" : "text-lightGray"
                       }`}
                     >
@@ -118,15 +134,40 @@ export default function Navbar() {
 
                   <PopoverContent
                     sideOffset={20}
-                    className="dark gap-2 bg-darkGray"
+                    className="dark gap-2 bg-darkGray p-4"
                   >
-                    {item.children?.map((child: any, chi: any) => {
+                    {item.children?.map((child, chi) => {
+                      if (child.children && child.children.length > 0) {
+                        return (
+                          <div key={chi} className="relative group">
+                            {/* Parent item */}
+                            <div className="flex items-center justify-between cursor-pointer group">
+                              <p className="text-2xl font-antonio duration-500">
+                                {child.label.toUpperCase()}
+                              </p>
+                              <span className="ml-2 transform group-hover:rotate-90 transition-transform duration-200">
+                                ›
+                              </span>
+                            </div>
+                            
+                            {/* Indented dropdown */}
+                            <div className="hidden group-hover:block pl-4 mt-2 space-y-2 border-l-2 border-gray-600">
+                              {child.children.map((subChild, subIdx) => (
+                                <Link key={subIdx} href={subChild.link || "/"}>
+                                  <p className="text-xl font-antonio duration-500 hover:text-gray-300 pl-2">
+                                    {subChild.label.toUpperCase()}
+                                  </p>
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        );
+                      }
+                      
+                      // Regular menu item without children
                       return (
                         <Link key={chi} href={child.link || "/"}>
-                          <p
-                            key={chi}
-                            className="text-2xl font-antonio duration-500"
-                          >
+                          <p className="text-2xl font-antonio duration-500 hover:text-gray-300">
                             {child.label.toUpperCase()}
                           </p>
                         </Link>
@@ -138,10 +179,9 @@ export default function Navbar() {
             } else {
               return (
                 <a href={item.link} key={index}>
-                  <div key={index}>
+                  <div>
                     <p
-                      key={index}
-                      className={`text-3xl font-antonio  hover:text-black duration-500   ${
+                      className={`text-3xl font-antonio hover:text-black duration-500 ${
                         path === item.link ? "text-black" : "text-lightGray"
                       }`}
                     >
@@ -181,16 +221,13 @@ export default function Navbar() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 transition={{ duration: 0.2 }}
-                onClick={() => setIsMenuOpen(false)}
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  closeAllMenus();
+                }}
                 className="hover:cursor-pointer text-white"
               >
-                <span
-                  onClick={() => {
-                    setActivitiesOpen(false);
-                  }}
-                >
-                  <CgClose size={50} />
-                </span>
+                <CgClose size={50} />
               </motion.div>
             </div>
 
@@ -199,7 +236,7 @@ export default function Navbar() {
                 <div className="flex flex-col sm:text-5xl text-3xl gap-4 xl:pl-32 lg:pl-26 md:pl-20 sm:pl-16 pl-10">
                   <span
                     onClick={() => {
-                      setActivitiesOpen(!activitiesOpen);
+                      setActivitiesOpen(false);
                     }}
                   >
                     <CgArrowLeft
@@ -207,15 +244,145 @@ export default function Navbar() {
                       className="text-white border-4 rounded-full cursor-pointer"
                     />
                   </span>
-                  {nav[1]?.children?.map((item: any, index: any) => {
-                    return (
-                      <a href={item.link} key={index}>
-                        <div key={index}>
-                          <p key={index} className={`font-antonio text-white`}>
-                            {item.label.toUpperCase()}
-                          </p>
+                  {nav[0]?.children?.map((item, index) => {
+                    if (item.children && item.children.length > 0) {
+                      return (
+                        <div key={index} className="flex flex-col gap-2">
+                          <div 
+                            className="flex items-center justify-between cursor-pointer"
+                            onClick={() => toggleExpand(item.label)}
+                          >
+                            <p className="font-antonio text-white">
+                              {item.label.toUpperCase()}
+                            </p>
+                            <span className={`transform transition-transform duration-200 ${
+                              expandedItems[item.label] ? 'rotate-90' : ''
+                            }`}>
+                              ›
+                            </span>
+                          </div>
+                          {expandedItems[item.label] && (
+                            <div className="pl-6 mt-2 space-y-2 border-l-2 border-white/20">
+                              {item.children.map((subItem, subIdx) => (
+                                <Link key={subIdx} href={subItem.link || "/"}>
+                                  <p className="font-antonio text-white/80 text-3xl py-1">
+                                    {subItem.label.toUpperCase()}
+                                  </p>
+                                </Link>
+                              ))}
+                            </div>
+                          )}
                         </div>
-                      </a>
+                      );
+                    }
+                    return (
+                      <Link href={item.link || "/"} key={index}>
+                        <p className="font-antonio text-white">{item.label.toUpperCase()}</p>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </>
+            ) : communityOpen ? (
+              <>
+                <div className="flex flex-col sm:text-5xl text-3xl gap-4 xl:pl-32 lg:pl-26 md:pl-20 sm:pl-16 pl-10">
+                  <span
+                    onClick={() => {
+                      setCommunityOpen(false);
+                    }}
+                  >
+                    <CgArrowLeft
+                      size={40}
+                      className="text-white border-4 rounded-full cursor-pointer"
+                    />
+                  </span>
+                  {nav[1]?.children?.map((item, index) => {
+                    if (item.children && item.children.length > 0) {
+                      return (
+                        <div key={index} className="flex flex-col gap-2">
+                          <div 
+                            className="flex items-center justify-between cursor-pointer"
+                            onClick={() => toggleExpand(item.label)}
+                          >
+                            <p className="font-antonio text-white">
+                              {item.label.toUpperCase()}
+                            </p>
+                            <span className={`transform transition-transform duration-200 ${
+                              expandedItems[item.label] ? 'rotate-90' : ''
+                            }`}>
+                              ›
+                            </span>
+                          </div>
+                          {expandedItems[item.label] && (
+                            <div className="pl-6 mt-2 space-y-2 border-l-2 border-white/20">
+                              {item.children.map((subItem, subIdx) => (
+                                <Link key={subIdx} href={subItem.link || "/"}>
+                                  <p className="font-antonio text-white/80 text-3xl py-1">
+                                    {subItem.label.toUpperCase()}
+                                  </p>
+                                </Link>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    }
+                    return (
+                      <Link href={item.link || "/"} key={index}>
+                        <p className="font-antonio text-white">{item.label.toUpperCase()}</p>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </>
+            ) : homesteadOpen ? (
+              <>
+                <div className="flex flex-col sm:text-5xl text-3xl gap-4 xl:pl-32 lg:pl-26 md:pl-20 sm:pl-16 pl-10">
+                  <span
+                    onClick={() => {
+                      setHomesteadOpen(false);
+                    }}
+                  >
+                    <CgArrowLeft
+                      size={40}
+                      className="text-white border-4 rounded-full cursor-pointer"
+                    />
+                  </span>
+                  {nav[2]?.children?.map((item, index) => {
+                    if (item.children && item.children.length > 0) {
+                      return (
+                        <div key={index} className="flex flex-col gap-2">
+                          <div 
+                            className="flex items-center justify-between cursor-pointer"
+                            onClick={() => toggleExpand(item.label)}
+                          >
+                            <p className="font-antonio text-white">
+                              {item.label.toUpperCase()}
+                            </p>
+                            <span className={`transform transition-transform duration-200 ${
+                              expandedItems[item.label] ? 'rotate-90' : ''
+                            }`}>
+                              ›
+                            </span>
+                          </div>
+                          {expandedItems[item.label] && (
+                            <div className="pl-6 mt-2 space-y-2 border-l-2 border-white/20">
+                              {item.children.map((subItem, subIdx) => (
+                                <Link key={subIdx} href={subItem.link || "/"}>
+                                  <p className="font-antonio text-white/80 text-3xl py-1">
+                                    {subItem.label.toUpperCase()}
+                                  </p>
+                                </Link>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    }
+                    return (
+                      <Link href={item.link || "/"} key={index}>
+                        <p className="font-antonio text-white">{item.label.toUpperCase()}</p>
+                      </Link>
                     );
                   })}
                 </div>
@@ -223,14 +390,15 @@ export default function Navbar() {
             ) : (
               <div className="flex flex-col text-5xl gap-8 xl:pl-32 lg:pl-26 md:pl-20 sm:pl-16 pl-10">
                 {nav.map((item, index) => {
-                  if (item === nav[1]) {
+                  if (item.children && item.children.length > 0) {
                     return (
                       <div key={index} className="flex">
                         <p
-                          key={index}
                           className={`font-antonio text-white cursor-pointer`}
                           onClick={() => {
-                            setActivitiesOpen(!activitiesOpen);
+                            if (index === 0) setActivitiesOpen(true);
+                            else if (index === 1) setCommunityOpen(true);
+                            else if (index === 2) setHomesteadOpen(true);
                           }}
                         >
                           {item.label.toUpperCase()}
@@ -240,8 +408,8 @@ export default function Navbar() {
                   } else {
                     return (
                       <a href={item.link} key={index}>
-                        <div key={index}>
-                          <p key={index} className={`font-antonio text-white`}>
+                        <div>
+                          <p className={`font-antonio text-white`}>
                             {item.label.toUpperCase()}
                           </p>
                         </div>
