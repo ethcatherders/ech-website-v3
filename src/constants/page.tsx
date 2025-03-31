@@ -243,6 +243,36 @@ export const activeTestnets: ActiveTestnet[] = [
       },
     ],
   },
+  {
+    name: "Hoodi",
+    warning: "For Validators and Infra Only",
+    description:
+      "Hoodi (Hoodi Testnet) is the second long-standing, merged-from-genesis, public Ethereum testnet. Hoodi will replace Holešky as a staking, infrastructure and protocol-developer testnet in 2025. For testing decentralized applications, smart contracts, and other EVM functionality, please use Sepolia!",
+    resources: [
+      {
+        title: "Website",
+        link: "https://hoodi.ethpandaops.io/",
+      },
+      {
+        title: "Github",
+        link: "https://github.com/eth-clients/hoodi",
+      },
+      {
+        title: "Otterscan",
+        link: "https://hoodi.otterscan.io/",
+      },
+      {
+        title: "Etherscan",
+        link: "https://hoodi.etherscan.io/",
+      },
+    ],
+    faucets: [
+      {
+        title: "PoW Faucet",
+        link: "https://hoodi-faucet.pk910.de/",
+      },
+    ],
+  },
 ];
 
 export const deprecatedTestnets: DepretectedTestnets[] = [
