@@ -17,6 +17,9 @@ import ShanghaiExtras from "@/components/network_upgrades/shanghai";
 import Pectra from "@/components/network_upgrades/pectra";
 import { UpgradeData } from "@/components/network_upgrades/types";
 import { NftClaimCard } from "@/components/nft-claim";
+import { getNetworkCarouselImages } from "@/lib/networkCarouselImages";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import Image from "next/image";
 
 export default function NetworkUpgradePage() {
   const path = usePathname();
@@ -29,6 +32,8 @@ export default function NetworkUpgradePage() {
     }
     fetchData();
   }, [upgradeName]);
+
+  const carouselImages = getNetworkCarouselImages(upgradeName);
 
   if (!data && upgradeName !== "the-merge") {
     return (
@@ -117,6 +122,20 @@ export default function NetworkUpgradePage() {
           </div>
 
           {upgradeName === "shanghai" && <ShanghaiExtras />}
+
+          {carouselImages.length > 0 && (
+            <Carousel>
+              <CarouselContent>
+                {carouselImages.map((image, index) => (
+                  <CarouselItem key={index} className="w-full h-full flex justify-center items-center">
+                    <img src={image} alt={upgradeName + '-carousel-' + index} width={800} height={600} />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
+          )}
 
           {data?.updates.length !== 0 ||
           data?.videos.length !== 0 ||
