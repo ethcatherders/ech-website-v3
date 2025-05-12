@@ -12,73 +12,99 @@ import { GrLinkedinOption } from "react-icons/gr";
 
 export const nav: Nav[] = [
   {
-    label: "Home",
-    link: "/",
-  },
-  {
-    label: "Activities",
+    label: "Education",
     children: [
       {
-        label: "Network Upgrades",
-        link: "/upgrades",
-      },
-      {
-        label: "Pectra Upgrade",
-        link: "/upgrades/pectra",
-      },
-      {
-        label: "Dencun Upgrade",
-        link: "/upgrades/dencun",
-      },
-      {
-        label: "EIP Resources",
+        label: "EIPs",
         link: "/eip",
-      },
-      {
-        label: "Meetings",
-        link: "/dev_meetings",
       },
       {
         label: "Testnets",
         link: "/testnets",
       },
       {
-        label: "Podcasts",
-        link: "/podcast",
+        label: "Upgrades",
+        link: "/upgrades",
+      children: [   
+        
+        {
+          label: "Fusaka Upgrade",
+          link: "/upgrades/fusaka",
+        },
+        {
+          label: "Pectra Upgrade",
+          link: "/upgrades/pectra",
+        },
+        {
+          label: "All Upgrade",
+          link: "/upgrades",
+        },
+        
+      ],
       },
       {
-        label: "PEEPanEIP",
-        link: "/peepaneip",
+        label: "Learn2Earn",
+        link: "https://l2e.ethereumcatherders.com",
+      },
+    ],
+  },
+  
+  {
+    label: "Community",
+    children: [ 
+      {
+        label: "Podcasts",
+        link: "/podcast",
+        children: [    
+          {
+            label: "PEEPanEIP",
+            link: "/peepaneip",
+          },
+          {
+            label: "Ecosystem Project Demo",
+            link: "https://youtube.com/playlist?list=PL4cwHXAawZxrhbMXuCqMsCiwx1lwu_cNs",
+          },
+          {
+            label: "Audio Podcast",
+            link: "/podcast"
+          }
+          
+        ],
+      },
+      {
+        label: "Events & Talks",
+        link: "/events",
+      },
+      {
+        label: "Blogs",
+        link: "https://blog.ethcatherders.com"
+      },
+      {
+        label: "Meet The Herders",
+        link: "/about",
+      },
+      {
+        label: "Get involved",
+        link: "/join",
+      }
+    ],
+    },
+  {
+    label: "Homestead",
+    children: [
+      {
+        label: "Calendar",
+        link: "/calendar",
       },
       {
         label: "Surveys",
         link: "/surveys",
       },
-      {
-        label: "Events",
-        link: "/events",
-      },
     ],
   },
   {
-    label: "Calendar",
-    link: "/calendar",
-  },
-  {
-    label: "Blog",
-    link: "/blog",
-  },
-  {
-    label: "ECH Youtube",
-    link: "/ech_youtube",
-  },
-  {
-    label: "About Us",
-    link: "/about",
-  },
-  {
     label: "Donate",
-    link: "/donate",
+     link: "/donate",
   },
 ];
 
@@ -240,6 +266,36 @@ export const activeTestnets: ActiveTestnet[] = [
       {
         title: "Automata",
         link: "https://www.holeskyfaucet.io/",
+      },
+    ],
+  },
+  {
+    name: "Hoodi",
+    warning: "For Validators and Infra Only",
+    description:
+      "Hoodi (Hoodi Testnet) is the second long-standing, merged-from-genesis, public Ethereum testnet. Hoodi will replace Holešky as a staking, infrastructure and protocol-developer testnet in 2025. For testing decentralized applications, smart contracts, and other EVM functionality, please use Sepolia!",
+    resources: [
+      {
+        title: "Website",
+        link: "https://hoodi.ethpandaops.io/",
+      },
+      {
+        title: "Github",
+        link: "https://github.com/eth-clients/hoodi",
+      },
+      {
+        title: "Otterscan",
+        link: "https://hoodi.otterscan.io/",
+      },
+      {
+        title: "Etherscan",
+        link: "https://hoodi.etherscan.io/",
+      },
+    ],
+    faucets: [
+      {
+        title: "PoW Faucet",
+        link: "https://hoodi-faucet.pk910.de/",
       },
     ],
   },

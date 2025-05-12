@@ -22,7 +22,7 @@ export default function Hero() {
 
           <div>
             <Button
-              text="Join Us"
+              text="Get involved! "
               link="/join"
               size="md"
               fontSize="lg"
