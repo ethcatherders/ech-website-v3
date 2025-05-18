@@ -2,6 +2,29 @@ import { MTHType, UpgradePropsalStatus } from "@prisma/client";
 import { ReactElement } from "react";
 import { StringValidation } from "zod";
 
+export type NetworkUpgradeNamespace = 
+  | "dencun" 
+  | "pectra" 
+  | "genesis" 
+  | "shanghai" 
+  | "fusaka"
+  | "frontier"
+  | "frontier-thawing"
+  | "london"
+  | "berlin"
+  | "arrow-glacier"
+  | "homestead"
+  | "byzantium"
+  | "constantinople"
+  | "constantinople-2"
+  | "petersburg"
+  | "istanbul"
+  | "muir-glacier"
+  | "altair"
+  | "gray-glacier"
+  | "the-merge"
+  | "dao-fork"
+
 export type Nav = {
   label: string;
   link?: string;
