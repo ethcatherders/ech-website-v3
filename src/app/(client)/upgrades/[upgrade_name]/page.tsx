@@ -34,6 +34,12 @@ export default function NetworkUpgradePage() {
   }, [upgradeName]);
 
   const carouselImages = getNetworkCarouselImages(upgradeName);
+  const upgradeTitle = upgradeName.split("-").map(word => {
+    if (word === "dao") {
+      return "DAO";
+    }
+    return word.charAt(0).toUpperCase() + word.slice(1)
+  }).join(" ");
 
   if (!data && upgradeName !== "the-merge") {
     return (
@@ -68,13 +74,10 @@ export default function NetworkUpgradePage() {
             <div className="flex flex-col gap-y-6 xl:max-w-xl md:max-w-2xl">
               <section className="flex flex-col gap-y-4 ">
                 <h1 className="xl:text-6xl lg:text-4xl sm:text-4xl text-3xl font-roboto font-bold text-darkGray">
-                  {upgradeName.charAt(0).toUpperCase() + upgradeName.slice(1)}{" "}
-                  Upgrade
+                  {upgradeTitle} Upgrade
                 </h1>
                 <h3 className="text-darkGray font-roboto font-medium xl:text-2xl md:text-xl text-lg">
-                  What is the{" "}
-                  {upgradeName.charAt(0).toUpperCase() + upgradeName.slice(1)}{" "}
-                  Upgrade?
+                  What is the {upgradeTitle} Upgrade?
                 </h3>
               </section>
               <section>
@@ -143,9 +146,7 @@ export default function NetworkUpgradePage() {
             <div className="flex justify-center text-center mx-5">
               <span className="md:text-3xl text-xl text-center font-roboto font-bold">
                 In the section below you can find more resources providing
-                information on the{" "}
-                {upgradeName.charAt(0).toUpperCase() + upgradeName.slice(1)}{" "}
-                Upgrade.
+                information on the {upgradeTitle} Upgrade.
               </span>
             </div>
           ) : null}
