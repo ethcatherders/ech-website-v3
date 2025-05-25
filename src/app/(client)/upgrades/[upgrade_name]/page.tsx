@@ -124,15 +124,15 @@ export default function NetworkUpgradePage() {
           {upgradeName === "shanghai" && <ShanghaiExtras />}
 
           {carouselImages.length > 0 && (
-            <Carousel>
+            <Carousel className="w-full max-w-[80vw]">
+              <CarouselPrevious />
               <CarouselContent>
                 {carouselImages.map((image, index) => (
-                  <CarouselItem key={index} className="w-full h-full flex justify-center items-center">
+                  <CarouselItem key={index} className="h-full flex justify-center items-center">
                     <img src={image} alt={upgradeName + '-carousel-' + index} width={800} height={600} />
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious />
               <CarouselNext />
             </Carousel>
           )}
