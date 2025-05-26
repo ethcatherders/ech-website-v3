@@ -100,6 +100,10 @@ export const nav: Nav[] = [
         label: "Surveys",
         link: "/surveys",
       },
+      {
+        label: "Meetings and Notes",
+        link: "/meetings",
+      }
     ],
   },
   {
