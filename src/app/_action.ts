@@ -591,14 +591,105 @@ export async function getEipResourceTitle(resourceId: number) {
 }
 
 export async function addMeeting(meetingData: any) {
-  await prisma.meetings.create({
-    data: {
-      title: meetingData.title,
-      issuesLink: meetingData.issuesLink,
-      notes: meetingData.notes,
-      videoLink: meetingData.videoLink,
+  const meeting = await prisma.meetings.create({
+    data: meetingData,
+  });
+  console.log("Meeting added");
+  return meeting;
+}
+
+export async function getAllMeetingCategories() {
+  const categories = await prisma.meetingCategory.findMany();
+  return categories;
+}
+
+export async function getMeetingCategory(categoryId: number) {
+  const category = await prisma.meetingCategory.findUnique({
+    where: {
+      id: categoryId,
+    },
+    include: {
+      meetings: true,
     },
   });
+  return category;
+}
+
+export async function getMeetingsByCategory(categoryId: number) {
+  // Using a raw query to avoid schema mismatch before migration is applied
+  const meetings = await prisma.$queryRaw`
+    SELECT * FROM "Meetings" WHERE "categoryId" = ${categoryId}
+  `;
+  return meetings;
+}
+
+// Client-side actions for public access
+export async function getPublicMeetingCategories() {
+  const categories = await prisma.meetingCategory.findMany();
+  return categories;
+}
+
+export async function getPublicMeetingCategoryBySlug(slug: string) {
+  // Convert slug format (e.g., "breakout-room-meetings") to potential name matches
+  const nameFromSlug = slug
+    .split('-')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+  
+  const category = await prisma.meetingCategory.findFirst({
+    where: {
+      OR: [
+        { name: nameFromSlug },
+        { name: { contains: nameFromSlug, mode: 'insensitive' } }
+      ]
+    },
+    include: {
+      meetings: true
+    }
+  });
+  
+  return category;
+}
+
+export async function getPublicMeetingCategoryById(categoryId: number) {
+  const category = await prisma.meetingCategory.findUnique({
+    where: {
+      id: categoryId
+    },
+    include: {
+      meetings: true
+    }
+  });
+  
+  return category;
+}
+
+export async function addMeetingCategory(categoryData: any) {
+  const category = await prisma.meetingCategory.create({
+    data: categoryData,
+  });
+  console.log("Meeting category added");
+  return category;
+}
+
+export async function updateMeetingCategory(categoryId: number, categoryData: any) {
+  const category = await prisma.meetingCategory.update({
+    where: {
+      id: categoryId,
+    },
+    data: categoryData,
+  });
+  console.log("Meeting category updated");
+  return category;
+}
+
+export async function deleteMeetingCategory(categoryId: number) {
+  await prisma.meetingCategory.delete({
+    where: {
+      id: categoryId,
+    },
+  });
+  console.log("Meeting category deleted");
 }
 
 export async function deleteMeeting(meetingId: number) {
@@ -610,7 +701,11 @@ export async function deleteMeeting(meetingId: number) {
 }
 
 export async function getAllMeetings() {
-  const meetings = await prisma.meetings.findMany();
+  const meetings = await prisma.meetings.findMany({
+    include: {
+      category: true
+    }
+  });
   return meetings;
 }
 
