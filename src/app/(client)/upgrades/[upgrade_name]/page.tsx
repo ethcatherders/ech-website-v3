@@ -66,6 +66,13 @@ export default function NetworkUpgradePage() {
     return <Pectra data={data} />;
   }
 
+  const proposals = {
+    scheduled: data?.consideredProposals.filter((item) => item.status === 'INCLUDED'),
+    considered: data?.consideredProposals.filter((item) => item.status === 'CONSIDERED'),
+    // proposed: data?.consideredProposals.filter((item) => item.status === 'PROPOSED'),
+    // declined: data?.consideredProposals.filter((item) => item.status === 'DECLINED'),
+  }
+
   return (
     <>
       <>
@@ -233,35 +240,35 @@ export default function NetworkUpgradePage() {
             </div>
           </div>
 
-          <div className="flex flex-col mx-10 text-center pt-32" id="eips">
-            {data?.consideredProposals.filter((item) => item.status === 'INCLUDED').length !== 0 ? (
+          {proposals.scheduled?.length !== 0 && (  
+            <div className="flex flex-col mx-10 text-center pt-32" id="eips">
               <h1 className="xl:text-4xl md:text-3xl text-2xl font-bold text-darkGray">
-                Included EIPs
+                EIPs <span className="italic">Scheduled For Inclusion</span>
               </h1>
-            ) : null}
-            <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1  gap-x-10 gap-y-6 ">
-              {data?.consideredProposals.filter((item) => item.status === 'INCLUDED').map(
-                (item: ConsideredProposals, index: number) => {
-                  return <ConsideredProposalCard data={item} key={index} />;
-                },
-              )}
+              <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1  gap-x-10 gap-y-6 ">
+                {proposals.scheduled?.map(
+                  (item: ConsideredProposals, index: number) => {
+                    return <ConsideredProposalCard data={item} key={index} />;
+                  },
+                )}
+              </div>
             </div>
-          </div>
+          )}
 
-          <div className="flex flex-col mx-10 text-center pt-32">
-            {data?.consideredProposals.filter((item) => item.status === 'CONSIDERED').length !== 0 ? (
+          {proposals.considered?.length !== 0 && (
+            <div className="flex flex-col mx-10 text-center pt-32">
               <h1 className="xl:text-4xl md:text-3xl text-2xl font-bold text-darkGray">
                 EIPs <span className="italic">Considered For Inclusion</span>
               </h1>
-            ) : null}
-            <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1  gap-x-10 gap-y-6 ">
-              {data?.consideredProposals.filter((item) => item.status === 'CONSIDERED').map(
-                (item: ConsideredProposals, index: number) => {
-                  return <ConsideredProposalCard data={item} key={index} />;
-                },
-              )}
+              <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1  gap-x-10 gap-y-6 ">
+                {proposals.considered?.map(
+                  (item: ConsideredProposals, index: number) => {
+                    return <ConsideredProposalCard data={item} key={index} />;
+                  },
+                )}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </>
     </>
