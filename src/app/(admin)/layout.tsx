@@ -60,7 +60,7 @@ export default function RootLayout({
             <div className="flex flex-wrap lg:flex-row flex-col justify-center w-full h-screen items-center gap-5">
               <button
                 onClick={() => {
-                  signIn("google");
+                  signIn("github");
                 }}
                 className="bg-darkGray p-4 text-2xl text-white rounded-xl hover:scale-110 duration-300"
               >
