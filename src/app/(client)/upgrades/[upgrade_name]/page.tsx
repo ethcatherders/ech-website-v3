@@ -17,6 +17,9 @@ import ShanghaiExtras from "@/components/network_upgrades/shanghai";
 import Pectra from "@/components/network_upgrades/pectra";
 import { UpgradeData } from "@/components/network_upgrades/types";
 import { NftClaimCard } from "@/components/nft-claim";
+import { getNetworkCarouselImages } from "@/lib/networkCarouselImages";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import Image from "next/image";
 
 export default function NetworkUpgradePage() {
   const path = usePathname();
@@ -29,6 +32,14 @@ export default function NetworkUpgradePage() {
     }
     fetchData();
   }, [upgradeName]);
+
+  const carouselImages = getNetworkCarouselImages(upgradeName);
+  const upgradeTitle = upgradeName.split("-").map(word => {
+    if (word === "dao") {
+      return "DAO";
+    }
+    return word.charAt(0).toUpperCase() + word.slice(1)
+  }).join(" ");
 
   if (!data && upgradeName !== "the-merge") {
     return (
@@ -55,6 +66,13 @@ export default function NetworkUpgradePage() {
     return <Pectra data={data} />;
   }
 
+  const proposals = {
+    scheduled: data?.consideredProposals.filter((item) => item.status === 'INCLUDED'),
+    considered: data?.consideredProposals.filter((item) => item.status === 'CONSIDERED'),
+    // proposed: data?.consideredProposals.filter((item) => item.status === 'PROPOSED'),
+    // declined: data?.consideredProposals.filter((item) => item.status === 'DECLINED'),
+  }
+
   return (
     <>
       <>
@@ -63,13 +81,10 @@ export default function NetworkUpgradePage() {
             <div className="flex flex-col gap-y-6 xl:max-w-xl md:max-w-2xl">
               <section className="flex flex-col gap-y-4 ">
                 <h1 className="xl:text-6xl lg:text-4xl sm:text-4xl text-3xl font-roboto font-bold text-darkGray">
-                  {upgradeName.charAt(0).toUpperCase() + upgradeName.slice(1)}{" "}
-                  Upgrade
+                  {upgradeTitle} Upgrade
                 </h1>
                 <h3 className="text-darkGray font-roboto font-medium xl:text-2xl md:text-xl text-lg">
-                  What is the{" "}
-                  {upgradeName.charAt(0).toUpperCase() + upgradeName.slice(1)}{" "}
-                  Upgrade?
+                  What is the {upgradeTitle} Upgrade?
                 </h3>
               </section>
               <section>
@@ -118,15 +133,27 @@ export default function NetworkUpgradePage() {
 
           {upgradeName === "shanghai" && <ShanghaiExtras />}
 
+          {carouselImages.length > 0 && (
+            <Carousel className="w-full max-w-[80vw]">
+              <CarouselPrevious />
+              <CarouselContent>
+                {carouselImages.map((image, index) => (
+                  <CarouselItem key={index} className="h-full flex justify-center items-center">
+                    <img src={image} alt={upgradeName + '-carousel-' + index} width={800} height={600} />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselNext />
+            </Carousel>
+          )}
+
           {data?.updates.length !== 0 ||
           data?.videos.length !== 0 ||
           data?.resources.length !== 0 ? (
             <div className="flex justify-center text-center mx-5">
               <span className="md:text-3xl text-xl text-center font-roboto font-bold">
                 In the section below you can find more resources providing
-                information on the{" "}
-                {upgradeName.charAt(0).toUpperCase() + upgradeName.slice(1)}{" "}
-                Upgrade.
+                information on the {upgradeTitle} Upgrade.
               </span>
             </div>
           ) : null}
@@ -213,35 +240,35 @@ export default function NetworkUpgradePage() {
             </div>
           </div>
 
-          <div className="flex flex-col mx-10 text-center pt-32" id="eips">
-            {data?.consideredProposals.filter((item) => item.status === 'INCLUDED').length !== 0 ? (
+          {proposals.scheduled?.length !== 0 && (  
+            <div className="flex flex-col mx-10 text-center pt-32" id="eips">
               <h1 className="xl:text-4xl md:text-3xl text-2xl font-bold text-darkGray">
-                Included EIPs
+                EIPs <span className="italic">Scheduled For Inclusion</span>
               </h1>
-            ) : null}
-            <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1  gap-x-10 gap-y-6 ">
-              {data?.consideredProposals.filter((item) => item.status === 'INCLUDED').map(
-                (item: ConsideredProposals, index: number) => {
-                  return <ConsideredProposalCard data={item} key={index} />;
-                },
-              )}
+              <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1  gap-x-10 gap-y-6 ">
+                {proposals.scheduled?.map(
+                  (item: ConsideredProposals, index: number) => {
+                    return <ConsideredProposalCard data={item} key={index} />;
+                  },
+                )}
+              </div>
             </div>
-          </div>
+          )}
 
-          <div className="flex flex-col mx-10 text-center pt-32">
-            {data?.consideredProposals.filter((item) => item.status === 'CONSIDERED').length !== 0 ? (
+          {proposals.considered?.length !== 0 && (
+            <div className="flex flex-col mx-10 text-center pt-32">
               <h1 className="xl:text-4xl md:text-3xl text-2xl font-bold text-darkGray">
                 EIPs <span className="italic">Considered For Inclusion</span>
               </h1>
-            ) : null}
-            <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1  gap-x-10 gap-y-6 ">
-              {data?.consideredProposals.filter((item) => item.status === 'CONSIDERED').map(
-                (item: ConsideredProposals, index: number) => {
-                  return <ConsideredProposalCard data={item} key={index} />;
-                },
-              )}
+              <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1  gap-x-10 gap-y-6 ">
+                {proposals.considered?.map(
+                  (item: ConsideredProposals, index: number) => {
+                    return <ConsideredProposalCard data={item} key={index} />;
+                  },
+                )}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </>
     </>

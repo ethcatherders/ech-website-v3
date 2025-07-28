@@ -172,12 +172,21 @@ model EIPResources {
   eipId Int?
 }
 
+model MeetingCategory {
+  id          Int       @id @default(autoincrement())
+  name        String    @unique
+  description String?   @default("")
+  meetings    Meetings[]
+}
+
 model Meetings{
-  id        Int     @id @default(autoincrement())
-  title     String? @default("")
-  issuesLink String? @default("")
-  videoLink String? @default("")
-  notes String? @default("")
+  id          Int             @id @default(autoincrement())
+  title       String?         @default("")
+  issuesLink  String?         @default("")
+  videoLink   String?         @default("")
+  notes       String?         @default("")
+  category    MeetingCategory? @relation(fields: [categoryId], references: [id])
+  categoryId  Int?
 }
 
 model MeetTheHerder{
