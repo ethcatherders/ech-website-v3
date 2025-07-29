@@ -7,7 +7,7 @@ import type {
   DepretectedTestnets,
 } from "@/types";
 
-import { BsTwitterX, BsGithub, BsYoutube, BsReddit } from "react-icons/bs";
+import { BsTwitterX, BsGithub, BsYoutube, BsReddit, BsDiscord } from "react-icons/bs";
 import { GrLinkedinOption } from "react-icons/gr";
 
 export const nav: Nav[] = [
@@ -115,7 +115,7 @@ export const nav: Nav[] = [
 export const socials: Socials[] = [
   {
     icon: <BsTwitterX size={20} />,
-    link: "https://twitter.com/EthCatHerders",
+    link: "https://x.com/ECHinstitute",
   },
   {
     icon: <BsGithub size={20} />,
@@ -132,6 +132,10 @@ export const socials: Socials[] = [
   {
     icon: <BsReddit size={20} />,
     link: "https://www.reddit.com/r/EthereumCatHerders/",
+  },
+  {
+    icon: <BsDiscord size={20} />,
+    link: "https://discord.com/invite/Nz6rtfJ8Cu",
   },
   {
     icon: <svg width="20" height="20" viewBox="0 0 1000 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
